@@ -1,5 +1,7 @@
 # Helm Charts
 
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/sagikazarmark/helm-charts/Release?style=flat-square)
+
 Various Helm [charts](https://helm.sh/docs/topics/charts/) for my own and other projects.
 
 
