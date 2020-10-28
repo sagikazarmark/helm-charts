@@ -1,6 +1,7 @@
 # Helm Charts
 
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/sagikazarmark/helm-charts/Release?style=flat-square)
+[![Artifact HUB](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/sagikazarmark)](https://artifacthub.io/packages/search?repo=sagikazarmark)
 
 Various Helm [charts](https://helm.sh/docs/topics/charts/) for my own and other projects.
 
