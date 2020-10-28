@@ -1,0 +1,26 @@
+apiVersion: v1
+entries:
+  sftpgo:
+  - apiVersion: v2
+    appVersion: 1.1.1
+    created: "2020-10-28T21:55:27.5633775Z"
+    description: Fully featured and highly configurable SFTP server with optional
+      FTP/S and WebDAV support.
+    digest: 15b988c338832d186abcd55d23ca6d1c633b3d1354181b547aff3c8db6fd9b95
+    home: https://github.com/drakkan/sftpgo
+    keywords:
+    - sftp
+    - ftp
+    - webdav
+    maintainers:
+    - email: mark.sagikazar@gmail.com
+      name: sagikazarmark
+      url: https://sagikazarmark.hu
+    name: sftpgo
+    sources:
+    - https://github.com/drakkan/sftpgo
+    type: application
+    urls:
+    - https://github.com/sagikazarmark/helm-charts/releases/download/sftpgo-0.0.2/sftpgo-0.0.2.tgz
+    version: 0.0.2
+generated: "2020-10-28T21:55:27.457499814Z"
