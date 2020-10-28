@@ -14,6 +14,12 @@ Please refer to the [official documentation](https://helm.sh/docs/intro/install/
 helm repo add skm https://charts.sagikazarmark.dev
 ```
 
+You can then see the charts by running:
+
+```bash
+helm search repo skm
+```
+
 
 ## License
 
