@@ -1,0 +1,17 @@
+apiVersion: v2
+type: application
+name: sftpgo
+version: 0.0.1
+appVersion: 1.1.1
+description: Fully featured and highly configurable SFTP server with optional FTP/S and WebDAV support.
+keywords:
+  - sftp
+  - ftp
+  - webdav
+home: https://github.com/drakkan/sftpgo
+sources:
+  - https://github.com/drakkan/sftpgo
+maintainers:
+  - name: sagikazarmark
+    email: mark.sagikazar@gmail.com
+    url: https://sagikazarmark.hu
