@@ -1,4 +1,4 @@
-name: Release Charts
+name: Release
 
 on:
   push:
@@ -6,8 +6,10 @@ on:
       - master
 
 jobs:
-  release:
+  charts:
+    name: Charts
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout
         uses: actions/checkout@v2
