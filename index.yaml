@@ -15,6 +15,41 @@ entries:
           email: mark.sagikazar@gmail.com
     apiVersion: v2
     appVersion: 1.1.1
+    created: "2020-10-29T14:28:58.012644916Z"
+    description: Fully featured and highly configurable SFTP server with optional
+      FTP/S and WebDAV support.
+    digest: 45e3d7e8d5d2be70c12780346dd587ad0cd7444b6ff1ff93642b1ed5e8ef1c28
+    home: https://github.com/drakkan/sftpgo
+    keywords:
+    - sftp
+    - ftp
+    - webdav
+    maintainers:
+    - email: mark.sagikazar@gmail.com
+      name: sagikazarmark
+      url: https://sagikazarmark.hu
+    name: sftpgo
+    sources:
+    - https://github.com/drakkan/sftpgo
+    - https://github.com/sagikazarmark/helm-charts/tree/master/charts/sftpgo
+    type: application
+    urls:
+    - https://github.com/sagikazarmark/helm-charts/releases/download/sftpgo-0.0.6/sftpgo-0.0.6.tgz
+    version: 0.0.6
+  - annotations:
+      artifacthub.io/changes: |
+        - Added support for populating envFrom values
+        - Added support for populating volumes and mounts values
+      artifacthub.io/images: |
+        - name: sftpgo
+          image: ghcr.io/drakkan/sftpgo:v1.1.1
+        - name: sftpgo-alpine
+          image: ghcr.io/drakkan/sftpgo:v1.1.1-alpine
+      artifacthub.io/maintainers: |
+        - name: sagikazarmark
+          email: mark.sagikazar@gmail.com
+    apiVersion: v2
+    appVersion: 1.1.1
     created: "2020-10-29T01:17:44.764052724Z"
     description: Fully featured and highly configurable SFTP server with optional
       FTP/S and WebDAV support.
