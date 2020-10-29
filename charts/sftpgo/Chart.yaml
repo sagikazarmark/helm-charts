@@ -11,6 +11,7 @@ keywords:
 home: https://github.com/drakkan/sftpgo
 sources:
   - https://github.com/drakkan/sftpgo
+  - https://github.com/sagikazarmark/helm-charts/tree/master/charts/sftpgo
 maintainers:
   - name: sagikazarmark
     email: mark.sagikazar@gmail.com
