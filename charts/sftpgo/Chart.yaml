@@ -15,3 +15,13 @@ maintainers:
   - name: sagikazarmark
     email: mark.sagikazar@gmail.com
     url: https://sagikazarmark.hu
+annotations:
+  artifacthub.io/changes: |
+    - Added support for populating envFrom values
+    - Added support for populating volumes and mounts values
+  artifacthub.io/images: |
+    - name: img1
+      image: ghcr.io/drakkan/sftpgo:v1.1.1
+  artifacthub.io/maintainers: |
+    - name: sagikazarmark
+      email: mark.sagikazar@gmail.com
