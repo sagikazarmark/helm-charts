@@ -41,6 +41,10 @@ service:
   type: ClusterIP
   port: 22
 
+  # Route external traffic to node-local or cluster-wide endoints.
+  # https://kubernetes.io/docs/tasks/access-application-cluster/create-external-load-balancer/#preserving-the-client-source-ip
+  # externalTrafficPolicy: Cluster
+
 volumes: []
 
 volumeMounts: []
