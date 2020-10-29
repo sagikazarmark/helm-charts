@@ -20,8 +20,10 @@ annotations:
     - Added support for populating envFrom values
     - Added support for populating volumes and mounts values
   artifacthub.io/images: |
-    - name: img1
+    - name: sftpgo
       image: ghcr.io/drakkan/sftpgo:v1.1.1
+    - name: sftpgo-alpine
+      image: ghcr.io/drakkan/sftpgo:v1.1.1-alpine
   artifacthub.io/maintainers: |
     - name: sagikazarmark
       email: mark.sagikazar@gmail.com
