@@ -39,11 +39,13 @@ securityContext: {}
 service:
   annotations: {}
   type: ClusterIP
-  port: 2022
+  port: 22
 
 volumes: []
 
 volumeMounts: []
+
+envFrom: []
 
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious

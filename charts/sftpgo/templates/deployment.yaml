@@ -45,6 +45,10 @@ spec:
               value: "8080"
             - name: SFTPGO_HTTPD__BIND_ADDRESS
               value: "0.0.0.0"
+          {{- with .Values.envFrom }}
+          envFrom:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
           ports:
             - name: sftp
               containerPort: 2022
