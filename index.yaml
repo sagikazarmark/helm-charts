@@ -1,6 +1,38 @@
 apiVersion: v1
 entries:
   sftpgo:
+  - annotations:
+      artifacthub.io/changes: |
+        - Added support for populating envFrom values
+        - Added support for populating volumes and mounts values
+      artifacthub.io/images: |
+        - name: img1
+          image: ghcr.io/drakkan/sftpgo:v1.1.1
+      artifacthub.io/maintainers: |
+        - name: sagikazarmark
+          email: mark.sagikazar@gmail.com
+    apiVersion: v2
+    appVersion: 1.1.1
+    created: "2020-10-29T00:46:29.005466561Z"
+    description: Fully featured and highly configurable SFTP server with optional
+      FTP/S and WebDAV support.
+    digest: f1778d50205b956079ce90bdf0d0fd33899df4c8631fccfe30dffa81e5203644
+    home: https://github.com/drakkan/sftpgo
+    keywords:
+    - sftp
+    - ftp
+    - webdav
+    maintainers:
+    - email: mark.sagikazar@gmail.com
+      name: sagikazarmark
+      url: https://sagikazarmark.hu
+    name: sftpgo
+    sources:
+    - https://github.com/drakkan/sftpgo
+    type: application
+    urls:
+    - https://github.com/sagikazarmark/helm-charts/releases/download/sftpgo-0.0.4/sftpgo-0.0.4.tgz
+    version: 0.0.4
   - apiVersion: v2
     appVersion: 1.1.1
     created: "2020-10-29T00:32:53.160135555Z"
