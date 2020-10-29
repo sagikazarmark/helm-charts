@@ -39,7 +39,7 @@ securityContext: {}
 service:
   annotations: {}
   type: ClusterIP
-  port: 2022
+  port: 22
 
 volumes: []
 
