@@ -20,7 +20,7 @@ This chart bootstraps an [SFTPGo](https://github.com/drakkan/sftpgo) deployment 
 
 - Kubernetes 1.18+
 - Helm 3.4+
-- SFTPGo 1.1.1+
+- SFTPGo 1.2.0+
 
 
 ## Installing the Chart
