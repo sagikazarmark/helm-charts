@@ -1,5 +1,34 @@
 apiVersion: v1
 entries:
+  kube-secrets-init:
+  - annotations:
+      artifacthub.io/changes: |
+        - Initial version
+      artifacthub.io/images: |
+        - name: kube-secrets-init
+          image: doitintl/kube-secrets-init:0.2.12
+      artifacthub.io/maintainers: |
+        - name: sagikazarmark
+          email: mark.sagikazar@gmail.com
+    apiVersion: v2
+    appVersion: 0.2.12
+    created: "2020-11-25T16:52:07.349931818Z"
+    description: kube-secrets-init is a Kubernetes mutating admission webhook, that
+      mutates any Pod that is using specially prefixed environment variables, directly
+      or from Kubernetes as Secret or ConfigMap.
+    digest: 8b3b68ec6a9b676d36d30b9db26c2a5810b760e3fc8ea320131abd161df432b2
+    home: https://github.com/doitintl/kube-secrets-init
+    maintainers:
+    - email: mark.sagikazar@gmail.com
+      name: sagikazarmark
+      url: https://sagikazarmark.hu
+    name: kube-secrets-init
+    sources:
+    - https://github.com/doitintl/kube-secrets-init
+    type: application
+    urls:
+    - https://github.com/sagikazarmark/helm-charts/releases/download/kube-secrets-init-0.1.0/kube-secrets-init-0.1.0.tgz
+    version: 0.1.0
   sftpgo:
   - annotations:
       artifacthub.io/changes: |
