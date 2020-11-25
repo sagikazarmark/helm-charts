@@ -2,7 +2,7 @@ apiVersion: v2
 type: application
 name: sftpgo
 version: 0.0.7
-appVersion: 1.2.0
+appVersion: 1.2.2
 description: Fully featured and highly configurable SFTP server with optional FTP/S and WebDAV support.
 keywords:
   - sftp
@@ -18,12 +18,12 @@ maintainers:
     url: https://sagikazarmark.hu
 annotations:
   artifacthub.io/changes: |
-    - Updated SFTPGo to 1.2.0
+    - Updated SFTPGo to 1.2.2
   artifacthub.io/images: |
     - name: sftpgo
-      image: ghcr.io/drakkan/sftpgo:v1.2.0
+      image: ghcr.io/drakkan/sftpgo:v1.2.2
     - name: sftpgo-alpine
-      image: ghcr.io/drakkan/sftpgo:v1.2.0-alpine
+      image: ghcr.io/drakkan/sftpgo:v1.2.2-alpine
   artifacthub.io/maintainers: |
     - name: sagikazarmark
       email: mark.sagikazar@gmail.com
