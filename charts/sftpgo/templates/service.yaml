@@ -18,7 +18,7 @@ spec:
       targetPort: sftp
       protocol: TCP
       name: sftp
-      - port: {{ .Values.service.httpport }}
+    - port: {{ .Values.service.httpport }}
       targetPort: http
       protocol: TCP
       name: http
