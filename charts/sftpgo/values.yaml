@@ -39,7 +39,8 @@ securityContext: {}
 service:
   annotations: {}
   type: ClusterIP
-  port: 22
+  sshport: 22
+  httpport: 8080
 
   # Route external traffic to node-local or cluster-wide endoints.
   # https://kubernetes.io/docs/tasks/access-application-cluster/create-external-load-balancer/#preserving-the-client-source-ip

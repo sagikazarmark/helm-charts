@@ -18,5 +18,9 @@ spec:
       targetPort: sftp
       protocol: TCP
       name: sftp
+      - port: {{ .Values.service.httpport }}
+      targetPort: http
+      protocol: TCP
+      name: http
   selector:
     {{- include "sftpgo.selectorLabels" . | nindent 4 }}
