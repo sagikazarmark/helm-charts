@@ -86,5 +86,5 @@ webhooks:
             - skip
   {{- end }}
   {{- if semverCompare ">=1.12-0" .Capabilities.KubeVersion.GitVersion }}
-    sideEffects: {{ .Values.apiSideEffectValue }}
+    sideEffects: None
   {{- end }}
