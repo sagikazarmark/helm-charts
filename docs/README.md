@@ -2,34 +2,18 @@
 
 README files for Helm charts are generated using [helm-docs](https://github.com/norwoodj/helm-docs).
 
-Each chart should contain a `Makefile` with the appropriate commands to
-generate a `README.md` file. The default example is:
+Each chart should contain a `README.md.gotmpl` file that describes how
+the `README.md` of the chart should be generated.
 
-```Makefile
-README.md: Chart.yaml values.yaml
-	helm-docs -s file --dry-run \
-	--template-files ../../docs/templates/README.md.gotmpl \
-	--template-files ../../docs/templates/overrides.gotmpl \
-	> README.md
+Normally, this file can be the same as the primary template in [docs/templates/README.md.gotmpl] or a symlink pointing to it:
+
+```bash
+cd charts/CHART
+ln -s ../../docs/templates/README.md.gotmpl
 ```
 
-**Note:** Don't forget to add the `Makefile` to `.helmignore`.
+Copy the file to the chart directory if you want to customize the template.
 
-If you need to customize the README to some degree, add a `README.md.gotmpl` to the chart directory using the following `Makefile`:
+**Note:** Don't forget to add `README.md.gotmpl` to `.helmignore`.
 
-```Makefile
-README.md: Chart.yaml values.yaml
-README.md: README.md.gotmpl
-	helm-docs -s file --dry-run \
-	--template-files ../../docs/templates/README.md.gotmpl \
-	--template-files ../../docs/templates/overrides.gotmpl \
-	--template-files README.md.gotmpl > README.md
-```
-
-Don't forget to add `README.md.gotmpl` to `.helmignore`.
-
-Make sure to run `make README.md` everytime you make changes to `Chart.yaml` or `values.yaml`.
-
-> **Tip:** Just run `make README.md` everytime to touch a chart.
-
-**TODO:** Automate readme generation (or at least add a check to detect diffs).
+Then run `make docs` in the repository root.

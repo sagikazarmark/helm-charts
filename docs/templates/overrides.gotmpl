@@ -26,8 +26,3 @@ helm repo add skm https://charts.sagikazarmark.dev
 helm install --generate-name --wait skm/{{ .Name }}
 ```
 {{- end -}}
-
-{{- define "beforeValuesSection" -}}{{- end -}}
-{{- define "afterValuesSection" -}}{{- end -}}
-
-{{- print "\n" -}}
