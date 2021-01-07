@@ -13,7 +13,7 @@ maintainers:
     url: https://sagikazarmark.hu
 annotations:
   artifacthub.io/changes: |
-    - Initial version
+    - Remove side effect config
   artifacthub.io/images: |
     - name: kube-secrets-init
       image: doitintl/kube-secrets-init:0.2.12

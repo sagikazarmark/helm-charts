@@ -95,8 +95,6 @@ tolerations: []
 
 affinity: {}
 
-apiSideEffectValue: NoneOnDryRun
-
 # Namespace selector for the mutating webhook config.
 namespaceSelector:
   matchExpressions:
