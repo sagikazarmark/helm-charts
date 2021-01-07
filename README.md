@@ -21,6 +21,22 @@ You can then see the charts by running:
 helm search repo skm
 ```
 
+You can install charts using the following command:
+
+```bash
+helm install --generate-name skm/CHART
+# OR
+helm install --name my-release skm/CHART
+```
+
+> **Tip**: List all installed releases using `helm list`.
+
+To uninstall a chart release:
+
+```bash
+helm delete my-release
+```
+
 
 ## License
 
