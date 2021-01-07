@@ -27,7 +27,7 @@ volumes: []
 # See the [API reference](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.20/#volumemount-v1-core) for details.
 volumeMounts: []
 
-# - Configure a [Secret](https://kubernetes.io/docs/concepts/configuration/secret/#using-secrets-as-environment-variables) or a [ConfigMap](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/#configure-all-key-value-pairs-in-a-configmap-as-container-environment-variables) as environment variable sources for a Pod.
+# -- Configure a [Secret](https://kubernetes.io/docs/concepts/configuration/secret/#using-secrets-as-environment-variables) or a [ConfigMap](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/#configure-all-key-value-pairs-in-a-configmap-as-container-environment-variables) as environment variable sources for a Pod.
 # See the [API reference](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.20/#envfromsource-v1-core) for details.
 envFrom: []
 
@@ -65,7 +65,7 @@ service:
   # -- Kubernetes [service type](https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types).
   type: ClusterIP
 
-  ## -- Service port
+  # -- Service port
   port: 22
 
   # -- Route external traffic to node-local or cluster-wide endoints.
