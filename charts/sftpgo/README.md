@@ -1,6 +1,6 @@
 # sftpgo
 
-![version: 0.0.8](https://img.shields.io/badge/version-0.0.8-informational?style=flat-square) ![type: application](https://img.shields.io/badge/type-application-informational?style=flat-square) ![app version: 1.2.2](https://img.shields.io/badge/app%20version-1.2.2-informational?style=flat-square) ![kube version: >=1.16](https://img.shields.io/badge/kube%20version->=1.16-informational?style=flat-square) [![artifact hub](https://img.shields.io/badge/artifact%20hub-sftpgo-informational?style=flat-square)](https://artifacthub.io/packages/helm/sagikazarmark/sftpgo)
+![version: 0.0.9](https://img.shields.io/badge/version-0.0.9-informational?style=flat-square) ![type: application](https://img.shields.io/badge/type-application-informational?style=flat-square) ![app version: 1.2.2](https://img.shields.io/badge/app%20version-1.2.2-informational?style=flat-square) ![kube version: >=1.16](https://img.shields.io/badge/kube%20version->=1.16-informational?style=flat-square) [![artifact hub](https://img.shields.io/badge/artifact%20hub-sftpgo-informational?style=flat-square)](https://artifacthub.io/packages/helm/sagikazarmark/sftpgo)
 
 Fully featured and highly configurable SFTP server with optional FTP/S and WebDAV support.
 
@@ -24,6 +24,9 @@ helm install --generate-name --wait skm/sftpgo
 | imagePullSecrets | list | `[]` | Image [pull secrets](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/#create-a-pod-that-uses-your-secret) |
 | nameOverride | string | `""` |  |
 | fullnameOverride | string | `""` |  |
+| volumes | list | `[]` | Additional storage [volumes](https://kubernetes.io/docs/concepts/storage/volumes/) of a Pod. -- See the [API reference](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.20/#volume-v1-core) for details. |
+| volumeMounts | list | `[]` | Additional [volume mounts](https://kubernetes.io/docs/tasks/configure-pod-container/configure-volume-storage/) of a container. See the [API reference](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.20/#volumemount-v1-core) for details. |
+| envFrom | list | `[]` |  |
 | serviceAccount.create | bool | `true` | Whether a service account should be created. |
 | serviceAccount.annotations | object | `{}` | Annotations to add to the service account. |
 | serviceAccount.name | string | `""` | The name of the service account to use. If not set and create is true, a name is generated using the fullname template. |
@@ -34,9 +37,6 @@ helm install --generate-name --wait skm/sftpgo
 | service.type | string | `"ClusterIP"` | Kubernetes [service type](https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types). |
 | service.port | int | `22` |  |
 | service.externalTrafficPolicy | string | `nil` | Route external traffic to node-local or cluster-wide endoints. Useful for [preserving the client source IP](https://kubernetes.io/docs/tasks/access-application-cluster/create-external-load-balancer/#preserving-the-client-source-ip). |
-| volumes | list | `[]` | Additional storage [volumes](https://kubernetes.io/docs/concepts/storage/volumes/) of a Pod. -- See the [API reference](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.20/#volume-v1-core) for details. |
-| volumeMounts | list | `[]` | Additional [volume mounts](https://kubernetes.io/docs/tasks/configure-pod-container/configure-volume-storage/) of a container. See the [API reference](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.20/#volumemount-v1-core) for details. |
-| envFrom | list | `[]` |  |
 | resources | object | No requests or limits. | Container resource [requests and limits](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/). See the [API reference](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.20/#resourcerequirements-v1-core) for details. |
 | autoscaling | object | Disabled by default. | Autoscaling configuration (see [values.yaml](values.yaml) for details). |
 | nodeSelector | object | `{}` | [Node selector](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#nodeselector) configuration. |

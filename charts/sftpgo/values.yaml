@@ -19,6 +19,18 @@ imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
 
+# -- Additional storage [volumes](https://kubernetes.io/docs/concepts/storage/volumes/) of a Pod.
+# -- See the [API reference](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.20/#volume-v1-core) for details.
+volumes: []
+
+# -- Additional [volume mounts](https://kubernetes.io/docs/tasks/configure-pod-container/configure-volume-storage/) of a container.
+# See the [API reference](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.20/#volumemount-v1-core) for details.
+volumeMounts: []
+
+# - Configure a [Secret](https://kubernetes.io/docs/concepts/configuration/secret/#using-secrets-as-environment-variables) or a [ConfigMap](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/#configure-all-key-value-pairs-in-a-configmap-as-container-environment-variables) as environment variable sources for a Pod.
+# See the [API reference](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.20/#envfromsource-v1-core) for details.
+envFrom: []
+
 serviceAccount:
   # -- Whether a service account should be created.
   create: true
@@ -59,18 +71,6 @@ service:
   # -- Route external traffic to node-local or cluster-wide endoints.
   # Useful for [preserving the client source IP](https://kubernetes.io/docs/tasks/access-application-cluster/create-external-load-balancer/#preserving-the-client-source-ip).
   externalTrafficPolicy:
-
-# -- Additional storage [volumes](https://kubernetes.io/docs/concepts/storage/volumes/) of a Pod.
-# -- See the [API reference](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.20/#volume-v1-core) for details.
-volumes: []
-
-# -- Additional [volume mounts](https://kubernetes.io/docs/tasks/configure-pod-container/configure-volume-storage/) of a container.
-# See the [API reference](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.20/#volumemount-v1-core) for details.
-volumeMounts: []
-
-# - Configure a [Secret](https://kubernetes.io/docs/concepts/configuration/secret/#using-secrets-as-environment-variables) or a [ConfigMap](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/#configure-all-key-value-pairs-in-a-configmap-as-container-environment-variables) as environment variable sources for a Pod.
-# See the [API reference](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.20/#envfromsource-v1-core) for details.
-envFrom: []
 
 # -- Container resource [requests and limits](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/).
 # See the [API reference](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.20/#resourcerequirements-v1-core) for details.
