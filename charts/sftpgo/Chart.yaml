@@ -1,7 +1,7 @@
 apiVersion: v2
 type: application
 name: sftpgo
-version: 0.0.8
+version: 0.0.9
 appVersion: 1.2.2
 kubeVersion: ">=1.16"
 description: Fully featured and highly configurable SFTP server with optional FTP/S and WebDAV support.
@@ -20,6 +20,7 @@ maintainers:
 annotations:
   artifacthub.io/changes: |
     - At least Kubernetes 1.16 is required
+    - Add generated documentation
   artifacthub.io/images: |
     - name: sftpgo
       image: ghcr.io/drakkan/sftpgo:v1.2.2
