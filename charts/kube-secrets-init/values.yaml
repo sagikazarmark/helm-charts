@@ -2,7 +2,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
-# -- Number of pods to launch.
+# -- Number of Pods to launch.
 replicaCount: 1
 
 image:
@@ -68,14 +68,16 @@ rbac:
   # If disabled, the operator is responsible for creating the necessary resources based on the templates.
   create: true
 
-# -- Custom annotations for the Pod.
+# -- Custom annotations for a Pod.
 podAnnotations: {}
 
 # -- Pod [security context](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-pod).
+# See the [API reference](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.20/#podsecuritycontext-v1-core) for details.
 podSecurityContext: {}
   # fsGroup: 2000
 
 # -- Container [security context](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-container).
+# See the [API reference](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.20/#securitycontext-v1-core) for details.
 securityContext: {}
   # capabilities:
   #   drop:
@@ -85,6 +87,7 @@ securityContext: {}
   # runAsUser: 1000
 
 # -- Container resource [requests and limits](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/).
+# See the [API reference](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.20/#resourcerequirements-v1-core) for details.
 # @default -- No requests or limits.
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
@@ -111,9 +114,11 @@ autoscaling:
 nodeSelector: {}
 
 # -- [Tolerations](https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/) for node taints.
+# See the [API reference](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.20/#toleration-v1-core) for details.
 tolerations: []
 
 # -- [Affinity](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#affinity-and-anti-affinity) configuration.
+# See the [API reference](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.20/#affinity-v1-core) for details.
 affinity: {}
 
 # -- [Namespace selector](https://kubernetes.io/docs/reference/access-authn-authz/extensible-admission-controllers/#matching-requests-namespaceselector)
