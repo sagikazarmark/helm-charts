@@ -2,66 +2,80 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
+# -- Number of pods to launch.
 replicaCount: 1
 
 image:
+  # -- Repository to pull the container image from.
   repository: doitintl/kube-secrets-init
+  # -- Image [pull policy](https://kubernetes.io/docs/concepts/containers/images/#updating-images)
   pullPolicy: IfNotPresent
+  # -- Image tag
   # Overrides the image tag whose default is the chart appVersion.
   tag: ""
 
-# One of the supported secret providers:
-#   - google (Google Cloud Secrets Manager)
-#   - aws (AWS Secrets Manager and SSM Parameter Store)
+# -- One of the supported secret providers:
+#   - `google` (Google Cloud Secrets Manager)
+#   - `aws` (AWS Secrets Manager and SSM Parameter Store)
 provider: ""
 
-# When no image pull secret is found in the Pod this secret will be used as default
+# -- Fallback secret name to use when no image pull secret is found in a Pod.
 defaultImagePullSecret: ""
+# -- Namespace of the fallback secret name.
 defaultImagePullSecretNamespace: ""
 
 certificate:
-  # Use jetstack/cert-manager for creating the necessary certificates.
+  # -- Use jetstack/cert-manager for creating the necessary certificates.
   # This is usually preferred as cert-manager automatically renews certificates.
+  # Mutually exclusive with `generate`.
   useCertManager: false
-  # Generate the necessary certificates during chart install.
+  # -- Generate the necessary certificates during chart install.
+  # Mutually exclusive with `useCertManager`.
   generate: true
-  # The name of the secret to use.
+  # -- The name of the secret to use.
   # If not set and useCertManager or generate is true, a name is generated using the fullname template.
   secretName: ""
 
+# -- Telemetry configuration (see [values.yaml](values.yaml) for details).
+# @default -- Disabled by default.
 telemetry:
-  # Specifies whether the telemetry address should be exposed.
+  # Whether the telemetry address should be exposed.
   enabled: false
   serviceMonitor:
-    # Specifies whether Prometheus ServiceMonitor resources should be created.
+    # Whether Prometheus ServiceMonitor resources should be created.
     enabled: false
     interval: 30s
     # additionalLabels: {}
     # relabellings: []
 
+# -- Image [pull secrets](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/#create-a-pod-that-uses-your-secret)
 imagePullSecrets: []
+
 nameOverride: ""
 fullnameOverride: ""
 
 serviceAccount:
-  # Specifies whether a service account should be created
+  # -- Whether a service account should be created.
   create: true
-  # Annotations to add to the service account
+  # -- Annotations to add to the service account.
   annotations: {}
-  # The name of the service account to use.
-  # If not set and create is true, a name is generated using the fullname template
+  # -- The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template.
   name: ""
 
 rbac:
-  # Specifies whether RBAC resources should be created.
+  # -- Specifies whether RBAC resources should be created.
   # If disabled, the operator is responsible for creating the necessary resources based on the templates.
   create: true
 
+# -- Custom annotations for the Pod.
 podAnnotations: {}
 
+# -- Pod [security context](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-pod).
 podSecurityContext: {}
   # fsGroup: 2000
 
+# -- Container [security context](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-container).
 securityContext: {}
   # capabilities:
   #   drop:
@@ -70,6 +84,8 @@ securityContext: {}
   # runAsNonRoot: true
   # runAsUser: 1000
 
+# -- Container resource [requests and limits](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/).
+# @default -- No requests or limits.
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
   # choice for the user. This also increases chances charts run on environments with little
@@ -82,6 +98,8 @@ resources: {}
   #   cpu: 100m
   #   memory: 128Mi
 
+# -- Autoscaling configuration (see [values.yaml](values.yaml) for details).
+# @default -- Disabled by default.
 autoscaling:
   enabled: false
   minReplicas: 1
@@ -89,13 +107,18 @@ autoscaling:
   targetCPUUtilizationPercentage: 80
   # targetMemoryUtilizationPercentage: 80
 
+# -- [Node selector](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#nodeselector) configuration.
 nodeSelector: {}
 
+# -- [Tolerations](https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/) for node taints.
 tolerations: []
 
+# -- [Affinity](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#affinity-and-anti-affinity) configuration.
 affinity: {}
 
-# Namespace selector for the mutating webhook config.
+# -- [Namespace selector](https://kubernetes.io/docs/reference/access-authn-authz/extensible-admission-controllers/#matching-requests-namespaceselector)
+# for the mutating webhook configuration.
+# @default -- `kube-system` namespace is excluded.
 namespaceSelector:
   matchExpressions:
     - key: name
@@ -105,11 +128,12 @@ namespaceSelector:
   # matchLabels:
   #   secret-injection: enabled
 
-# Object selector for the mutating webhook config.
-# Available since Kubernetes 1.15
-objectSelector: {}
-  # matchExpressions:
-  #   - key: kube-init-secrets.doit-intl.com/mutate
-  #     operator: NotIn
-  #     values:
-  #       - skip
+# -- [Object selector](https://kubernetes.io/docs/reference/access-authn-authz/extensible-admission-controllers/#matching-requests-objectselector)
+# for the mutating webhook configuration.
+# @default -- Exclude objects labeled with `kube-init-secrets.doit-intl.com/mutate: skip`.
+objectSelector:
+  matchExpressions:
+    - key: kube-init-secrets.doit-intl.com/mutate
+      operator: NotIn
+      values:
+        - skip

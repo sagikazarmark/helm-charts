@@ -1,33 +1,23 @@
 # kube-secrets-init
 
-[kube-secrets-init](https://github.com/doitintl/kube-secrets-init) is a Kubernetes mutating admission webhook, that mutates any Pod that is using specially prefixed environment variables, directly or from Kubernetes as Secret or ConfigMap.
+![version: 0.1.0](https://img.shields.io/badge/version-0.1.0-informational?style=flat-square)
+![type: application](https://img.shields.io/badge/type-application-informational?style=flat-square)
+![app version: 0.2.14](https://img.shields.io/badge/app%20version-0.2.14-informational?style=flat-square)
+![kube version: >=1.16](https://img.shields.io/badge/kube%20version->=1.16-informational?style=flat-square)
+[![artifact hub](https://img.shields.io/badge/artifact%20hub-kube--secrets--init-informational?style=flat-square)](https://artifacthub.io/packages/helm/sagikazarmark/kube-secrets-init)
 
+kube-secrets-init is a Kubernetes mutating admission webhook, that mutates any Pod that is using specially prefixed environment variables, directly or from Kubernetes as Secret or ConfigMap.
+
+**Homepage:** <https://github.com/doitintl/kube-secrets-init>
 
 ## TL;DR;
 
-**On Kubernetes <1.15 the namespace where you install the webhook must have a label of `name` with the namespace name as the value, so the `namespaceSelector` in the `MutatingWebhookConfiguration` can skip the namespace of the webhook and no self-mutation takes place. As of Kubernetes 1.15, the default `objectSelector` will prevent self-mutations.**
-
-
-```bash
-WEBHOOK_NS=${WEBHOOK_NS:-kube-secrets-init}
-kubectl create namespace "${WEBHOOK_NS}"
-kubectl label ns "${WEBHOOK_NS}" name="${WEBHOOK_NS}"
-```
-
 ```bash
 helm repo add skm https://charts.sagikazarmark.dev
-helm repo update
+helm install --generate-name --wait skm/kube-secrets-init
 ```
-
-```bash
-helm install --namespace $WEBHOOK_NS --generate-name skm/kube-secrets-init --wait
-```
-
 
 ## Configuration
-
-Check [values.yaml](values.yaml) for configuration options.
-
 
 ### Certificate
 
@@ -55,7 +45,6 @@ certificate:
   generate: false
 ```
 
-
 ## About GKE Private Clusters
 
 When Google configure the control plane for private clusters, they automatically configure VPC peering between your Kubernetes cluster’s network in a separate Google managed project.
@@ -64,6 +53,38 @@ The auto-generated rules **only** open ports 10250 and 443 between masters and n
 
 You can read more information on how to add firewall rules for the GKE control plane nodes in the [GKE docs](https://cloud.google.com/kubernetes-engine/docs/how-to/private-clusters#add_firewall_rules).
 
+## Values
+
+| Key | Type | Default | Description |
+|-----|------|---------|-------------|
+| replicaCount | int | `1` | Number of pods to launch. |
+| image.repository | string | `"doitintl/kube-secrets-init"` | Repository to pull the container image from. |
+| image.pullPolicy | string | `"IfNotPresent"` | Image [pull policy](https://kubernetes.io/docs/concepts/containers/images/#updating-images) |
+| image.tag | string | `""` | Image tag Overrides the image tag whose default is the chart appVersion. |
+| provider | string | `""` | One of the supported secret providers:   - `google` (Google Cloud Secrets Manager)   - `aws` (AWS Secrets Manager and SSM Parameter Store) |
+| defaultImagePullSecret | string | `""` | Fallback secret name to use when no image pull secret is found in a Pod. |
+| defaultImagePullSecretNamespace | string | `""` | Namespace of the fallback secret name. |
+| certificate.useCertManager | bool | `false` | Use jetstack/cert-manager for creating the necessary certificates. This is usually preferred as cert-manager automatically renews certificates. Mutually exclusive with `generate`. |
+| certificate.generate | bool | `true` | Generate the necessary certificates during chart install. Mutually exclusive with `useCertManager`. |
+| certificate.secretName | string | `""` | The name of the secret to use. If not set and useCertManager or generate is true, a name is generated using the fullname template. |
+| telemetry | object | Disabled by default. | Telemetry configuration (see [values.yaml](values.yaml) for details). |
+| imagePullSecrets | list | `[]` | Image [pull secrets](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/#create-a-pod-that-uses-your-secret) |
+| nameOverride | string | `""` |  |
+| fullnameOverride | string | `""` |  |
+| serviceAccount.create | bool | `true` | Whether a service account should be created. |
+| serviceAccount.annotations | object | `{}` | Annotations to add to the service account. |
+| serviceAccount.name | string | `""` | The name of the service account to use. If not set and create is true, a name is generated using the fullname template. |
+| rbac.create | bool | `true` | Specifies whether RBAC resources should be created. If disabled, the operator is responsible for creating the necessary resources based on the templates. |
+| podAnnotations | object | `{}` | Custom annotations for the Pod. |
+| podSecurityContext | object | `{}` | Pod [security context](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-pod). |
+| securityContext | object | `{}` | Container [security context](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-container). |
+| resources | object | No requests or limits. | Container resource [requests and limits](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/). |
+| autoscaling | object | Disabled by default. | Autoscaling configuration (see [values.yaml](values.yaml) for details). |
+| nodeSelector | object | `{}` | [Node selector](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#nodeselector) configuration. |
+| tolerations | list | `[]` | [Tolerations](https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/) for node taints. |
+| affinity | object | `{}` | [Affinity](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#affinity-and-anti-affinity) configuration. |
+| namespaceSelector | object | `kube-system` namespace is excluded. | [Namespace selector](https://kubernetes.io/docs/reference/access-authn-authz/extensible-admission-controllers/#matching-requests-namespaceselector) for the mutating webhook configuration. |
+| objectSelector | object | Exclude objects labeled with `kube-init-secrets.doit-intl.com/mutate: skip`. | [Object selector](https://kubernetes.io/docs/reference/access-authn-authz/extensible-admission-controllers/#matching-requests-objectselector) for the mutating webhook configuration. |
 
 ## Attributions
 
