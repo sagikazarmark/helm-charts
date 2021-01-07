@@ -1,6 +1,6 @@
 # kube-secrets-init
 
-![version: 0.1.0](https://img.shields.io/badge/version-0.1.0-informational?style=flat-square)
+![version: 0.2.0](https://img.shields.io/badge/version-0.2.0-informational?style=flat-square)
 ![type: application](https://img.shields.io/badge/type-application-informational?style=flat-square)
 ![app version: 0.2.14](https://img.shields.io/badge/app%20version-0.2.14-informational?style=flat-square)
 ![kube version: >=1.16](https://img.shields.io/badge/kube%20version->=1.16-informational?style=flat-square)
@@ -60,7 +60,7 @@ You can read more information on how to add firewall rules for the GKE control p
 | replicaCount | int | `1` | Number of Pods to launch. |
 | image.repository | string | `"doitintl/kube-secrets-init"` | Repository to pull the container image from. |
 | image.pullPolicy | string | `"IfNotPresent"` | Image [pull policy](https://kubernetes.io/docs/concepts/containers/images/#updating-images) |
-| image.tag | string | `""` | Image tag Overrides the image tag whose default is the chart appVersion. |
+| image.tag | string | `""` | Overrides the image tag (default is the chart appVersion). |
 | provider | string | `""` | One of the supported secret providers:   - `google` (Google Cloud Secrets Manager)   - `aws` (AWS Secrets Manager and SSM Parameter Store) |
 | defaultImagePullSecret | string | `""` | Fallback secret name to use when no image pull secret is found in a Pod. |
 | defaultImagePullSecretNamespace | string | `""` | Namespace of the fallback secret name. |

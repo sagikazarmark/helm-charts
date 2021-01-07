@@ -1,6 +1,6 @@
 # sftpgo
 
-![version: 0.0.8](https://img.shields.io/badge/version-0.0.8-informational?style=flat-square)![type: application](https://img.shields.io/badge/type-application-informational?style=flat-square)![app version: 1.2.2](https://img.shields.io/badge/app%20version-1.2.2-informational?style=flat-square)[![artifact hub](https://img.shields.io/badge/artifact%20hub-sftpgo-informational?style=flat-square)](https://artifacthub.io/packages/helm/sagikazarmark/sftpgo)
+![version: 0.0.8](https://img.shields.io/badge/version-0.0.8-informational?style=flat-square)![type: application](https://img.shields.io/badge/type-application-informational?style=flat-square)![app version: 1.2.2](https://img.shields.io/badge/app%20version-1.2.2-informational?style=flat-square)![kube version: >=1.16](https://img.shields.io/badge/kube%20version->=1.16-informational?style=flat-square)[![artifact hub](https://img.shields.io/badge/artifact%20hub-sftpgo-informational?style=flat-square)](https://artifacthub.io/packages/helm/sagikazarmark/sftpgo)
 
 Fully featured and highly configurable SFTP server with optional FTP/S and WebDAV support.
 
@@ -20,7 +20,7 @@ helm install --generate-name --wait skm/sftpgo
 | replicaCount | int | `1` | Number of Pods to launch. |
 | image.repository | string | `"ghcr.io/drakkan/sftpgo"` | Repository to pull the container image from. |
 | image.pullPolicy | string | `"IfNotPresent"` | Image [pull policy](https://kubernetes.io/docs/concepts/containers/images/#updating-images) |
-| image.tag | string | `""` | Image tag Overrides the image tag whose default is the chart appVersion. |
+| image.tag | string | `""` | Overrides the image tag (default is the chart appVersion). |
 | imagePullSecrets | list | `[]` | Image [pull secrets](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/#create-a-pod-that-uses-your-secret) |
 | nameOverride | string | `""` |  |
 | fullnameOverride | string | `""` |  |
@@ -33,6 +33,7 @@ helm install --generate-name --wait skm/sftpgo
 | service.annotations | object | `{}` | Custom annotations for the Service. |
 | service.type | string | `"ClusterIP"` | Kubernetes [service type](https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types). |
 | service.port | int | `22` |  |
+| service.externalTrafficPolicy | string | `nil` | Route external traffic to node-local or cluster-wide endoints. Useful for [preserving the client source IP](https://kubernetes.io/docs/tasks/access-application-cluster/create-external-load-balancer/#preserving-the-client-source-ip). |
 | volumes | list | `[]` | Additional storage [volumes](https://kubernetes.io/docs/concepts/storage/volumes/) of a Pod. -- See the [API reference](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.20/#volume-v1-core) for details. |
 | volumeMounts | list | `[]` | Additional [volume mounts](https://kubernetes.io/docs/tasks/configure-pod-container/configure-volume-storage/) of a container. See the [API reference](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.20/#volumemount-v1-core) for details. |
 | envFrom | list | `[]` |  |

@@ -10,8 +10,7 @@ image:
   repository: ghcr.io/drakkan/sftpgo
   # -- Image [pull policy](https://kubernetes.io/docs/concepts/containers/images/#updating-images)
   pullPolicy: IfNotPresent
-  # -- Image tag
-  # Overrides the image tag whose default is the chart appVersion.
+  # -- Overrides the image tag (default is the chart appVersion).
   tag: ""
 
 # -- Image [pull secrets](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/#create-a-pod-that-uses-your-secret)
@@ -57,9 +56,9 @@ service:
   ## -- Service port
   port: 22
 
-  # externalTrafficPolicy -- Route external traffic to node-local or cluster-wide endoints.
+  # -- Route external traffic to node-local or cluster-wide endoints.
   # Useful for [preserving the client source IP](https://kubernetes.io/docs/tasks/access-application-cluster/create-external-load-balancer/#preserving-the-client-source-ip).
-  # externalTrafficPolicy: Cluster
+  externalTrafficPolicy:
 
 # -- Additional storage [volumes](https://kubernetes.io/docs/concepts/storage/volumes/) of a Pod.
 # -- See the [API reference](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.20/#volume-v1-core) for details.
