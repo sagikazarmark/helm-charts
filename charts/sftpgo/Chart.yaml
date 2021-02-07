@@ -25,6 +25,3 @@ annotations:
       image: ghcr.io/drakkan/sftpgo:v1.2.2
     - name: sftpgo-alpine
       image: ghcr.io/drakkan/sftpgo:v1.2.2-alpine
-  artifacthub.io/maintainers: |
-    - name: sagikazarmark
-      email: mark.sagikazar@gmail.com
