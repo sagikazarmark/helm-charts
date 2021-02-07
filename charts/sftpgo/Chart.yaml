@@ -20,6 +20,7 @@ maintainers:
 annotations:
   artifacthub.io/changes: |
     - Upgrade SFTPGo to 2.0.1
+    - Improve application configuration
   artifacthub.io/images: |
     - name: sftpgo
       image: ghcr.io/drakkan/sftpgo:v2.0.1

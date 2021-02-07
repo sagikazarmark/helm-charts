@@ -24,6 +24,7 @@ helm install --generate-name --wait skm/sftpgo
 | imagePullSecrets | list | `[]` | Image [pull secrets](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/#create-a-pod-that-uses-your-secret) |
 | nameOverride | string | `""` |  |
 | fullnameOverride | string | `""` |  |
+| config | object | `{}` | Application configuration. See the [official documentation](https://github.com/drakkan/sftpgo/blob/master/docs/full-configuration.md). |
 | volumes | list | `[]` | Additional storage [volumes](https://kubernetes.io/docs/concepts/storage/volumes/) of a Pod. See the [API reference](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.20/#volume-v1-core) for details. |
 | volumeMounts | list | `[]` | Additional [volume mounts](https://kubernetes.io/docs/tasks/configure-pod-container/configure-volume-storage/) of a container. See the [API reference](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.20/#volumemount-v1-core) for details. |
 | envFrom | list | `[]` | Configure a [Secret](https://kubernetes.io/docs/concepts/configuration/secret/#using-secrets-as-environment-variables) or a [ConfigMap](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/#configure-all-key-value-pairs-in-a-configmap-as-container-environment-variables) as environment variable sources for a Pod. See the [API reference](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.20/#envfromsource-v1-core) for details. |
@@ -42,3 +43,64 @@ helm install --generate-name --wait skm/sftpgo
 | nodeSelector | object | `{}` | [Node selector](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#nodeselector) configuration. |
 | tolerations | list | `[]` | [Tolerations](https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/) for node taints. See the [API reference](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.20/#toleration-v1-core) for details. |
 | affinity | object | `{}` | [Affinity](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#affinity-and-anti-affinity) configuration. See the [API reference](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.20/#affinity-v1-core) for details. |
+
+## Configuration
+
+SFTPGo has an extensive set of [configuration](https://github.com/drakkan/sftpgo/blob/master/docs/full-configuration.md) options allowing you to control the large set of features it provides.
+
+The following options are available to configure SFTPGo when installing it with this chart.
+
+**Note:** environmental configurations (like port bindings, certain directories, etc) are configured by the chart or the container image using flags and environment variables and they cannot be configured using a config file.
+
+### values.yaml
+
+Setting the `config` key in the values file is the easiest way to configure SFTPGo:
+
+```yaml
+config:
+    sftpd:
+        max_auth_retries: 10
+```
+
+### Custom volume mount
+
+A custom configuration file can be mounted using the `volumes` and `volumeMounts` keys (see [Values](#values)).
+
+By default, SFTPGo looks at the following locations for configuration (in the order of precedence):
+
+- `/var/lib/.config/sftpgo`
+- `/etc/sftpgo` (already mounted by this chart)
+
+You can mount a config map or a secret to `/var/lib/.config/sftpgo`.
+
+**Note:** this method will override all configuration set in `values.yaml`.
+
+**Example:**
+
+```yaml
+# configmap.yaml
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: custom-sftpgo-config
+data:
+  sftpgo.yaml: |-
+    sftpd:
+        max_auth_retries: 10
+```
+
+```yaml
+# values.yaml
+
+volumes:
+  - name: custom-config # config is already taken
+    configMap:
+      name: custom-sftpgo-config
+
+volumeMounts:
+  - name: custom-config # config is already taken
+    mountPath: /var/lib/sftpgo/.config/sftpgo
+```
+
+Alternatively, you can mount the config file to any arbitrary location (except `/etc/sftpgo`) and set the `SFTPGO_CONFIG_FILE` environment variable (using `envFrom`, see [Values](#values)).
