@@ -9,6 +9,32 @@ entries:
           image: doitintl/kube-secrets-init:0.2.14
     apiVersion: v2
     appVersion: 0.2.14
+    created: "2021-02-08T09:55:20.429063353Z"
+    description: kube-secrets-init is a Kubernetes mutating admission webhook, that
+      mutates any Pod that is using specially prefixed environment variables, directly
+      or from Kubernetes as Secret or ConfigMap.
+    digest: e0c2acce6335aaddff842d17be59fbb022af7c2e75fb5d04e1576f0c37fdde9b
+    home: https://github.com/doitintl/kube-secrets-init
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: mark.sagikazar@gmail.com
+      name: sagikazarmark
+      url: https://sagikazarmark.hu
+    name: kube-secrets-init
+    sources:
+    - https://github.com/doitintl/kube-secrets-init
+    type: application
+    urls:
+    - https://github.com/sagikazarmark/helm-charts/releases/download/kube-secrets-init-0.2.2/kube-secrets-init-0.2.2.tgz
+    version: 0.2.2
+  - annotations:
+      artifacthub.io/changes: |
+        - Fix kubeVersion compatibility check on GKE
+      artifacthub.io/images: |
+        - name: kube-secrets-init
+          image: doitintl/kube-secrets-init:0.2.14
+    apiVersion: v2
+    appVersion: 0.2.14
     created: "2021-02-07T09:03:11.971812032Z"
     description: kube-secrets-init is a Kubernetes mutating admission webhook, that
       mutates any Pod that is using specially prefixed environment variables, directly
@@ -88,6 +114,39 @@ entries:
     - https://github.com/sagikazarmark/helm-charts/releases/download/kube-secrets-init-0.1.0/kube-secrets-init-0.1.0.tgz
     version: 0.1.0
   sftpgo:
+  - annotations:
+      artifacthub.io/changes: |
+        - Upgrade SFTPGo to 2.0.1
+        - Improve application configuration
+      artifacthub.io/images: |
+        - name: sftpgo
+          image: ghcr.io/drakkan/sftpgo:v2.0.1
+        - name: sftpgo-alpine
+          image: ghcr.io/drakkan/sftpgo:v2.0.1-alpine
+    apiVersion: v2
+    appVersion: 2.0.1
+    created: "2021-02-08T09:55:20.522423027Z"
+    description: Fully featured and highly configurable SFTP server with optional
+      FTP/S and WebDAV support.
+    digest: b1c2fc62d01da68b9bc0d7b0f7d2f9b8c19d24f8c58c6bcde9e804e5327bc88c
+    home: https://github.com/drakkan/sftpgo
+    keywords:
+    - sftp
+    - ftp
+    - webdav
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: mark.sagikazar@gmail.com
+      name: sagikazarmark
+      url: https://sagikazarmark.hu
+    name: sftpgo
+    sources:
+    - https://github.com/drakkan/sftpgo
+    - https://github.com/sagikazarmark/helm-charts/tree/master/charts/sftpgo
+    type: application
+    urls:
+    - https://github.com/sagikazarmark/helm-charts/releases/download/sftpgo-0.1.0/sftpgo-0.1.0.tgz
+    version: 0.1.0
   - annotations:
       artifacthub.io/changes: |
         - Fix kubeVersion compatibility check on GKE
