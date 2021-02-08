@@ -19,8 +19,12 @@ imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
 
+# -- Application configuration.
+# See the [official documentation](https://github.com/drakkan/sftpgo/blob/master/docs/full-configuration.md).
+config: {}
+
 # -- Additional storage [volumes](https://kubernetes.io/docs/concepts/storage/volumes/) of a Pod.
-# -- See the [API reference](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.20/#volume-v1-core) for details.
+# See the [API reference](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.20/#volume-v1-core) for details.
 volumes: []
 
 # -- Additional [volume mounts](https://kubernetes.io/docs/tasks/configure-pod-container/configure-volume-storage/) of a container.

@@ -1,1 +1,72 @@
-../../docs/templates/README.md.gotmpl
+{{ template "chart.header" . }}
+
+{{ template "chart.versionBadge" . }} {{ template "chart.typeBadge" . }} {{ template "chart.appVersionBadge" . }} {{ template "chart.kubeVersionBadge" . }} {{ template "chart.artifactHubBadge" . }}
+
+{{ template "chart.description" . }}
+
+{{ template "chart.homepageLine" . }}
+
+{{ template "tldr" . }}
+
+{{ template "chart.valuesSection" . }}
+
+## Configuration
+
+SFTPGo has an extensive set of [configuration](https://github.com/drakkan/sftpgo/blob/master/docs/full-configuration.md) options allowing you to control the large set of features it provides.
+
+The following options are available to configure SFTPGo when installing it with this chart.
+
+**Note:** environmental configurations (like port bindings, certain directories, etc) are configured by the chart or the container image using flags and environment variables and they cannot be configured using a config file.
+
+### values.yaml
+
+Setting the `config` key in the values file is the easiest way to configure SFTPGo:
+
+```yaml
+config:
+    sftpd:
+        max_auth_retries: 10
+```
+
+### Custom volume mount
+
+A custom configuration file can be mounted using the `volumes` and `volumeMounts` keys (see [Values](#values)).
+
+By default, SFTPGo looks at the following locations for configuration (in the order of precedence):
+
+- `/var/lib/.config/sftpgo`
+- `/etc/sftpgo` (already mounted by this chart)
+
+You can mount a config map or a secret to `/var/lib/.config/sftpgo`.
+
+**Note:** this method will override all configuration set in `values.yaml`.
+
+**Example:**
+
+```yaml
+# configmap.yaml
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: custom-sftpgo-config
+data:
+  sftpgo.yaml: |-
+    sftpd:
+        max_auth_retries: 10
+```
+
+```yaml
+# values.yaml
+
+volumes:
+  - name: custom-config # config is already taken
+    configMap:
+      name: custom-sftpgo-config
+
+volumeMounts:
+  - name: custom-config # config is already taken
+    mountPath: /var/lib/sftpgo/.config/sftpgo
+```
+
+Alternatively, you can mount the config file to any arbitrary location (except `/etc/sftpgo`) and set the `SFTPGO_CONFIG_FILE` environment variable (using `envFrom`, see [Values](#values)).
