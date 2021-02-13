@@ -57,11 +57,9 @@ spec:
             - name: http
               containerPort: 8443
               protocol: TCP
-          {{- if .Values.telemetry.enabled }}
             - name: telemetry
               containerPort: 9090
               protocol: TCP
-          {{- end }}
           livenessProbe:
             httpGet:
               scheme: HTTPS
