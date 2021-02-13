@@ -14,9 +14,31 @@ spec:
   externalTrafficPolicy: {{ . }}
   {{- end }}
   ports:
-    - port: {{ .Values.service.port }}
+    {{- if .Values.sftpd.enabled }}
+    - port: {{ .Values.service.ports.sftp }}
       targetPort: sftp
       protocol: TCP
       name: sftp
+    {{- end }}
+    {{- if .Values.ftpd.enabled }}
+    - port: {{ .Values.service.ports.ftp }}
+      targetPort: ftp
+      protocol: TCP
+      name: ftp
+    {{- end }}
+    {{- if .Values.webdavd.enabled }}
+    - port: {{ .Values.service.ports.webdav }}
+      targetPort: webdav
+      protocol: TCP
+      name: webdav
+    {{- end }}
+    - port: {{ .Values.service.ports.http }}
+      targetPort: http
+      protocol: TCP
+      name: http
+    - port: 10000
+      targetPort: telemetry
+      protocol: TCP
+      name: telemetry
   selector:
     {{- include "sftpgo.selectorLabels" . | nindent 4 }}

@@ -22,6 +22,18 @@ nameOverride: ""
 # -- Provide a name to substitute for the full names of resources.
 fullnameOverride: ""
 
+sftpd:
+  # -- Enable SFTP service.
+  enabled: true
+
+ftpd:
+  # -- Enable FTP service.
+  enabled: false
+
+webdavd:
+  # -- Enable WebDAV service.
+  enabled: false
+
 # -- Application configuration.
 # See the [official documentation](https://github.com/drakkan/sftpgo/blob/master/docs/full-configuration.md).
 config: {}
@@ -72,8 +84,18 @@ service:
   # -- Kubernetes [service type](https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types).
   type: ClusterIP
 
-  # -- Service port
-  port: 22
+  ports:
+    # -- SFTP service port
+    sftp: 22
+
+    # -- FTP service port
+    ftp: 21
+
+    # -- WebDAV service port
+    webdav: 81
+
+    # -- REST API service port
+    http: 80
 
   # -- Route external traffic to node-local or cluster-wide endoints.
   # Useful for [preserving the client source IP](https://kubernetes.io/docs/tasks/access-application-cluster/create-external-load-balancer/#preserving-the-client-source-ip).

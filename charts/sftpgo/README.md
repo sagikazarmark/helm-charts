@@ -24,6 +24,9 @@ helm install --generate-name --wait skm/sftpgo
 | imagePullSecrets | list | `[]` | Image [pull secrets](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/#create-a-pod-that-uses-your-secret) |
 | nameOverride | string | `""` | Provide a name in place of the chart name for `app:` labels. |
 | fullnameOverride | string | `""` | Provide a name to substitute for the full names of resources. |
+| sftpd.enabled | bool | `true` | Enable SFTP service. |
+| ftpd.enabled | bool | `false` | Enable FTP service. |
+| webdavd.enabled | bool | `false` | Enable WebDAV service. |
 | config | object | `{}` | Application configuration. See the [official documentation](https://github.com/drakkan/sftpgo/blob/master/docs/full-configuration.md). |
 | volumes | list | `[]` | Additional storage [volumes](https://kubernetes.io/docs/concepts/storage/volumes/) of a Pod. See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workloads-resources/pod-v1/#volumes) for details. |
 | volumeMounts | list | `[]` | Additional [volume mounts](https://kubernetes.io/docs/tasks/configure-pod-container/configure-volume-storage/) of a container. See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workloads-resources/container/#volumes) for details. |
@@ -36,7 +39,10 @@ helm install --generate-name --wait skm/sftpgo
 | securityContext | object | `{}` | Container [security context](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-container). See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workloads-resources/container/#security-context) for details. |
 | service.annotations | object | `{}` | Custom annotations for the Service. |
 | service.type | string | `"ClusterIP"` | Kubernetes [service type](https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types). |
-| service.port | int | `22` | Service port |
+| service.ports.sftp | int | `22` | SFTP service port |
+| service.ports.ftp | int | `21` | FTP service port |
+| service.ports.webdav | int | `81` | WebDAV service port |
+| service.ports.http | int | `80` | REST API service port |
 | service.externalTrafficPolicy | string | `nil` | Route external traffic to node-local or cluster-wide endoints. Useful for [preserving the client source IP](https://kubernetes.io/docs/tasks/access-application-cluster/create-external-load-balancer/#preserving-the-client-source-ip). |
 | resources | object | No requests or limits. | Container resource [requests and limits](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/). See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workloads-resources/container/#resources) for details. |
 | autoscaling | object | Disabled by default. | Autoscaling configuration (see [values.yaml](values.yaml) for details). |
