@@ -13,6 +13,15 @@ image:
   # -- Overrides the image tag (default is the chart appVersion).
   tag: ""
 
+# -- Image [pull secrets](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/#create-a-pod-that-uses-your-secret)
+imagePullSecrets: []
+
+# -- Provide a name in place of the chart name for `app:` labels.
+nameOverride: ""
+
+# -- Provide a name to substitute for the full names of resources.
+fullnameOverride: ""
+
 # -- One of the supported secret providers:
 #   - `google` (Google Cloud Secrets Manager)
 #   - `aws` (AWS Secrets Manager and SSM Parameter Store)
@@ -46,15 +55,6 @@ telemetry:
     interval: 30s
     # additionalLabels: {}
     # relabellings: []
-
-# -- Image [pull secrets](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/#create-a-pod-that-uses-your-secret)
-imagePullSecrets: []
-
-# -- Provide a name in place of the chart name for `app:` labels.
-nameOverride: ""
-
-# -- Provide a name to substitute for the full names of resources.
-fullnameOverride: ""
 
 serviceAccount:
   # -- Whether a service account should be created.
