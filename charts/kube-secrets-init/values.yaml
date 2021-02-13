@@ -79,9 +79,13 @@ securityContext: {}
 serviceMonitor:
   # -- Enable Prometheus ServiceMonitor.
   enabled: false
+
+  # -- Interval at which metrics should be scraped
   interval: 30s
-  # additionalLabels: {}
-  # relabellings: []
+
+  # -- MetricRelabelConfigs to apply to samples before ingestion.
+  # See the [API reference](https://github.com/prometheus-operator/prometheus-operator/blob/master/Documentation/api.md#relabelconfig) for details.
+  relabellings: []
 
 # -- Container resource [requests and limits](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/).
 # See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workloads-resources/container/#resources) for details.
