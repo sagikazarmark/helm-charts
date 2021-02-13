@@ -14,9 +14,77 @@ spec:
   externalTrafficPolicy: {{ . }}
   {{- end }}
   ports:
-    - port: {{ .Values.service.port }}
+    {{- if .Values.sftpd.enabled }}
+    - port: {{ .Values.service.ports.sftp }}
       targetPort: sftp
       protocol: TCP
       name: sftp
+    {{- end }}
+    {{- if .Values.ftpd.enabled }}
+    - port: {{ .Values.service.ports.ftp }}
+      targetPort: ftp
+      protocol: TCP
+      name: ftp
+    {{- end }}
+    {{- if .Values.webdavd.enabled }}
+    - port: {{ .Values.service.ports.webdav }}
+      targetPort: webdav
+      protocol: TCP
+      name: webdav
+    {{- end }}
+    - port: {{ .Values.service.ports.http }}
+      targetPort: http
+      protocol: TCP
+      name: http
+    - port: 10000
+      targetPort: telemetry
+      protocol: TCP
+      name: telemetry
   selector:
     {{- include "sftpgo.selectorLabels" . | nindent 4 }}
+
+{{- range $name, $service := .Values.services }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "sftpgo.componentname" (list $ $name) }}
+  labels:
+    {{- include "sftpgo.labels" $ | nindent 4 }}
+  {{- with $service.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+spec:
+  type: {{ required (printf "Service type is required for %q" $name) $service.type }}
+  {{- with $service.externalTrafficPolicy }}
+  externalTrafficPolicy: {{ . }}
+  {{- end }}
+  ports:
+    {{- if and $.Values.sftpd.enabled $service.ports.sftp }}
+    - port: {{ $service.ports.sftp }}
+      targetPort: sftp
+      protocol: TCP
+      name: sftp
+    {{- end }}
+    {{- if and $.Values.ftpd.enabled $service.ports.ftp }}
+    - port: {{ $service.ports.ftp }}
+      targetPort: ftp
+      protocol: TCP
+      name: ftp
+    {{- end }}
+    {{- if and $.Values.webdavd.enabled $service.ports.webdav }}
+    - port: {{ $service.ports.webdav }}
+      targetPort: webdav
+      protocol: TCP
+      name: webdav
+    {{- end }}
+    {{- if $service.ports.http }}
+    - port: {{ $service.ports.http }}
+      targetPort: http
+      protocol: TCP
+      name: http
+    {{- end }}
+  selector:
+    {{- include "sftpgo.selectorLabels" $ | nindent 4 }}
+{{- end }}

@@ -70,3 +70,27 @@ volumeMounts:
 ```
 
 Alternatively, you can mount the config file to any arbitrary location (except `/etc/sftpgo`) and set the `SFTPGO_CONFIG_FILE` environment variable (using `envFrom`, see [Values](#values)).
+
+## Guides
+
+### Custom services
+
+The primary service created by the chart includes every enabled server (including HTTP and telemetry).
+This can be a problem when you want to expose specific (but not all) servers to the internet using a `LoadBalancer` type service.
+
+The `services` option in the values file allows you to create custom services enabling specific server ports.
+
+The following example exposes the SFTP server (and **only** the SFTP server) using a `LoadBalancer` service:
+
+```yaml
+services:
+  sftp-public:
+    annotations:
+      external-dns.alpha.kubernetes.io/hostname: sftp.mydomain.com.
+    type: LoadBalancer
+    ports:
+      sftp: 22
+```
+
+Additional services accept the same options as the `service` option in the values file and
+require at least one port.

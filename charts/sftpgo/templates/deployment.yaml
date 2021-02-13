@@ -37,10 +37,24 @@ spec:
             - sftpgo
             - serve
           env:
+            {{- if .Values.sftpd.enabled }}
             - name: SFTPGO_SFTPD__BINDINGS__0__PORT
               value: "2022"
             - name: SFTPGO_SFTPD__BINDINGS__0__ADDRESS
               value: "0.0.0.0"
+            {{- end }}
+            {{- if .Values.ftpd.enabled }}
+            - name: SFTPGO_FTPD__BINDINGS__0__PORT
+              value: "2022"
+            - name: SFTPGO_FTPD__BINDINGS__0__ADDRESS
+              value: "0.0.0.0"
+            {{- end }}
+            {{- if .Values.webdavd.enabled }}
+            - name: SFTPGO_WEBDAVD__BINDINGS__0__PORT
+              value: "8081"
+            - name: SFTPGO_WEBDAVD__BINDINGS__0__ADDRESS
+              value: "0.0.0.0"
+            {{- end }}
             - name: SFTPGO_HTTPD__BINDINGS__0__PORT
               value: "8080"
             - name: SFTPGO_HTTPD__BINDINGS__0__ADDRESS
@@ -54,9 +68,21 @@ spec:
             {{- toYaml . | nindent 12 }}
           {{- end }}
           ports:
+            {{- if .Values.sftpd.enabled }}
             - name: sftp
               containerPort: 2022
               protocol: TCP
+            {{- end }}
+            {{- if .Values.ftpd.enabled }}
+            - name: ftp
+              containerPort: 2021
+              protocol: TCP
+            {{- end }}
+            {{- if .Values.webdavd.enabled }}
+            - name: webdav
+              containerPort: 8081
+              protocol: TCP
+            {{- end }}
             - name: http
               containerPort: 8080
               protocol: TCP
