@@ -1,6 +1,6 @@
 # kube-secrets-init
 
-![version: 0.3.1](https://img.shields.io/badge/version-0.3.1-informational?style=flat-square) ![type: application](https://img.shields.io/badge/type-application-informational?style=flat-square) ![app version: 0.2.14](https://img.shields.io/badge/app%20version-0.2.14-informational?style=flat-square) ![kube version: >=1.16.0-0](https://img.shields.io/badge/kube%20version->=1.16.0--0-informational?style=flat-square) [![artifact hub](https://img.shields.io/badge/artifact%20hub-kube--secrets--init-informational?style=flat-square)](https://artifacthub.io/packages/helm/sagikazarmark/kube-secrets-init)
+![version: 0.4.0](https://img.shields.io/badge/version-0.4.0-informational?style=flat-square) ![type: application](https://img.shields.io/badge/type-application-informational?style=flat-square) ![app version: 0.2.14](https://img.shields.io/badge/app%20version-0.2.14-informational?style=flat-square) ![kube version: >=1.16.0-0](https://img.shields.io/badge/kube%20version->=1.16.0--0-informational?style=flat-square) [![artifact hub](https://img.shields.io/badge/artifact%20hub-kube--secrets--init-informational?style=flat-square)](https://artifacthub.io/packages/helm/sagikazarmark/kube-secrets-init)
 
 kube-secrets-init is a Kubernetes mutating admission webhook, that mutates any Pod that is using specially prefixed environment variables, directly or from Kubernetes as Secret or ConfigMap.
 
@@ -74,8 +74,7 @@ You can read more information on how to add firewall rules for the GKE control p
 | podSecurityContext | object | `{}` | Pod [security context](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-pod). See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workloads-resources/pod-v1/#security-context) for details. |
 | securityContext | object | `{}` | Container [security context](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-container). See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workloads-resources/container/#security-context) for details. |
 | serviceMonitor.enabled | bool | `false` | Enable Prometheus ServiceMonitor. |
-| serviceMonitor.interval | string | `"30s"` | Interval at which metrics should be scraped |
-| serviceMonitor.relabellings | list | `[]` | MetricRelabelConfigs to apply to samples before ingestion. See the [API reference](https://github.com/prometheus-operator/prometheus-operator/blob/master/Documentation/api.md#relabelconfig) for details. |
+| serviceMonitor.interval | string | `"30s"` | Interval at which metrics should be scraped. |
 | resources | object | No requests or limits. | Container resource [requests and limits](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/). See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workloads-resources/container/#resources) for details. |
 | autoscaling | object | Disabled by default. | Autoscaling configuration (see [values.yaml](values.yaml) for details). |
 | nodeSelector | object | `{}` | [Node selector](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#nodeselector) configuration. |
