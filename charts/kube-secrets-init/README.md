@@ -57,6 +57,9 @@ You can read more information on how to add firewall rules for the GKE control p
 | image.repository | string | `"doitintl/kube-secrets-init"` | Repository to pull the container image from. |
 | image.pullPolicy | string | `"IfNotPresent"` | Image [pull policy](https://kubernetes.io/docs/concepts/containers/images/#updating-images) |
 | image.tag | string | `""` | Overrides the image tag (default is the chart appVersion). |
+| imagePullSecrets | list | `[]` | Image [pull secrets](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/#create-a-pod-that-uses-your-secret) |
+| nameOverride | string | `""` | Provide a name in place of the chart name for `app:` labels. |
+| fullnameOverride | string | `""` | Provide a name to substitute for the full names of resources. |
 | provider | string | `""` | One of the supported secret providers:   - `google` (Google Cloud Secrets Manager)   - `aws` (AWS Secrets Manager and SSM Parameter Store) |
 | defaultImagePullSecret | string | `""` | Fallback secret name to use when no image pull secret is found in a Pod. |
 | defaultImagePullSecretNamespace | string | `""` | Namespace of the fallback secret name. |
@@ -64,9 +67,6 @@ You can read more information on how to add firewall rules for the GKE control p
 | certificate.generate | bool | `true` | Generate the necessary certificates during chart install. Mutually exclusive with `useCertManager`. |
 | certificate.secretName | string | `""` | The name of the secret to use. If not set and useCertManager or generate is true, a name is generated using the fullname template. |
 | telemetry | object | Disabled by default. | Telemetry configuration (see [values.yaml](values.yaml) for details). |
-| imagePullSecrets | list | `[]` | Image [pull secrets](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/#create-a-pod-that-uses-your-secret) |
-| nameOverride | string | `""` | Provide a name in place of the chart name for `app:` labels. |
-| fullnameOverride | string | `""` | Provide a name to substitute for the full names of resources. |
 | serviceAccount.create | bool | `true` | Whether a service account should be created. |
 | serviceAccount.annotations | object | `{}` | Annotations to add to the service account. |
 | serviceAccount.name | string | `""` | The name of the service account to use. If not set and create is true, a name is generated using the fullname template. |
