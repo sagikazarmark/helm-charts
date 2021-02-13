@@ -1,18 +1,18 @@
-{{- if and .Values.telemetry.enabled .Values.telemetry.serviceMonitor.enabled }}
+{{- if .Values.serviceMonitor.enabled }}
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
   name: {{ include "kube-secrets-init.fullname" . }}
   labels:
     {{- include "kube-secrets-init.labels" . | nindent 4 }}
-  {{- with .Values.telemetry.serviceMonitor.additionalLabels }}
+  {{- with .Values.serviceMonitor.additionalLabels }}
 {{ toYaml . | nindent 4 }}
   {{- end }}
 spec:
   endpoints:
-    - interval: {{ .Values.telemetry.serviceMonitor.interval }}
+    - interval: {{ .Values.serviceMonitor.interval }}
       port: telemetry
-    {{- with .Values.telemetry.serviceMonitor.relabellings }}
+    {{- with .Values.serviceMonitor.relabellings }}
       metricrelabelings:
         {{- toYaml . | nindent 8 }}
     {{- end }}

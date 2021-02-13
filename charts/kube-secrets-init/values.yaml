@@ -44,18 +44,6 @@ certificate:
   # If not set and useCertManager or generate is true, a name is generated using the fullname template.
   secretName: ""
 
-# -- Telemetry configuration (see [values.yaml](values.yaml) for details).
-# @default -- Disabled by default.
-telemetry:
-  # Whether the telemetry address should be exposed.
-  enabled: false
-  serviceMonitor:
-    # Whether Prometheus ServiceMonitor resources should be created.
-    enabled: false
-    interval: 30s
-    # additionalLabels: {}
-    # relabellings: []
-
 serviceAccount:
   # -- Whether a service account should be created.
   create: true
@@ -87,6 +75,13 @@ securityContext: {}
   # readOnlyRootFilesystem: true
   # runAsNonRoot: true
   # runAsUser: 1000
+
+serviceMonitor:
+  # -- Enable Prometheus ServiceMonitor.
+  enabled: false
+  interval: 30s
+  # additionalLabels: {}
+  # relabellings: []
 
 # -- Container resource [requests and limits](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/).
 # See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workloads-resources/container/#resources) for details.
