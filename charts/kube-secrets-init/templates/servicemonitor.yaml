@@ -5,17 +5,10 @@ metadata:
   name: {{ include "kube-secrets-init.fullname" . }}
   labels:
     {{- include "kube-secrets-init.labels" . | nindent 4 }}
-  {{- with .Values.serviceMonitor.additionalLabels }}
-{{ toYaml . | nindent 4 }}
-  {{- end }}
 spec:
   endpoints:
-    - interval: {{ .Values.serviceMonitor.interval }}
-      port: telemetry
-    {{- with .Values.serviceMonitor.relabellings }}
-      metricrelabelings:
-        {{- toYaml . | nindent 8 }}
-    {{- end }}
+    - port: telemetry
+      interval: {{ .Values.serviceMonitor.interval }}
   jobLabel: {{ include "kube-secrets-init.fullname" . }}
   selector:
     matchLabels:

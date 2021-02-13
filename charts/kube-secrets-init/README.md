@@ -74,8 +74,7 @@ You can read more information on how to add firewall rules for the GKE control p
 | podSecurityContext | object | `{}` | Pod [security context](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-pod). See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workloads-resources/pod-v1/#security-context) for details. |
 | securityContext | object | `{}` | Container [security context](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-container). See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workloads-resources/container/#security-context) for details. |
 | serviceMonitor.enabled | bool | `false` | Enable Prometheus ServiceMonitor. |
-| serviceMonitor.interval | string | `"30s"` | Interval at which metrics should be scraped |
-| serviceMonitor.relabellings | list | `[]` | MetricRelabelConfigs to apply to samples before ingestion. See the [API reference](https://github.com/prometheus-operator/prometheus-operator/blob/master/Documentation/api.md#relabelconfig) for details. |
+| serviceMonitor.interval | string | `"30s"` | Interval at which metrics should be scraped. |
 | resources | object | No requests or limits. | Container resource [requests and limits](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/). See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workloads-resources/container/#resources) for details. |
 | autoscaling | object | Disabled by default. | Autoscaling configuration (see [values.yaml](values.yaml) for details). |
 | nodeSelector | object | `{}` | [Node selector](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#nodeselector) configuration. |
