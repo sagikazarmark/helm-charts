@@ -101,6 +101,16 @@ service:
   # Useful for [preserving the client source IP](https://kubernetes.io/docs/tasks/access-application-cluster/create-external-load-balancer/#preserving-the-client-source-ip).
   externalTrafficPolicy:
 
+# -- Additional services exposing servers (SFTP, FTP, WebDAV, HTTP) individually.
+# The schema matches the one under the `service` key. Additional services need at least one port.
+services: {}
+  # public:
+  #   annotations: {}
+  #   type: LoadBalancer
+  #   ports:
+  #     sftp: 22 # Only SFTP will be exposed
+  #   externalTrafficPolicy:
+
 # -- Container resource [requests and limits](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/).
 # See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workloads-resources/container/#resources) for details.
 # @default -- No requests or limits.

@@ -44,6 +44,7 @@ helm install --generate-name --wait skm/sftpgo
 | service.ports.webdav | int | `81` | WebDAV service port |
 | service.ports.http | int | `80` | REST API service port |
 | service.externalTrafficPolicy | string | `nil` | Route external traffic to node-local or cluster-wide endoints. Useful for [preserving the client source IP](https://kubernetes.io/docs/tasks/access-application-cluster/create-external-load-balancer/#preserving-the-client-source-ip). |
+| services | object | `{}` | Additional services exposing servers (SFTP, FTP, WebDAV, HTTP) individually. The schema matches the one under the `service` key. Additional services need at least one port. |
 | resources | object | No requests or limits. | Container resource [requests and limits](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/). See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workloads-resources/container/#resources) for details. |
 | autoscaling | object | Disabled by default. | Autoscaling configuration (see [values.yaml](values.yaml) for details). |
 | nodeSelector | object | `{}` | [Node selector](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#nodeselector) configuration. |
@@ -110,3 +111,27 @@ volumeMounts:
 ```
 
 Alternatively, you can mount the config file to any arbitrary location (except `/etc/sftpgo`) and set the `SFTPGO_CONFIG_FILE` environment variable (using `envFrom`, see [Values](#values)).
+
+## Guides
+
+### Custom services
+
+The primary service created by the chart includes every enabled server (including HTTP and telemetry).
+This can be a problem when you want to expose specific (but not all) servers to the internet using a `LoadBalancer` type service.
+
+The `services` option in the values file allows you to create custom services enabling specific server ports.
+
+The following example exposes the SFTP server (and **only** the SFTP server) using a `LoadBalancer` service:
+
+```yaml
+services:
+  sftp-public:
+    annotations:
+      external-dns.alpha.kubernetes.io/hostname: sftp.mydomain.com.
+    type: LoadBalancer
+    ports:
+      sftp: 22
+```
+
+Additional services accept the same options as the `service` option in the values file and
+require at least one port.
