@@ -1,4 +1,4 @@
-HELM_DOCS_VERSION = 1.4.0
+HELM_DOCS_VERSION = 1.5.0
 
 bin/helm-docs: bin/helm-docs-${HELM_DOCS_VERSION}
 	@ln -sf helm-docs-${HELM_DOCS_VERSION} bin/helm-docs
