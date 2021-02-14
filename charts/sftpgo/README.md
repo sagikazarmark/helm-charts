@@ -1,6 +1,6 @@
 # sftpgo
 
-![version: 0.3.1](https://img.shields.io/badge/version-0.3.1-informational?style=flat-square) ![type: application](https://img.shields.io/badge/type-application-informational?style=flat-square) ![app version: 2.0.1](https://img.shields.io/badge/app%20version-2.0.1-informational?style=flat-square) ![kube version: >=1.16.0-0](https://img.shields.io/badge/kube%20version->=1.16.0--0-informational?style=flat-square) [![artifact hub](https://img.shields.io/badge/artifact%20hub-sftpgo-informational?style=flat-square)](https://artifacthub.io/packages/helm/sagikazarmark/sftpgo)
+![version: 0.4.0](https://img.shields.io/badge/version-0.4.0-informational?style=flat-square) ![type: application](https://img.shields.io/badge/type-application-informational?style=flat-square) ![app version: 2.0.1](https://img.shields.io/badge/app%20version-2.0.1-informational?style=flat-square) ![kube version: >=1.16.0-0](https://img.shields.io/badge/kube%20version->=1.16.0--0-informational?style=flat-square) [![artifact hub](https://img.shields.io/badge/artifact%20hub-sftpgo-informational?style=flat-square)](https://artifacthub.io/packages/helm/sagikazarmark/sftpgo)
 
 Fully featured and highly configurable SFTP server with optional FTP/S and WebDAV support.
 
@@ -40,10 +40,16 @@ helm install --generate-name --wait skm/sftpgo
 | securityContext | object | `{}` | Container [security context](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-container). See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workloads-resources/container/#security-context) for details. |
 | service.annotations | object | `{}` | Custom annotations for the Service. |
 | service.type | string | `"ClusterIP"` | Kubernetes [service type](https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types). |
-| service.ports.sftp | int | `22` | SFTP service port |
-| service.ports.ftp | int | `21` | FTP service port |
-| service.ports.webdav | int | `81` | WebDAV service port |
-| service.ports.http | int | `80` | REST API service port |
+| service.loadBalancerIP | string | `nil` | Only applies when service tyep is LoadBalancer. Load balancer will get created with the IP specified in this field. |
+| service.loadBalancerSourceRanges | list | `[]` | (list) If specified (and supported by the cloud provider), traffic through the load balancer will be restricted to the specified client IPs. Valid values are IP CIDR blocks. |
+| service.ports.sftp.port | int | `22` | SFTP service port |
+| service.ports.sftp.nodePort | int | `nil` | SFTP node port (when applicable) |
+| service.ports.ftp.port | int | `21` | FTP service port |
+| service.ports.ftp.nodePort | int | `nil` | FTP node port (when applicable) |
+| service.ports.webdav.port | int | `81` | WebDAV service port |
+| service.ports.webdav.nodePort | int | `nil` | WebDAV node port (when applicable) |
+| service.ports.http.port | int | `80` | REST API service port |
+| service.ports.http.nodePort | int | `nil` | REST API node port (when applicable) |
 | service.externalTrafficPolicy | string | `nil` | Route external traffic to node-local or cluster-wide endoints. Useful for [preserving the client source IP](https://kubernetes.io/docs/tasks/access-application-cluster/create-external-load-balancer/#preserving-the-client-source-ip). |
 | services | object | `{}` | Additional services exposing servers (SFTP, FTP, WebDAV, HTTP) individually. The schema matches the one under the `service` key. Additional services need at least one port. |
 | resources | object | No requests or limits. | Container resource [requests and limits](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/). See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workloads-resources/container/#resources) for details. |

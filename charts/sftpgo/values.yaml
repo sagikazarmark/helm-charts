@@ -88,18 +88,41 @@ service:
   # -- Kubernetes [service type](https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types).
   type: ClusterIP
 
+  # -- (string) Only applies when service tyep is LoadBalancer. Load balancer will get created with the IP specified in this field.
+  loadBalancerIP:
+
+  # -- (list) If specified (and supported by the cloud provider), traffic through the load balancer will be restricted to the specified client IPs.
+  # Valid values are IP CIDR blocks.
+  loadBalancerSourceRanges: []
+
   ports:
-    # -- SFTP service port
-    sftp: 22
+    sftp:
+      # -- SFTP service port
+      port: 22
 
-    # -- FTP service port
-    ftp: 21
+      # -- (int) SFTP node port (when applicable)
+      nodePort:
 
-    # -- WebDAV service port
-    webdav: 81
+    ftp:
+      # -- FTP service port
+      port: 21
 
-    # -- REST API service port
-    http: 80
+      # -- (int) FTP node port (when applicable)
+      nodePort:
+
+    webdav:
+      # -- WebDAV service port
+      port: 81
+
+      # -- (int) WebDAV node port (when applicable)
+      nodePort:
+
+    http:
+      # -- REST API service port
+      port: 80
+
+      # -- (int) REST API node port (when applicable)
+      nodePort:
 
   # -- Route external traffic to node-local or cluster-wide endoints.
   # Useful for [preserving the client source IP](https://kubernetes.io/docs/tasks/access-application-cluster/create-external-load-balancer/#preserving-the-client-source-ip).
@@ -111,8 +134,12 @@ services: {}
   # public:
   #   annotations: {}
   #   type: LoadBalancer
+  #   loadBalancerIP:
+  #   loadBalancerSourceRanges: []
   #   ports:
-  #     sftp: 22 # Only SFTP will be exposed
+  #     sftp: # Only SFTP will be exposed
+  #       port: 22
+  #       nodePort:
   #   externalTrafficPolicy:
 
 # -- Container resource [requests and limits](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/).
