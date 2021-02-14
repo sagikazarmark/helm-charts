@@ -69,9 +69,7 @@ volumeMounts:
     mountPath: /var/lib/sftpgo/.config/sftpgo
 ```
 
-Alternatively, you can mount the config file to any arbitrary location (except `/etc/sftpgo`) and set the `SFTPGO_CONFIG_FILE` environment variable (using `envFrom`, see [Values](#values)).
-
-## Guides
+Alternatively, you can mount the config file to any arbitrary location (except `/etc/sftpgo`) and set the `SFTPGO_CONFIG_FILE` environment variable (using `env` or `envFrom`, see [Values](#values)).
 
 ### Custom services
 
