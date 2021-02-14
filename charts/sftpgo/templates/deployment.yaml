@@ -45,7 +45,7 @@ spec:
             {{- end }}
             {{- if .Values.ftpd.enabled }}
             - name: SFTPGO_FTPD__BINDINGS__0__PORT
-              value: "2022"
+              value: "2021"
             - name: SFTPGO_FTPD__BINDINGS__0__ADDRESS
               value: "0.0.0.0"
             {{- end }}

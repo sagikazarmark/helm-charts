@@ -22,6 +22,7 @@ annotations:
     - Add node port to services
     - Add app protocol to services
     - Add load balancer settings to services
+    - Fix FTP port binding
   artifacthub.io/images: |
     - name: sftpgo
       image: ghcr.io/drakkan/sftpgo:v2.0.1
