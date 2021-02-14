@@ -50,6 +50,10 @@ volumeMounts: []
 # See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workloads-resources/container/#environment-variables) for details.
 envFrom: []
 
+# -- Pass environment variables directly to a Pod.
+# See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workloads-resources/container/#environment-variables) for details.
+env: {}
+
 serviceAccount:
   # -- Whether a service account should be created.
   create: true
