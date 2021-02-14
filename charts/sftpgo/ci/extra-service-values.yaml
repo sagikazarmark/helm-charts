@@ -1,0 +1,11 @@
+services:
+  public:
+    annotations: {}
+    type: ClusterIP  # TODO: add support for load balancer testing
+    loadBalancerIP:
+    loadBalancerSourceRanges: []
+    ports:
+      sftp:  # Only SFTP will be exposed
+        port: 22
+        nodePort:
+    externalTrafficPolicy:
