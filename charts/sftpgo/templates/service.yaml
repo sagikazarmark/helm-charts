@@ -13,6 +13,14 @@ spec:
   {{- with .Values.service.externalTrafficPolicy }}
   externalTrafficPolicy: {{ . }}
   {{- end }}
+  {{- if eq .Values.service.type "LoadBalancer" }}
+  {{- with .Values.service.loadBalancerIP }}
+  loadBalancerIP: {{ . }}
+  {{- end }}
+  {{- with .Values.service.loadBalancerSourceRanges }}
+  loadBalancerSourceRanges: {{ toYaml . | nindent 4 }}
+  {{- end }}
+  {{- end }}
   ports:
     {{- if .Values.sftpd.enabled }}
     - name: sftp
@@ -86,6 +94,14 @@ spec:
   type: {{ required (printf "Service type is required for service %q" $name) $service.type }}
   {{- with $service.externalTrafficPolicy }}
   externalTrafficPolicy: {{ . }}
+  {{- end }}
+  {{- if eq $service.type "LoadBalancer" }}
+  {{- with $service.loadBalancerIP }}
+  loadBalancerIP: {{ . }}
+  {{- end }}
+  {{- with $service.loadBalancerSourceRanges }}
+  loadBalancerSourceRanges: {{ toYaml . | nindent 4 }}
+  {{- end }}
   {{- end }}
   ports:
     {{- if and $.Values.sftpd.enabled $service.ports.sftp }}

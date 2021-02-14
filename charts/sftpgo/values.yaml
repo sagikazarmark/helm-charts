@@ -88,6 +88,13 @@ service:
   # -- Kubernetes [service type](https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types).
   type: ClusterIP
 
+  # -- (string) Only applies when service tyep is LoadBalancer. Load balancer will get created with the IP specified in this field.
+  loadBalancerIP:
+
+  # -- (list) If specified (and supported by the cloud provider), traffic through the load balancer will be restricted to the specified client IPs.
+  # Valid values are IP CIDR blocks.
+  loadBalancerSourceRanges: []
+
   ports:
     sftp:
       # -- SFTP service port
@@ -127,6 +134,8 @@ services: {}
   # public:
   #   annotations: {}
   #   type: LoadBalancer
+  #   loadBalancerIP:
+  #   loadBalancerSourceRanges: []
   #   ports:
   #     sftp: # Only SFTP will be exposed
   #       port: 22
