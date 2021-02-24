@@ -31,7 +31,7 @@ jobs:
       - name: Lint
         run: ct lint
 
-      - name: Docs
+      - name: Check generated docs
         run: |
           make docs
           test "$(git diff --name-only)" == "" \
@@ -98,5 +98,5 @@ jobs:
           version: v0.10.0
           node_image: ${{ steps.node_image.outputs.image }}
 
-      - name: Install
+      - name: Test
         run: ct install
