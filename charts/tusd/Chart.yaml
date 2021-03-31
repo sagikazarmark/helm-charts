@@ -1,0 +1,25 @@
+apiVersion: v2
+type: application
+name: tusd
+version: 0.0.1
+appVersion: "1.6.0"
+kubeVersion: ">=1.16.0-0"
+description: "Reference server implementation in Go of tus: the open protocol for resumable file uploads."
+keywords:
+  - http
+  - upload
+  - protocol
+home: https://tus.io
+sources:
+  - https://github.com/tus/tusd
+  - https://github.com/sagikazarmark/helm-charts/tree/master/charts/tusd
+maintainers:
+  - name: sagikazarmark
+    email: mark.sagikazar@gmail.com
+    url: https://sagikazarmark.hu
+annotations:
+  artifacthub.io/changes: |
+    - Initial version
+  artifacthub.io/images: |
+    - name: tusd
+      image: tusproject/tusd:v1.6.0
