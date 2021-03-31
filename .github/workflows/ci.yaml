@@ -51,6 +51,7 @@ jobs:
     needs: lint
     if: needs.lint.outputs.changed == 'true'
     strategy:
+      fail-fast: false
       matrix:
         kube: ["1.16", "1.17", "1.18", "1.19", "1.20"]
 
