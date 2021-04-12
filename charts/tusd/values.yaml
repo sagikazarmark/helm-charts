@@ -97,8 +97,11 @@ service:
   externalTrafficPolicy:
 
 ingress:
-  # -- Enable ingress.
+  # -- Enable [ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/).
   enabled: false
+
+  # -- (string) Ingress [class name](https://kubernetes.io/docs/concepts/services-networking/ingress/#ingress-class).
+  className:
 
   # -- Annotations to be added to the ingress.
   annotations: {}
@@ -107,13 +110,11 @@ ingress:
 
   # -- Ingress host configuration.
   # @default -- See [values.yaml](values.yaml).
-  hosts:
+  rules:
     - host: chart-example.local
       paths:
         - path: /
-          backend:
-            serviceName: chart-example.local
-            servicePort: 80
+          pathType: ImplementationSpecific
 
   # -- Ingress TLS configuration.
   # @default -- See [values.yaml](values.yaml).
