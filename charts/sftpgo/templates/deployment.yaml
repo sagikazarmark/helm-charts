@@ -113,7 +113,7 @@ spec:
       volumes:
         - name: config
           configMap:
-            name: {{ include "sftpgo.componentname" (list . "config") }}
+            name: {{ include "sftpgo.fullname" . }}
       {{- with .Values.volumes }}
         {{- toYaml . | nindent 8 }}
       {{- end }}
