@@ -14,7 +14,7 @@ maintainers:
     url: https://sagikazarmark.hu
 annotations:
   artifacthub.io/changes: |
-    - Bump application version
+    - Improve documentation
   artifacthub.io/images: |
     - name: kube-secrets-init
       image: doitintl/kube-secrets-init:0.2.18

@@ -53,24 +53,24 @@ You can read more information on how to add firewall rules for the GKE control p
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| replicaCount | int | `1` | Number of Pods to launch. |
-| image.repository | string | `"doitintl/kube-secrets-init"` | Repository to pull the container image from. |
-| image.pullPolicy | string | `"IfNotPresent"` | Image [pull policy](https://kubernetes.io/docs/concepts/containers/images/#updating-images) |
-| image.tag | string | `""` | Overrides the image tag (default is the chart appVersion). |
-| imagePullSecrets | list | `[]` | Image [pull secrets](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/#create-a-pod-that-uses-your-secret) |
-| nameOverride | string | `""` | Provide a name in place of the chart name for `app:` labels. |
-| fullnameOverride | string | `""` | Provide a name to substitute for the full names of resources. |
+| replicaCount | int | `1` | Number of replicas (pods) to launch. |
+| image.repository | string | `"doitintl/kube-secrets-init"` | Name of the image repository to pull the container image from. |
+| image.pullPolicy | string | `"IfNotPresent"` | [Image pull policy](https://kubernetes.io/docs/concepts/containers/images/#updating-images) for updating already existing images on a node. |
+| image.tag | string | `""` | Image tag override for the default value (chart appVersion). |
+| imagePullSecrets | list | `[]` | Reference to one or more secrets to be used when [pulling images](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/#create-a-pod-that-uses-your-secret) (from private registries). |
+| nameOverride | string | `""` | A name in place of the chart name for `app:` labels. |
+| fullnameOverride | string | `""` | A name to substitute for the full names of resources. |
 | provider | string | `""` | One of the supported secret providers:   - `google` (Google Cloud Secrets Manager)   - `aws` (AWS Secrets Manager and SSM Parameter Store) |
-| defaultImagePullSecret | string | `""` | Fallback secret name to use when no image pull secret is found in a Pod. |
+| defaultImagePullSecret | string | `""` | Fallback secret name to use when no image pull secret is found. |
 | defaultImagePullSecretNamespace | string | `""` | Namespace of the fallback secret name. |
 | certificate.useCertManager | bool | `false` | Use jetstack/cert-manager for creating the necessary certificates. This is usually preferred as cert-manager automatically renews certificates. Mutually exclusive with `generate`. |
 | certificate.generate | bool | `true` | Generate the necessary certificates during chart install. Mutually exclusive with `useCertManager`. |
 | certificate.secretName | string | `""` | The name of the secret to use. If not set and useCertManager or generate is true, a name is generated using the fullname template. |
-| serviceAccount.create | bool | `true` | Whether a service account should be created. |
-| serviceAccount.annotations | object | `{}` | Annotations to add to the service account. |
+| serviceAccount.create | bool | `true` | Enable service account creation. |
+| serviceAccount.annotations | object | `{}` | Annotations to be added to the service account. |
 | serviceAccount.name | string | `""` | The name of the service account to use. If not set and create is true, a name is generated using the fullname template. |
-| rbac.create | bool | `true` | Specifies whether RBAC resources should be created. If disabled, the operator is responsible for creating the necessary resources based on the templates. |
-| podAnnotations | object | `{}` | Custom annotations for a Pod. |
+| rbac.create | bool | `true` | Enable the creation of RBAC resources. If disabled, the operator (ie. the person installing the chart) is responsible for creating the necessary resources based on the templates. |
+| podAnnotations | object | `{}` | Annotations to be added to pods. |
 | podSecurityContext | object | `{}` | Pod [security context](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-pod). See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workloads-resources/pod-v1/#security-context) for details. |
 | securityContext | object | `{}` | Container [security context](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-container). See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workloads-resources/container/#security-context) for details. |
 | serviceMonitor.enabled | bool | `false` | Enable Prometheus ServiceMonitor. |

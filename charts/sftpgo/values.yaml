@@ -2,24 +2,24 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
-# -- Number of Pods to launch.
+# -- Number of replicas (pods) to launch.
 replicaCount: 1
 
 image:
-  # -- Repository to pull the container image from.
+  # -- Name of the image repository to pull the container image from.
   repository: ghcr.io/drakkan/sftpgo
-  # -- Image [pull policy](https://kubernetes.io/docs/concepts/containers/images/#updating-images)
+  # -- [Image pull policy](https://kubernetes.io/docs/concepts/containers/images/#updating-images) for updating already existing images on a node.
   pullPolicy: IfNotPresent
-  # -- Overrides the image tag (default is the chart appVersion).
+  # -- Image tag override for the default value (chart appVersion).
   tag: ""
 
-# -- Image [pull secrets](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/#create-a-pod-that-uses-your-secret)
+# -- Reference to one or more secrets to be used when [pulling images](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/#create-a-pod-that-uses-your-secret) (from private registries).
 imagePullSecrets: []
 
-# -- Provide a name in place of the chart name for `app:` labels.
+# -- A name in place of the chart name for `app:` labels.
 nameOverride: ""
 
-# -- Provide a name to substitute for the full names of resources.
+# -- A name to substitute for the full names of resources.
 fullnameOverride: ""
 
 sftpd:
@@ -38,32 +38,34 @@ webdavd:
 # See the [official documentation](https://github.com/drakkan/sftpgo/blob/master/docs/full-configuration.md).
 config: {}
 
-# -- Additional storage [volumes](https://kubernetes.io/docs/concepts/storage/volumes/) of a Pod.
+# -- Additional storage [volumes](https://kubernetes.io/docs/concepts/storage/volumes/).
 # See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workloads-resources/pod-v1/#volumes) for details.
 volumes: []
 
-# -- Additional [volume mounts](https://kubernetes.io/docs/tasks/configure-pod-container/configure-volume-storage/) of a container.
+# -- Additional [volume mounts](https://kubernetes.io/docs/tasks/configure-pod-container/configure-volume-storage/).
 # See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workloads-resources/container/#volumes) for details.
 volumeMounts: []
 
-# -- Configure a [Secret](https://kubernetes.io/docs/concepts/configuration/secret/#using-secrets-as-environment-variables) or a [ConfigMap](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/#configure-all-key-value-pairs-in-a-configmap-as-container-environment-variables) as environment variable sources for a Pod.
+# -- Additional environment variables mounted from [secrets](https://kubernetes.io/docs/concepts/configuration/secret/#using-secrets-as-environment-variables) or [config maps](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/#configure-all-key-value-pairs-in-a-configmap-as-container-environment-variables).
 # See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workloads-resources/container/#environment-variables) for details.
 envFrom: []
 
-# -- Pass environment variables directly to a Pod.
+# -- Additional environment variables passed directly to containers.
 # See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workloads-resources/container/#environment-variables) for details.
 env: {}
 
 serviceAccount:
-  # -- Whether a service account should be created.
+  # -- Enable service account creation.
   create: true
-  # -- Annotations to add to the service account.
+
+  # -- Annotations to be added to the service account.
   annotations: {}
+
   # -- The name of the service account to use.
   # If not set and create is true, a name is generated using the fullname template.
   name: ""
 
-# -- Custom annotations for a Pod.
+# -- Annotations to be added to pods.
 podAnnotations: {}
 
 # -- Pod [security context](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-pod).
@@ -82,13 +84,13 @@ securityContext: {}
   # runAsUser: 1000
 
 service:
-  # -- Custom annotations for the Service.
+  # -- Annotations to be added to the service.
   annotations: {}
 
   # -- Kubernetes [service type](https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types).
   type: ClusterIP
 
-  # -- (string) Only applies when service tyep is LoadBalancer. Load balancer will get created with the IP specified in this field.
+  # -- (string) Only applies when the service type is LoadBalancer. Load balancer will get created with the IP specified in this field.
   loadBalancerIP:
 
   # -- (list) If specified (and supported by the cloud provider), traffic through the load balancer will be restricted to the specified client IPs.
@@ -97,31 +99,31 @@ service:
 
   ports:
     sftp:
-      # -- SFTP service port
+      # -- SFTP service port.
       port: 22
 
-      # -- (int) SFTP node port (when applicable)
+      # -- (int) SFTP node port (when applicable).
       nodePort:
 
     ftp:
-      # -- FTP service port
+      # -- FTP service port.
       port: 21
 
-      # -- (int) FTP node port (when applicable)
+      # -- (int) FTP node port (when applicable).
       nodePort:
 
     webdav:
-      # -- WebDAV service port
+      # -- WebDAV service port.
       port: 81
 
-      # -- (int) WebDAV node port (when applicable)
+      # -- (int) WebDAV node port (when applicable).
       nodePort:
 
     http:
-      # -- REST API service port
+      # -- REST API service port.
       port: 80
 
-      # -- (int) REST API node port (when applicable)
+      # -- (int) REST API node port (when applicable).
       nodePort:
 
   # -- Route external traffic to node-local or cluster-wide endoints.
