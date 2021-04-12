@@ -1,7 +1,7 @@
 apiVersion: v2
 type: application
 name: tusd
-version: 0.0.1
+version: 0.0.2
 appVersion: "1.6.0"
 kubeVersion: ">=1.16.0-0"
 description: "Reference server implementation in Go of tus: the open protocol for resumable file uploads."
