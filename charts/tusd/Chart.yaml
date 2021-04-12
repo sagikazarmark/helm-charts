@@ -19,7 +19,7 @@ maintainers:
     url: https://sagikazarmark.hu
 annotations:
   artifacthub.io/changes: |
-    - Improve documentation
+    - Improve ingress
   artifacthub.io/images: |
     - name: tusd
       image: tusproject/tusd:v1.6.0
