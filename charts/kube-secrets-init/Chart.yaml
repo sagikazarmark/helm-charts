@@ -1,7 +1,7 @@
 apiVersion: v2
 type: application
 name: kube-secrets-init
-version: 0.4.1
+version: 0.4.2
 appVersion: 0.2.18
 kubeVersion: ">=1.16.0-0"
 description: kube-secrets-init is a Kubernetes mutating admission webhook, that mutates any Pod that is using specially prefixed environment variables, directly or from Kubernetes as Secret or ConfigMap.
