@@ -253,6 +253,37 @@ entries:
   sftpgo:
   - annotations:
       artifacthub.io/changes: |
+        - Rename ConfigMap to the release full name
+      artifacthub.io/images: |
+        - name: sftpgo
+          image: ghcr.io/drakkan/sftpgo:v2.0.4
+        - name: sftpgo-alpine
+          image: ghcr.io/drakkan/sftpgo:v2.0.4-alpine
+    apiVersion: v2
+    appVersion: 2.0.4
+    created: "2021-04-12T06:51:02.291205608Z"
+    description: Fully featured and highly configurable SFTP server with optional FTP/S and WebDAV support.
+    digest: aa77897847834c4c1d6f5306756d8dff95986f86d9a43448f5962002d26a1865
+    home: https://github.com/drakkan/sftpgo
+    keywords:
+    - sftp
+    - ftp
+    - webdav
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: mark.sagikazar@gmail.com
+      name: sagikazarmark
+      url: https://sagikazarmark.hu
+    name: sftpgo
+    sources:
+    - https://github.com/drakkan/sftpgo
+    - https://github.com/sagikazarmark/helm-charts/tree/master/charts/sftpgo
+    type: application
+    urls:
+    - https://github.com/sagikazarmark/helm-charts/releases/download/sftpgo-0.5.0/sftpgo-0.5.0.tgz
+    version: 0.5.0
+  - annotations:
+      artifacthub.io/changes: |
         - Improve documentation
       artifacthub.io/images: |
         - name: sftpgo
