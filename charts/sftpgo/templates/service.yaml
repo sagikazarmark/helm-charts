@@ -46,7 +46,8 @@ spec:
       appProtocol: ftp
       {{- end }}
     {{- $globals := . }}
-    {{- if index .Values.config.ftpd "passive_port_range"  }}
+    {{- if hasKey .Values "config" }}
+    {{- if hasKey .Values.config "ftpd" }}
     {{- range $e := until (sub .Values.config.ftpd.passive_port_range.end .Values.config.ftpd.passive_port_range.start| add1 | int) }}
     {{- $pasvport:= add $.Values.config.ftpd.passive_port_range.start . }}
     - name: ftp-pasv-{{ $pasvport }}
@@ -56,6 +57,7 @@ spec:
       {{- if semverCompare ">=1.20-0" $globals.Capabilities.KubeVersion.GitVersion }}
       appProtocol: ftp-data
       {{- end }}
+    {{- end }}
     {{- end }}
     {{- end }}
     {{- end }}
