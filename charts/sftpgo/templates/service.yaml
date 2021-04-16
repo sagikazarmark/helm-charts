@@ -45,7 +45,23 @@ spec:
       {{- if semverCompare ">=1.20-0" .Capabilities.KubeVersion.GitVersion }}
       appProtocol: ftp
       {{- end }}
+    {{- $globals := . }}
+    {{- if .Values.config.ftpd.passive_port_range }}
+    {{- range $e := until (sub .Values.config.ftpd.passive_port_range.end .Values.config.ftpd.passive_port_range.start| add1 | int) }}
+    {{- $pasvport:= add $.Values.config.ftpd.passive_port_range.start . }}
+    - name: ftp-pasv-{{ $pasvport }}
+      port: {{ $pasvport }}
+      targetPort:  {{ $pasvport }}
+      protocol: TCP
+      {{- if semverCompare ">=1.20-0" $globals.Capabilities.KubeVersion.GitVersion }}
+      appProtocol: ftp-data
+      {{- end }}
     {{- end }}
+    {{- end }}
+    {{- end }}
+    {{- if semverCompare ">=1.20-0" .Capabilities.KubeVersion.GitVersion }}
+      appProtocol: ftp-data
+      {{- end }}
     {{- if .Values.webdavd.enabled }}
     - name: webdav
       port: {{ .Values.service.ports.webdav.port }}
