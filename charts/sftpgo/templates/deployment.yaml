@@ -82,6 +82,17 @@ spec:
               containerPort: 2021
               protocol: TCP
             {{- end }}
+            {{- $globals := . }}
+            {{- if hasKey .Values "config" }}
+            {{- if hasKey .Values.config "ftpd" }}
+            {{- range $e := until (sub .Values.config.ftpd.passive_port_range.end .Values.config.ftpd.passive_port_range.start| add1 | int) }}
+            {{- $pasvport:= add $.Values.config.ftpd.passive_port_range.start . }}
+            - name: ftp-pasv-{{ $pasvport }}
+              containerPort: {{ $pasvport }}
+              protocol: TCP
+            {{- end }}
+            {{- end }}
+            {{- end }}
             {{- if .Values.webdavd.enabled }}
             - name: webdav
               containerPort: 8081
