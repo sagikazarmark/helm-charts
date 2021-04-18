@@ -3,6 +3,38 @@ entries:
   caddy:
   - annotations:
       artifacthub.io/changes: |
+        - Add icon
+      artifacthub.io/images: |
+        - name: caddy
+          image: caddy:2.3.0
+    apiVersion: v2
+    appVersion: 2.3.0
+    created: "2021-04-18T21:12:53.046770763Z"
+    description: A powerful, enterprise-ready, open source web server with automatic
+      HTTPS written in Go.
+    digest: 89d5f1e017257eb39a540e8340593e9f7279275795a6caf3f84ac7b08447e797
+    home: https://caddyserver.com/
+    icon: https://caddyserver.com/resources/images/favicon.png
+    keywords:
+    - http
+    - https
+    - web
+    - server
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: mark.sagikazar@gmail.com
+      name: sagikazarmark
+      url: https://sagikazarmark.hu
+    name: caddy
+    sources:
+    - https://github.com/caddyserver/caddy
+    - https://github.com/sagikazarmark/helm-charts/tree/master/charts/caddy
+    type: application
+    urls:
+    - https://github.com/sagikazarmark/helm-charts/releases/download/caddy-0.0.2/caddy-0.0.2.tgz
+    version: 0.0.2
+  - annotations:
+      artifacthub.io/changes: |
         - Initial version
       artifacthub.io/images: |
         - name: caddy
@@ -1099,4 +1131,4 @@ entries:
     urls:
     - https://github.com/sagikazarmark/helm-charts/releases/download/tusd-0.0.1/tusd-0.0.1.tgz
     version: 0.0.1
-generated: "2021-04-18T20:45:25.443843625Z"
+generated: "2021-04-18T21:12:53.046900868Z"
