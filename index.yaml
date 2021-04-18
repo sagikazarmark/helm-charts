@@ -1,5 +1,37 @@
 apiVersion: v1
 entries:
+  caddy:
+  - annotations:
+      artifacthub.io/changes: |
+        - Initial version
+      artifacthub.io/images: |
+        - name: caddy
+          image: caddy:2.3.0
+    apiVersion: v2
+    appVersion: 2.3.0
+    created: "2021-04-18T20:45:25.443694625Z"
+    description: A powerful, enterprise-ready, open source web server with automatic
+      HTTPS written in Go.
+    digest: 999ee46b3ac20c1c10f1a2deca36501afd72ceb9bc36199c128cef6bf473c60e
+    home: https://caddyserver.com/
+    keywords:
+    - http
+    - https
+    - web
+    - server
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: mark.sagikazar@gmail.com
+      name: sagikazarmark
+      url: https://sagikazarmark.hu
+    name: caddy
+    sources:
+    - https://github.com/caddyserver/caddy
+    - https://github.com/sagikazarmark/helm-charts/tree/master/charts/caddy
+    type: application
+    urls:
+    - https://github.com/sagikazarmark/helm-charts/releases/download/caddy-0.0.1/caddy-0.0.1.tgz
+    version: 0.0.1
   kube-secrets-init:
   - annotations:
       artifacthub.io/changes: |
@@ -10,7 +42,9 @@ entries:
     apiVersion: v2
     appVersion: 0.2.18
     created: "2021-04-12T05:35:04.205005247Z"
-    description: kube-secrets-init is a Kubernetes mutating admission webhook, that mutates any Pod that is using specially prefixed environment variables, directly or from Kubernetes as Secret or ConfigMap.
+    description: kube-secrets-init is a Kubernetes mutating admission webhook, that
+      mutates any Pod that is using specially prefixed environment variables, directly
+      or from Kubernetes as Secret or ConfigMap.
     digest: cd503f769c43f13c9c4874ac8c5baf3247123187c72a324429ae5427b1a54d32
     home: https://github.com/doitintl/kube-secrets-init
     kubeVersion: '>=1.16.0-0'
@@ -34,7 +68,9 @@ entries:
     apiVersion: v2
     appVersion: 0.2.18
     created: "2021-04-10T16:22:25.24553171Z"
-    description: kube-secrets-init is a Kubernetes mutating admission webhook, that mutates any Pod that is using specially prefixed environment variables, directly or from Kubernetes as Secret or ConfigMap.
+    description: kube-secrets-init is a Kubernetes mutating admission webhook, that
+      mutates any Pod that is using specially prefixed environment variables, directly
+      or from Kubernetes as Secret or ConfigMap.
     digest: 782b7b6563b322b75fda26ffe3b837b0e99d633916f23890dcd68a8e02057f68
     home: https://github.com/doitintl/kube-secrets-init
     kubeVersion: '>=1.16.0-0'
@@ -58,7 +94,9 @@ entries:
     apiVersion: v2
     appVersion: 0.2.14
     created: "2021-02-13T21:41:45.321878462Z"
-    description: kube-secrets-init is a Kubernetes mutating admission webhook, that mutates any Pod that is using specially prefixed environment variables, directly or from Kubernetes as Secret or ConfigMap.
+    description: kube-secrets-init is a Kubernetes mutating admission webhook, that
+      mutates any Pod that is using specially prefixed environment variables, directly
+      or from Kubernetes as Secret or ConfigMap.
     digest: 2fc44aba1f9371e12f01bb6c9783f5efc1d71da5917a819f0c1451fcf96254ce
     home: https://github.com/doitintl/kube-secrets-init
     kubeVersion: '>=1.16.0-0'
@@ -83,7 +121,9 @@ entries:
     apiVersion: v2
     appVersion: 0.2.14
     created: "2021-02-13T21:33:32.068537736Z"
-    description: kube-secrets-init is a Kubernetes mutating admission webhook, that mutates any Pod that is using specially prefixed environment variables, directly or from Kubernetes as Secret or ConfigMap.
+    description: kube-secrets-init is a Kubernetes mutating admission webhook, that
+      mutates any Pod that is using specially prefixed environment variables, directly
+      or from Kubernetes as Secret or ConfigMap.
     digest: 80031d0c354eb00e36c7658e9f90c653d828cf38860a5e6682ee012cab430243
     home: https://github.com/doitintl/kube-secrets-init
     kubeVersion: '>=1.16.0-0'
@@ -107,7 +147,9 @@ entries:
     apiVersion: v2
     appVersion: 0.2.14
     created: "2021-02-13T21:20:51.803757642Z"
-    description: kube-secrets-init is a Kubernetes mutating admission webhook, that mutates any Pod that is using specially prefixed environment variables, directly or from Kubernetes as Secret or ConfigMap.
+    description: kube-secrets-init is a Kubernetes mutating admission webhook, that
+      mutates any Pod that is using specially prefixed environment variables, directly
+      or from Kubernetes as Secret or ConfigMap.
     digest: 8d3ca3bc558a79126f1956eec7856db10466cfecbe1520655881c662657b905d
     home: https://github.com/doitintl/kube-secrets-init
     kubeVersion: '>=1.16.0-0'
@@ -131,7 +173,9 @@ entries:
     apiVersion: v2
     appVersion: 0.2.14
     created: "2021-02-13T19:31:22.113030257Z"
-    description: kube-secrets-init is a Kubernetes mutating admission webhook, that mutates any Pod that is using specially prefixed environment variables, directly or from Kubernetes as Secret or ConfigMap.
+    description: kube-secrets-init is a Kubernetes mutating admission webhook, that
+      mutates any Pod that is using specially prefixed environment variables, directly
+      or from Kubernetes as Secret or ConfigMap.
     digest: ef6f5df4add55eaf23a86392548955165127af2b74abe5a9495b15cc2332d48e
     home: https://github.com/doitintl/kube-secrets-init
     kubeVersion: '>=1.16.0-0'
@@ -155,7 +199,9 @@ entries:
     apiVersion: v2
     appVersion: 0.2.14
     created: "2021-02-08T09:55:20.429063353Z"
-    description: kube-secrets-init is a Kubernetes mutating admission webhook, that mutates any Pod that is using specially prefixed environment variables, directly or from Kubernetes as Secret or ConfigMap.
+    description: kube-secrets-init is a Kubernetes mutating admission webhook, that
+      mutates any Pod that is using specially prefixed environment variables, directly
+      or from Kubernetes as Secret or ConfigMap.
     digest: e0c2acce6335aaddff842d17be59fbb022af7c2e75fb5d04e1576f0c37fdde9b
     home: https://github.com/doitintl/kube-secrets-init
     kubeVersion: '>=1.16.0-0'
@@ -179,7 +225,9 @@ entries:
     apiVersion: v2
     appVersion: 0.2.14
     created: "2021-02-07T09:03:11.971812032Z"
-    description: kube-secrets-init is a Kubernetes mutating admission webhook, that mutates any Pod that is using specially prefixed environment variables, directly or from Kubernetes as Secret or ConfigMap.
+    description: kube-secrets-init is a Kubernetes mutating admission webhook, that
+      mutates any Pod that is using specially prefixed environment variables, directly
+      or from Kubernetes as Secret or ConfigMap.
     digest: ae447ee75263dd34b624904358511b358861e3d0ae9599a2347aeca51d8f20eb
     home: https://github.com/doitintl/kube-secrets-init
     kubeVersion: '>=1.16.0-0'
@@ -209,7 +257,9 @@ entries:
     apiVersion: v2
     appVersion: 0.2.14
     created: "2021-01-07T18:22:11.45285745Z"
-    description: kube-secrets-init is a Kubernetes mutating admission webhook, that mutates any Pod that is using specially prefixed environment variables, directly or from Kubernetes as Secret or ConfigMap.
+    description: kube-secrets-init is a Kubernetes mutating admission webhook, that
+      mutates any Pod that is using specially prefixed environment variables, directly
+      or from Kubernetes as Secret or ConfigMap.
     digest: 14392401ce7e38fd78c56516ef4167edbdfe02962936c1a9ae5a764fc4b23c9c
     home: https://github.com/doitintl/kube-secrets-init
     kubeVersion: '>=1.16'
@@ -236,7 +286,9 @@ entries:
     apiVersion: v2
     appVersion: 0.2.12
     created: "2020-11-25T16:52:07.349931818Z"
-    description: kube-secrets-init is a Kubernetes mutating admission webhook, that mutates any Pod that is using specially prefixed environment variables, directly or from Kubernetes as Secret or ConfigMap.
+    description: kube-secrets-init is a Kubernetes mutating admission webhook, that
+      mutates any Pod that is using specially prefixed environment variables, directly
+      or from Kubernetes as Secret or ConfigMap.
     digest: 8b3b68ec6a9b676d36d30b9db26c2a5810b760e3fc8ea320131abd161df432b2
     home: https://github.com/doitintl/kube-secrets-init
     maintainers:
@@ -262,7 +314,8 @@ entries:
     apiVersion: v2
     appVersion: 2.0.4
     created: "2021-04-12T06:51:02.291205608Z"
-    description: Fully featured and highly configurable SFTP server with optional FTP/S and WebDAV support.
+    description: Fully featured and highly configurable SFTP server with optional
+      FTP/S and WebDAV support.
     digest: aa77897847834c4c1d6f5306756d8dff95986f86d9a43448f5962002d26a1865
     home: https://github.com/drakkan/sftpgo
     keywords:
@@ -293,7 +346,8 @@ entries:
     apiVersion: v2
     appVersion: 2.0.4
     created: "2021-04-12T05:35:04.371664231Z"
-    description: Fully featured and highly configurable SFTP server with optional FTP/S and WebDAV support.
+    description: Fully featured and highly configurable SFTP server with optional
+      FTP/S and WebDAV support.
     digest: 7006fc01a331d88837765f940afb280276a3ae519e0dd3566edc9bd7a1f21cc1
     home: https://github.com/drakkan/sftpgo
     keywords:
@@ -324,7 +378,8 @@ entries:
     apiVersion: v2
     appVersion: 2.0.4
     created: "2021-04-10T15:07:12.658345339Z"
-    description: Fully featured and highly configurable SFTP server with optional FTP/S and WebDAV support.
+    description: Fully featured and highly configurable SFTP server with optional
+      FTP/S and WebDAV support.
     digest: c8ed16c3407c6948f04a1e7df5e61ff52c3050f1b94cf93770fd8f17f0416d74
     home: https://github.com/drakkan/sftpgo
     keywords:
@@ -355,7 +410,8 @@ entries:
     apiVersion: v2
     appVersion: 2.0.3
     created: "2021-03-30T21:07:43.781875822Z"
-    description: Fully featured and highly configurable SFTP server with optional FTP/S and WebDAV support.
+    description: Fully featured and highly configurable SFTP server with optional
+      FTP/S and WebDAV support.
     digest: 5571ba2073378576fab941315668ebed7ef14de1523baecd9a490747f08ca04c
     home: https://github.com/drakkan/sftpgo
     keywords:
@@ -386,7 +442,8 @@ entries:
     apiVersion: v2
     appVersion: 2.0.2
     created: "2021-03-02T07:18:22.633225477Z"
-    description: Fully featured and highly configurable SFTP server with optional FTP/S and WebDAV support.
+    description: Fully featured and highly configurable SFTP server with optional
+      FTP/S and WebDAV support.
     digest: 1a5da0e33cb12062be6f8680a30b304f4bff7e0e0b8a80a35837832dc523c8ba
     home: https://github.com/drakkan/sftpgo
     keywords:
@@ -420,7 +477,8 @@ entries:
     apiVersion: v2
     appVersion: 2.0.1
     created: "2021-02-14T23:41:41.967506206Z"
-    description: Fully featured and highly configurable SFTP server with optional FTP/S and WebDAV support.
+    description: Fully featured and highly configurable SFTP server with optional
+      FTP/S and WebDAV support.
     digest: 4866a5d5149954b25322feae7a353914dd4ebb27430252a7da62bb362a62f7d8
     home: https://github.com/drakkan/sftpgo
     keywords:
@@ -451,7 +509,8 @@ entries:
     apiVersion: v2
     appVersion: 2.0.1
     created: "2021-02-14T00:31:08.353739988Z"
-    description: Fully featured and highly configurable SFTP server with optional FTP/S and WebDAV support.
+    description: Fully featured and highly configurable SFTP server with optional
+      FTP/S and WebDAV support.
     digest: 667eef4d10e9769b572d778a0d18ae900c1f12c159cf6d2fbc9c60a4e533bc7f
     home: https://github.com/drakkan/sftpgo
     keywords:
@@ -482,7 +541,8 @@ entries:
     apiVersion: v2
     appVersion: 2.0.1
     created: "2021-02-14T00:17:10.935768498Z"
-    description: Fully featured and highly configurable SFTP server with optional FTP/S and WebDAV support.
+    description: Fully featured and highly configurable SFTP server with optional
+      FTP/S and WebDAV support.
     digest: dbd0b23d4cc9c1857220ac97bad6f6f1b9e3077c3ee16f2d637f17125042d1fc
     home: https://github.com/drakkan/sftpgo
     keywords:
@@ -514,7 +574,8 @@ entries:
     apiVersion: v2
     appVersion: 2.0.1
     created: "2021-02-13T23:59:09.25812984Z"
-    description: Fully featured and highly configurable SFTP server with optional FTP/S and WebDAV support.
+    description: Fully featured and highly configurable SFTP server with optional
+      FTP/S and WebDAV support.
     digest: 4401c3d846965756497bfa1cf471eda39698f41b8a2d2bd2612fd826636e9006
     home: https://github.com/drakkan/sftpgo
     keywords:
@@ -545,7 +606,8 @@ entries:
     apiVersion: v2
     appVersion: 2.0.1
     created: "2021-02-13T21:33:32.152204992Z"
-    description: Fully featured and highly configurable SFTP server with optional FTP/S and WebDAV support.
+    description: Fully featured and highly configurable SFTP server with optional
+      FTP/S and WebDAV support.
     digest: 2d80b21a87425b012b0ce7bb0fc4f1ded1cbe3e8c18c6f96d3aae3d333974d77
     home: https://github.com/drakkan/sftpgo
     keywords:
@@ -577,7 +639,8 @@ entries:
     apiVersion: v2
     appVersion: 2.0.1
     created: "2021-02-13T21:08:55.933569787Z"
-    description: Fully featured and highly configurable SFTP server with optional FTP/S and WebDAV support.
+    description: Fully featured and highly configurable SFTP server with optional
+      FTP/S and WebDAV support.
     digest: 18ef5e04f6ef1a3fb138d335f3c027bc9b9746252deb78eb4d42d174b28cb5bb
     home: https://github.com/drakkan/sftpgo
     keywords:
@@ -609,7 +672,8 @@ entries:
     apiVersion: v2
     appVersion: 2.0.1
     created: "2021-02-13T19:31:22.230723774Z"
-    description: Fully featured and highly configurable SFTP server with optional FTP/S and WebDAV support.
+    description: Fully featured and highly configurable SFTP server with optional
+      FTP/S and WebDAV support.
     digest: 93963cf813b9a56f15212e144598adc6bec0dbbf214c07cd747578d888d25c49
     home: https://github.com/drakkan/sftpgo
     keywords:
@@ -641,7 +705,8 @@ entries:
     apiVersion: v2
     appVersion: 2.0.1
     created: "2021-02-08T09:55:20.522423027Z"
-    description: Fully featured and highly configurable SFTP server with optional FTP/S and WebDAV support.
+    description: Fully featured and highly configurable SFTP server with optional
+      FTP/S and WebDAV support.
     digest: b1c2fc62d01da68b9bc0d7b0f7d2f9b8c19d24f8c58c6bcde9e804e5327bc88c
     home: https://github.com/drakkan/sftpgo
     keywords:
@@ -672,7 +737,8 @@ entries:
     apiVersion: v2
     appVersion: 1.2.2
     created: "2021-02-07T09:03:12.067711759Z"
-    description: Fully featured and highly configurable SFTP server with optional FTP/S and WebDAV support.
+    description: Fully featured and highly configurable SFTP server with optional
+      FTP/S and WebDAV support.
     digest: a3618c1d79c24d0e1cf12adc2c1187779201a0d656b80540f11e7670bea86040
     home: https://github.com/drakkan/sftpgo
     keywords:
@@ -707,7 +773,8 @@ entries:
     apiVersion: v2
     appVersion: 1.2.2
     created: "2021-01-07T18:22:11.545773705Z"
-    description: Fully featured and highly configurable SFTP server with optional FTP/S and WebDAV support.
+    description: Fully featured and highly configurable SFTP server with optional
+      FTP/S and WebDAV support.
     digest: 6a50be97c7ca74346310a82b92216449c48ba287982205d30a73650ff3d897be
     home: https://github.com/drakkan/sftpgo
     keywords:
@@ -741,7 +808,8 @@ entries:
     apiVersion: v2
     appVersion: 1.2.2
     created: "2020-11-25T22:23:39.720944626Z"
-    description: Fully featured and highly configurable SFTP server with optional FTP/S and WebDAV support.
+    description: Fully featured and highly configurable SFTP server with optional
+      FTP/S and WebDAV support.
     digest: 2047c977fe2375462bc233788221fbd058de9be2d0c919bc10a81f8212ead59b
     home: https://github.com/drakkan/sftpgo
     keywords:
@@ -774,7 +842,8 @@ entries:
     apiVersion: v2
     appVersion: 1.2.0
     created: "2020-11-12T16:03:04.707194634Z"
-    description: Fully featured and highly configurable SFTP server with optional FTP/S and WebDAV support.
+    description: Fully featured and highly configurable SFTP server with optional
+      FTP/S and WebDAV support.
     digest: 4ef3762deb7ead8acc59dbf047a7edb2dca0e0a5c998d8ff074d873b32fd8a42
     home: https://github.com/drakkan/sftpgo
     keywords:
@@ -808,7 +877,8 @@ entries:
     apiVersion: v2
     appVersion: 1.1.1
     created: "2020-10-29T14:28:58.012644916Z"
-    description: Fully featured and highly configurable SFTP server with optional FTP/S and WebDAV support.
+    description: Fully featured and highly configurable SFTP server with optional
+      FTP/S and WebDAV support.
     digest: 45e3d7e8d5d2be70c12780346dd587ad0cd7444b6ff1ff93642b1ed5e8ef1c28
     home: https://github.com/drakkan/sftpgo
     keywords:
@@ -842,7 +912,8 @@ entries:
     apiVersion: v2
     appVersion: 1.1.1
     created: "2020-10-29T01:17:44.764052724Z"
-    description: Fully featured and highly configurable SFTP server with optional FTP/S and WebDAV support.
+    description: Fully featured and highly configurable SFTP server with optional
+      FTP/S and WebDAV support.
     digest: 984d515df832323226b8b34dc13909874b8b7102a768d99e4d4075c08282c7d6
     home: https://github.com/drakkan/sftpgo
     keywords:
@@ -874,7 +945,8 @@ entries:
     apiVersion: v2
     appVersion: 1.1.1
     created: "2020-10-29T00:46:29.005466561Z"
-    description: Fully featured and highly configurable SFTP server with optional FTP/S and WebDAV support.
+    description: Fully featured and highly configurable SFTP server with optional
+      FTP/S and WebDAV support.
     digest: f1778d50205b956079ce90bdf0d0fd33899df4c8631fccfe30dffa81e5203644
     home: https://github.com/drakkan/sftpgo
     keywords:
@@ -895,7 +967,8 @@ entries:
   - apiVersion: v2
     appVersion: 1.1.1
     created: "2020-10-29T00:32:53.160135555Z"
-    description: Fully featured and highly configurable SFTP server with optional FTP/S and WebDAV support.
+    description: Fully featured and highly configurable SFTP server with optional
+      FTP/S and WebDAV support.
     digest: fa9500511064e80ced008f11b897aba6a66d4bcbbc2dbee2b2d05ebde3cd410a
     home: https://github.com/drakkan/sftpgo
     keywords:
@@ -916,7 +989,8 @@ entries:
   - apiVersion: v2
     appVersion: 1.1.1
     created: "2020-10-28T21:55:27.5633775Z"
-    description: Fully featured and highly configurable SFTP server with optional FTP/S and WebDAV support.
+    description: Fully featured and highly configurable SFTP server with optional
+      FTP/S and WebDAV support.
     digest: 15b988c338832d186abcd55d23ca6d1c633b3d1354181b547aff3c8db6fd9b95
     home: https://github.com/drakkan/sftpgo
     keywords:
@@ -944,7 +1018,8 @@ entries:
     apiVersion: v2
     appVersion: 1.6.0
     created: "2021-04-12T18:25:43.919003927Z"
-    description: 'Reference server implementation in Go of tus: the open protocol for resumable file uploads.'
+    description: 'Reference server implementation in Go of tus: the open protocol
+      for resumable file uploads.'
     digest: d9d0616f502018bd58d3d1742ddcbd72c6618d7890b6c14390b4674c1170b621
     home: https://tus.io
     keywords:
@@ -973,7 +1048,8 @@ entries:
     apiVersion: v2
     appVersion: 1.6.0
     created: "2021-04-12T05:35:04.593240743Z"
-    description: 'Reference server implementation in Go of tus: the open protocol for resumable file uploads.'
+    description: 'Reference server implementation in Go of tus: the open protocol
+      for resumable file uploads.'
     digest: e89121b241fe7dc9d8667f85abdfc888b0b2070e3987b380989354b50bc43d63
     home: https://tus.io
     keywords:
@@ -1002,7 +1078,8 @@ entries:
     apiVersion: v2
     appVersion: 1.6.0
     created: "2021-03-31T01:31:11.325330562Z"
-    description: 'Reference server implementation in Go of tus: the open protocol for resumable file uploads.'
+    description: 'Reference server implementation in Go of tus: the open protocol
+      for resumable file uploads.'
     digest: 57362a112276e636549d25e42b959e7e40571401d6060f048823cfefe50d5da6
     home: https://tus.io
     keywords:
@@ -1022,4 +1099,4 @@ entries:
     urls:
     - https://github.com/sagikazarmark/helm-charts/releases/download/tusd-0.0.1/tusd-0.0.1.tgz
     version: 0.0.1
-generated: "2020-10-28T21:55:27.457499814Z"
+generated: "2021-04-18T20:45:25.443843625Z"
