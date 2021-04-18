@@ -1,0 +1,17 @@
+{{ template "chart.header" . }}
+
+{{ template "chart.versionBadge" . }} {{ template "chart.typeBadge" . }} {{ template "chart.appVersionBadge" . }} {{ template "chart.kubeVersionBadge" . }} {{ template "chart.artifactHubBadge" . }}
+
+{{ template "chart.description" . }}
+
+{{ template "chart.homepageLine" . }}
+
+{{ template "tldr" . }}
+
+## Limitations
+
+The chart currently only works with a `Caddyfile` that exposes content over port 80.
+
+HTTPS service support, metrics and a lot of other features are coming in later versions.
+
+{{ template "chart.valuesSection" . }}
