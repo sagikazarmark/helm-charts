@@ -67,11 +67,6 @@ securityContext: {}
   # runAsNonRoot: true
   # runAsUser: 1000
 
-# -- List of container arguments.
-# **Note:** This is a temporary solution until there is a better way to configure the application.
-# See [sagikazarmark/helm-charts#49](https://github.com/sagikazarmark/helm-charts/issues/49) for details.
-containerArgs: []
-
 service:
   # -- Annotations to be added to the service.
   annotations: {}
