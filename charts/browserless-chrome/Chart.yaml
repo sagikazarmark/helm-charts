@@ -1,0 +1,26 @@
+apiVersion: v2
+type: application
+name: browserless-chrome
+version: 0.0.1
+appVersion: "1.45.1"
+kubeVersion: ">=1.16.0-0"
+description: Chrome as a service container. Bring your own hardware or cloud.
+icon: https://www.browserless.io/assets/apple-touch-icon.png
+keywords:
+  - chrome
+  - headless
+  - puppeteer
+home: https://www.browserless.io/
+sources:
+  - https://github.com/browserless/chrome
+  - https://github.com/sagikazarmark/helm-charts/tree/master/charts/browserless-chrome
+maintainers:
+  - name: sagikazarmark
+    email: mark.sagikazar@gmail.com
+    url: https://sagikazarmark.hu
+annotations:
+  artifacthub.io/changes: |
+    - Initial version
+  artifacthub.io/images: |
+    - name: browserless-chrome
+      image: browserless/chrome:1.45.1-chrome-stable
