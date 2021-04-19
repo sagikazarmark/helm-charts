@@ -10,6 +10,10 @@ spec:
   containers:
     - name: wget
       image: busybox
-      command: ['wget']
-      args: ['{{ include "caddy.fullname" . }}:{{ .Values.service.port }}']
+      command:
+        - /bin/sh
+        - -c
+        - |
+            sleep 10 # Readiness takes some time
+            wget {{ include "caddy.fullname" . }}:{{ .Values.service.port }}
   restartPolicy: Never

@@ -22,6 +22,13 @@ nameOverride: ""
 # -- A name to substitute for the full names of resources.
 fullnameOverride: ""
 
+# -- (string) Caddy configuration file content. Accepts [Caddyfile](https://caddyserver.com/docs/caddyfile) format by default.
+# See `adapter` for other formats.
+config:
+
+# -- Caddyfile [config adapter](https://caddyserver.com/docs/config-adapters). Set it to empty string to use JSON.
+adapter: caddyfile
+
 # -- Additional storage [volumes](https://kubernetes.io/docs/concepts/storage/volumes/).
 # See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workloads-resources/pod-v1/#volumes) for details.
 volumes: []
@@ -66,11 +73,6 @@ securityContext: {}
   # readOnlyRootFilesystem: true
   # runAsNonRoot: true
   # runAsUser: 1000
-
-# -- List of container arguments.
-# **Note:** This is a temporary solution until there is a better way to configure the application.
-# See [sagikazarmark/helm-charts#49](https://github.com/sagikazarmark/helm-charts/issues/49) for details.
-containerArgs: []
 
 service:
   # -- Annotations to be added to the service.

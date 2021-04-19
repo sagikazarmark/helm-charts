@@ -60,3 +60,16 @@ Create the name of the service account to use
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}
 {{- end }}
+
+{{/*
+Determine the configuration file name based on the adapter.
+*/}}
+{{- define "caddy.configFileName" -}}
+{{- if or (not .Values.config) (eq .Values.adapter "caddyfile") }}
+{{- print "Caddyfile" }}
+{{- else if .Values.adapter }}
+{{- printf "config.%s" .Values.adapter }}
+{{- else }}
+{{- print "config.json" }}
+{{- end }}
+{{- end }}
