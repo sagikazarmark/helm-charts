@@ -21,7 +21,7 @@ maintainers:
     url: https://sagikazarmark.hu
 annotations:
   artifacthub.io/changes: |
-    - Add icon
+    - Revert ingress breaking change
   artifacthub.io/images: |
     - name: caddy
       image: caddy:2.3.0
