@@ -34,6 +34,38 @@ entries:
   caddy:
   - annotations:
       artifacthub.io/changes: |
+        - Revert ingress breaking change
+      artifacthub.io/images: |
+        - name: caddy
+          image: caddy:2.3.0
+    apiVersion: v2
+    appVersion: 2.3.0
+    created: "2021-04-19T20:35:11.296509222Z"
+    description: A powerful, enterprise-ready, open source web server with automatic
+      HTTPS written in Go.
+    digest: f2d32650415841cffb4daacf866be5d612a41a8da1bc705c28126afac96a2385
+    home: https://caddyserver.com/
+    icon: https://caddyserver.com/resources/images/favicon.png
+    keywords:
+    - http
+    - https
+    - web
+    - server
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: mark.sagikazar@gmail.com
+      name: sagikazarmark
+      url: https://sagikazarmark.hu
+    name: caddy
+    sources:
+    - https://github.com/caddyserver/caddy
+    - https://github.com/sagikazarmark/helm-charts/tree/master/charts/caddy
+    type: application
+    urls:
+    - https://github.com/sagikazarmark/helm-charts/releases/download/caddy-0.0.5/caddy-0.0.5.tgz
+    version: 0.0.5
+  - annotations:
+      artifacthub.io/changes: |
         - Add icon
       artifacthub.io/images: |
         - name: caddy
@@ -1196,6 +1228,36 @@ entries:
   tusd:
   - annotations:
       artifacthub.io/changes: |
+        - Revert ingress breaking change
+      artifacthub.io/images: |
+        - name: tusd
+          image: tusproject/tusd:v1.6.0
+    apiVersion: v2
+    appVersion: 1.6.0
+    created: "2021-04-19T20:35:11.410680448Z"
+    description: 'Reference server implementation in Go of tus: the open protocol
+      for resumable file uploads.'
+    digest: 608f580cee0f9475feb96e9d5969b0d715194aa48446320524358d56ba23542d
+    home: https://tus.io
+    keywords:
+    - http
+    - upload
+    - protocol
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: mark.sagikazar@gmail.com
+      name: sagikazarmark
+      url: https://sagikazarmark.hu
+    name: tusd
+    sources:
+    - https://github.com/tus/tusd
+    - https://github.com/sagikazarmark/helm-charts/tree/master/charts/tusd
+    type: application
+    urls:
+    - https://github.com/sagikazarmark/helm-charts/releases/download/tusd-0.0.5/tusd-0.0.5.tgz
+    version: 0.0.5
+  - annotations:
+      artifacthub.io/changes: |
         - Improve ingress
       artifacthub.io/images: |
         - name: tusd
@@ -1314,4 +1376,4 @@ entries:
     urls:
     - https://github.com/sagikazarmark/helm-charts/releases/download/tusd-0.0.1/tusd-0.0.1.tgz
     version: 0.0.1
-generated: "2021-04-19T18:03:40.242963527Z"
+generated: "2021-04-19T20:35:11.410871848Z"
