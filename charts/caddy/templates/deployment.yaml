@@ -37,9 +37,11 @@ spec:
             - caddy
             - run
             - --config
-            - /etc/caddy/Caddyfile
+            - /etc/caddy/{{ include "caddy.configFileName" . }}
+            {{- if and .Values.config .Values.adapter }}
             - --adapter
-            - caddyfile
+            - {{ .Values.adapter }}
+            {{- end }}
           {{- with .Values.env }}
           env:
             {{- range $key, $value := . }}
@@ -65,12 +67,27 @@ spec:
               port: http
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
-          {{- with .Values.volumeMounts }}
+          {{- if or .Values.config .Values.volumeMounts }}
           volumeMounts:
+            {{- if .Values.config }}
+            - name: config
+              mountPath: /etc/caddy
+              readOnly: true
+            {{- end }}
+          {{- with .Values.volumeMounts }}
             {{- toYaml . | nindent 12 }}
           {{- end }}
+          {{- end }}
+      {{- if or .Values.config .Values.volumes }}
+      volumes:
+        {{- if .Values.config }}
+        - name: config
+          configMap:
+            name: {{ include "caddy.fullname" . }}
+        {{- end }}
       {{- with .Values.volumes }}
         {{- toYaml . | nindent 8 }}
+      {{- end }}
       {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
