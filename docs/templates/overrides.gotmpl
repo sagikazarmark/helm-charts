@@ -27,7 +27,7 @@ helm install --generate-name --wait skm/{{ .Name }}
 ```
 {{- end -}}
 
-{{- define "chart.base" -}}
+{{- define "chart.baseHead" -}}
 {{ template "chart.header" . }}
 
 {{ template "chart.versionBadge" . }} {{ template "chart.typeBadge" . }} {{ template "chart.appVersionBadge" . }} {{ template "chart.kubeVersionBadge" . }} {{ template "chart.artifactHubBadge" . }}
@@ -37,6 +37,10 @@ helm install --generate-name --wait skm/{{ .Name }}
 {{ template "chart.homepageLine" . }}
 
 {{ template "tldr" . }}
+{{- end -}}
+
+{{- define "chart.base" -}}
+{{ template "chart.baseHead" . }}
 
 {{ template "chart.valuesSection" . }}
 {{- end -}}
