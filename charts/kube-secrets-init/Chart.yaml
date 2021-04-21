@@ -1,7 +1,7 @@
 apiVersion: v2
 type: application
 name: kube-secrets-init
-version: 0.5.0
+version: 0.5.1
 appVersion: 0.2.18
 kubeVersion: ">=1.16.0-0"
 description: kube-secrets-init is a Kubernetes mutating admission webhook, that mutates any Pod that is using specially prefixed environment variables, directly or from Kubernetes as Secret or ConfigMap.
@@ -14,9 +14,7 @@ maintainers:
     url: https://sagikazarmark.hu
 annotations:
   artifacthub.io/changes: |
-    - Improve defaultImagePullSecret configuration
-    - Add init container image configuration
-    - Add pod disruption budget
+    - Improve documentation
   artifacthub.io/images: |
     - name: kube-secrets-init
       image: doitintl/kube-secrets-init:0.2.18

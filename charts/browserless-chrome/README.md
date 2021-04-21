@@ -1,6 +1,6 @@
 # browserless-chrome
 
-![version: 0.0.1](https://img.shields.io/badge/version-0.0.1-informational?style=flat-square) ![type: application](https://img.shields.io/badge/type-application-informational?style=flat-square) ![app version: 1.45.1](https://img.shields.io/badge/app%20version-1.45.1-informational?style=flat-square) ![kube version: >=1.16.0-0](https://img.shields.io/badge/kube%20version->=1.16.0--0-informational?style=flat-square) [![artifact hub](https://img.shields.io/badge/artifact%20hub-browserless--chrome-informational?style=flat-square)](https://artifacthub.io/packages/helm/sagikazarmark/browserless-chrome)
+![version: 0.0.2](https://img.shields.io/badge/version-0.0.2-informational?style=flat-square) ![type: application](https://img.shields.io/badge/type-application-informational?style=flat-square) ![app version: 1.45.1](https://img.shields.io/badge/app%20version-1.45.1-informational?style=flat-square) ![kube version: >=1.16.0-0](https://img.shields.io/badge/kube%20version->=1.16.0--0-informational?style=flat-square) [![artifact hub](https://img.shields.io/badge/artifact%20hub-browserless--chrome-informational?style=flat-square)](https://artifacthub.io/packages/helm/sagikazarmark/browserless-chrome)
 
 Chrome as a service container. Bring your own hardware or cloud.
 
@@ -12,6 +12,17 @@ Chrome as a service container. Bring your own hardware or cloud.
 helm repo add skm https://charts.sagikazarmark.dev
 helm install --generate-name --wait skm/browserless-chrome
 ```
+
+## Configuration
+
+Browserless can be configured via environment variables:
+
+```yaml
+env:
+    PREBOOT_CHROME: "true"
+```
+
+Check out the [official documentation](https://docs.browserless.io/docs/docker.html) for the available options.
 
 ## Values
 
@@ -46,14 +57,3 @@ helm install --generate-name --wait skm/browserless-chrome
 | nodeSelector | object | `{}` | [Node selector](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#nodeselector) configuration. |
 | tolerations | list | `[]` | [Tolerations](https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/) for node taints. See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#scheduling) for details. |
 | affinity | object | `{}` | [Affinity](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#affinity-and-anti-affinity) configuration. See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#scheduling) for details. |
-
-## Configuration
-
-Browserless can be configured via environment variables:
-
-```yaml
-env:
-    PREBOOT_CHROME: "true"
-```
-
-Check out the [official documentation](https://docs.browserless.io/docs/docker.html) for the available options.

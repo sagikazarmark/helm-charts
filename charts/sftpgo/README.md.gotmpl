@@ -1,14 +1,4 @@
-{{ template "chart.header" . }}
-
-{{ template "chart.versionBadge" . }} {{ template "chart.typeBadge" . }} {{ template "chart.appVersionBadge" . }} {{ template "chart.kubeVersionBadge" . }} {{ template "chart.artifactHubBadge" . }}
-
-{{ template "chart.description" . }}
-
-{{ template "chart.homepageLine" . }}
-
-{{ template "tldr" . }}
-
-{{ template "chart.valuesSection" . }}
+{{ template "chart.baseHead" . }}
 
 ## Configuration
 
@@ -92,3 +82,5 @@ services:
 
 Additional services accept the same options as the `service` option in the values file and
 require at least one port.
+
+{{ template "chart.valuesSection" . }}
