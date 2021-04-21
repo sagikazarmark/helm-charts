@@ -27,11 +27,27 @@ fullnameOverride: ""
 #   - `aws` (AWS Secrets Manager and SSM Parameter Store)
 provider: ""
 
-# -- Fallback secret name to use when no image pull secret is found.
-defaultImagePullSecret: ""
+defaultImagePullSecret:
+  # -- Fallback secret name to use when no image pull secret is found.
+  name: ""
 
-# -- Namespace of the fallback secret name.
-defaultImagePullSecretNamespace: ""
+  # -- Namespace of the fallback secret name.
+  namespace: ""
+
+initContainer:
+  image:
+    # -- Name of the image repository to pull the init container image from.
+    # @default -- `doitintl/secrets-init` (from CLI defaults)
+    repository: doitintl/secrets-init
+
+    # -- [Image pull policy](https://kubernetes.io/docs/concepts/containers/images/#updating-images) for updating already existing images on a node.
+    # @default -- `IfNotPresent` (from CLI defaults)
+    pullPolicy: IfNotPresent
+
+    # -- Image tag for the init container.
+    # **Note:** it is **strongly** recommended to change the image tag to avoid issues like [this](https://github.com/doitintl/kube-secrets-init/issues/21).
+    # @default -- `latest` (from CLI defaults)
+    tag: latest
 
 certificate:
   # -- Use jetstack/cert-manager for creating the necessary certificates.
@@ -142,3 +158,14 @@ objectSelector:
       operator: NotIn
       values:
         - skip
+
+podDisruptionBudget:
+  # -- Enable a [pod distruption budget](https://kubernetes.io/docs/tasks/run-application/configure-pdb/) to help dealing with [disruptions](https://kubernetes.io/docs/concepts/workloads/pods/disruptions/).
+  # It is **highly recommended** for webhooks as disruptions can prevent launching new pods.
+  enabled: false
+
+  ## -- (int/percentage) Number or percentage of pods that must remain available.
+  minAvailable:
+
+  ## - (int/percentage) Number or percentage of pods that can be unavailable.
+  maxUnavailable:

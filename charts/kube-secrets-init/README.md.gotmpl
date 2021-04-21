@@ -36,6 +36,63 @@ certificate:
   generate: false
 ```
 
+### Init container image
+
+By default the webhook uses the latest init container image (`doitintl/secrets-init:latest`).
+It's a good practice though to use a concrete version, because a faulty update can easily bring down your workloads (like in [this](https://github.com/doitintl/kube-secrets-init/issues/21) case):
+
+```yaml
+initContainer:
+  image:
+    tag: 0.2.12
+```
+
+Make sure that the webhook version if compatible with the init container version.
+
+### Availability and disruptions
+
+Webook disruptions can easily render clusters inoperational by preventing launching new pods leading to unplanned outages.
+Kubernetes offers different features to keep that from happening:
+
+- Fine-tune resource requests and limits to help the scheduler placing pods on nodes with enough resources.
+- Run multiple replicas for higher availability.
+- Spread pods across failure-domains (regions, zones, nodes) for even higher availability.
+- Define a [pod distruption budget](https://kubernetes.io/docs/tasks/run-application/configure-pdb/) for voluntary disruptions.
+
+Here is an example configuration for higher availability,
+but make sure to customize it to your needs before using it in production:
+
+```yaml
+replicas: 3
+
+resources:
+  limits:
+    cpu: 100m
+    memory: 128Mi
+  requests:
+    cpu: 50m
+    memory: 32Mi
+
+affinity:
+  podAntiAffinity:
+    preferredDuringSchedulingIgnoredDuringExecution:
+      - weight: 100
+        podAffinityTerm:
+          topologyKey: kubernetes.io/hostname
+          labelSelector:
+            matchLabels:
+              app.kubernetes.io/name: kube-secrets-init
+              app.kubernetes.io/instance: kube-secrets-init
+
+podDisruptionBudget:
+  enabled: true
+  minAvailable: 2
+```
+
+You can further reduce the blast-radius of involuntary disruptions by configuring `namespaceSelector` and/or `objectSelector`
+to limit the webhooks to the required namespaces/workloads.
+
+Read more about dealing with disruptions in the [Kubernetes documentation](https://kubernetes.io/docs/concepts/workloads/pods/disruptions/).
 
 ## About GKE Private Clusters
 
