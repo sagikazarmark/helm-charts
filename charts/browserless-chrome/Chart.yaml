@@ -1,7 +1,7 @@
 apiVersion: v2
 type: application
 name: browserless-chrome
-version: 0.0.1
+version: 0.0.2
 appVersion: "1.45.1"
 kubeVersion: ">=1.16.0-0"
 description: Chrome as a service container. Bring your own hardware or cloud.
