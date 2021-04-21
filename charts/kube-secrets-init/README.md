@@ -41,6 +41,49 @@ certificate:
   generate: false
 ```
 
+### Availability and disruptions
+
+Webook disruptions can easily render clusters inoperational by preventing launching new pods leading to unplanned outages.
+Kubernetes offers different features to keep that from happening:
+
+- Fine-tune resource requests and limits to help the scheduler placing pods on nodes with enough resources.
+- Run multiple replicas for higher availability.
+- Spread pods across failure-domains (regions, zones, nodes) for even higher availability.
+- Define a [pod distruption budget](https://kubernetes.io/docs/tasks/run-application/configure-pdb/) for voluntary disruptions.
+
+Here is an example configuration for higher availability,
+but make sure to customize it to your needs before using it in production:
+
+```yaml
+replicas: 3
+
+resources:
+  limits:
+    cpu: 100m
+    memory: 128Mi
+  requests:
+    cpu: 50m
+    memory: 32Mi
+
+affinity:
+  podAntiAffinity:
+    preferredDuringSchedulingIgnoredDuringExecution:
+      - topologyKey: kubernetes.io/hostname
+        labelSelector:
+          matchLabels:
+            app.kubernetes.io/name: kube-secrets-init
+            app.kubernetes.io/instance: kube-secrets-init
+
+podDisruptionBudget:
+  enabled: true
+  minAvailable: 2
+```
+
+You can further reduce the blast-radius of involuntary disruptions by configuring `namespaceSelector` and/or `objectSelector`
+to limit the webhooks to the required namespaces/workloads.
+
+Read more about dealing with disruptions in the [Kubernetes documentation](https://kubernetes.io/docs/concepts/workloads/pods/disruptions/).
+
 ## About GKE Private Clusters
 
 When Google configure the control plane for private clusters, they automatically configure VPC peering between your Kubernetes cluster’s network in a separate Google managed project.
@@ -85,6 +128,9 @@ You can read more information on how to add firewall rules for the GKE control p
 | affinity | object | `{}` | [Affinity](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#affinity-and-anti-affinity) configuration. See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#scheduling) for details. |
 | namespaceSelector | object | `kube-system` namespace is excluded. | [Namespace selector](https://kubernetes.io/docs/reference/access-authn-authz/extensible-admission-controllers/#matching-requests-namespaceselector) for the mutating webhook configuration. |
 | objectSelector | object | Exclude objects labeled with `kube-init-secrets.doit-intl.com/mutate: skip`. | [Object selector](https://kubernetes.io/docs/reference/access-authn-authz/extensible-admission-controllers/#matching-requests-objectselector) for the mutating webhook configuration. |
+| podDisruptionBudget.enabled | bool | `false` | Enable a [pod distruption budget](https://kubernetes.io/docs/tasks/run-application/configure-pdb/) to help dealing with [disruptions](https://kubernetes.io/docs/concepts/workloads/pods/disruptions/). It is **highly recommended** for webhooks as disruptions can prevent launching new pods. |
+| podDisruptionBudget.minAvailable | string | `nil` |  |
+| podDisruptionBudget.maxUnavailable | string | `nil` |  |
 
 ## Attributions
 

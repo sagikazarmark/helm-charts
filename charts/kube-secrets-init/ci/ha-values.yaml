@@ -1,0 +1,29 @@
+provider: none
+
+# Until https://github.com/doitintl/kube-secrets-init/issues/21 is fixed
+initContainer:
+  image:
+    tag: 0.2.12
+
+replicas: 3
+
+resources:
+  limits:
+    cpu: 100m
+    memory: 128Mi
+  requests:
+    cpu: 50m
+    memory: 32Mi
+
+affinity:
+  podAntiAffinity:
+    preferredDuringSchedulingIgnoredDuringExecution:
+      - topologyKey: kubernetes.io/hostname
+        labelSelector:
+          matchLabels:
+            app.kubernetes.io/name: kube-secrets-init
+            app.kubernetes.io/instance: kube-secrets-init
+
+podDisruptionBudget:
+  enabled: true
+  minAvailable: 2
