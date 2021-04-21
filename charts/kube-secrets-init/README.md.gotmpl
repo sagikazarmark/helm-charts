@@ -36,6 +36,19 @@ certificate:
   generate: false
 ```
 
+### Init container image
+
+By default the webhook uses the latest init container image (`doitintl/secrets-init:latest`).
+It's a good practice though to use a concrete version, because a faulty update can easily bring down your workloads (like in [this](https://github.com/doitintl/kube-secrets-init/issues/21) case):
+
+```yaml
+initContainer:
+  image:
+    tag: 0.2.12
+```
+
+Make sure that the webhook version if compatible with the init container version.
+
 ### Availability and disruptions
 
 Webook disruptions can easily render clusters inoperational by preventing launching new pods leading to unplanned outages.
