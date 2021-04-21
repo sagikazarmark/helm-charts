@@ -14,7 +14,7 @@ maintainers:
     url: https://sagikazarmark.hu
 annotations:
   artifacthub.io/changes: |
-    - Improve documentation
+    - Improve defaultImagePullSecret configuration
   artifacthub.io/images: |
     - name: kube-secrets-init
       image: doitintl/kube-secrets-init:0.2.18

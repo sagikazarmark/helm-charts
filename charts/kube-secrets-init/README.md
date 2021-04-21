@@ -61,8 +61,8 @@ You can read more information on how to add firewall rules for the GKE control p
 | nameOverride | string | `""` | A name in place of the chart name for `app:` labels. |
 | fullnameOverride | string | `""` | A name to substitute for the full names of resources. |
 | provider | string | `""` | One of the supported secret providers:   - `google` (Google Cloud Secrets Manager)   - `aws` (AWS Secrets Manager and SSM Parameter Store) |
-| defaultImagePullSecret | string | `""` | Fallback secret name to use when no image pull secret is found. |
-| defaultImagePullSecretNamespace | string | `""` | Namespace of the fallback secret name. |
+| defaultImagePullSecret.name | string | `""` | Fallback secret name to use when no image pull secret is found. |
+| defaultImagePullSecret.namespace | string | `""` | Namespace of the fallback secret name. |
 | certificate.useCertManager | bool | `false` | Use jetstack/cert-manager for creating the necessary certificates. This is usually preferred as cert-manager automatically renews certificates. Mutually exclusive with `generate`. |
 | certificate.generate | bool | `true` | Generate the necessary certificates during chart install. Mutually exclusive with `useCertManager`. |
 | certificate.secretName | string | `""` | The name of the secret to use. If not set and useCertManager or generate is true, a name is generated using the fullname template. |

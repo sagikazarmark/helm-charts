@@ -27,11 +27,12 @@ fullnameOverride: ""
 #   - `aws` (AWS Secrets Manager and SSM Parameter Store)
 provider: ""
 
-# -- Fallback secret name to use when no image pull secret is found.
-defaultImagePullSecret: ""
+defaultImagePullSecret:
+  # -- Fallback secret name to use when no image pull secret is found.
+  name: ""
 
-# -- Namespace of the fallback secret name.
-defaultImagePullSecretNamespace: ""
+  # -- Namespace of the fallback secret name.
+  namespace: ""
 
 certificate:
   # -- Use jetstack/cert-manager for creating the necessary certificates.
