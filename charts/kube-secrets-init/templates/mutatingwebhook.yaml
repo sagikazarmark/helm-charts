@@ -45,7 +45,7 @@ metadata:
   {{- end }}
 webhooks:
   - name: pods.{{ template "kube-secrets-init.name" . }}.admission.doit-intl.com
-    admissionReviewVersions: ["v1beta1"]
+    admissionReviewVersions: ["v1beta1", "v1"]
     clientConfig:
       service:
         name: {{ include "kube-secrets-init.fullname" . }}
