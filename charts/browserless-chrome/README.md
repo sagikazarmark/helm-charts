@@ -13,6 +13,17 @@ helm repo add skm https://charts.sagikazarmark.dev
 helm install --generate-name --wait skm/browserless-chrome
 ```
 
+## Configuration
+
+Browserless can be configured via environment variables:
+
+```yaml
+env:
+    PREBOOT_CHROME: "true"
+```
+
+Check out the [official documentation](https://docs.browserless.io/docs/docker.html) for the available options.
+
 ## Values
 
 | Key | Type | Default | Description |
@@ -46,14 +57,3 @@ helm install --generate-name --wait skm/browserless-chrome
 | nodeSelector | object | `{}` | [Node selector](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#nodeselector) configuration. |
 | tolerations | list | `[]` | [Tolerations](https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/) for node taints. See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#scheduling) for details. |
 | affinity | object | `{}` | [Affinity](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#affinity-and-anti-affinity) configuration. See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#scheduling) for details. |
-
-## Configuration
-
-Browserless can be configured via environment variables:
-
-```yaml
-env:
-    PREBOOT_CHROME: "true"
-```
-
-Check out the [official documentation](https://docs.browserless.io/docs/docker.html) for the available options.

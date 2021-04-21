@@ -20,7 +20,7 @@ maintainers:
     url: https://sagikazarmark.hu
 annotations:
   artifacthub.io/changes: |
-    - Initial version
+    - Improve documentation
   artifacthub.io/images: |
     - name: browserless-chrome
       image: browserless/chrome:1.45.1-chrome-stable
