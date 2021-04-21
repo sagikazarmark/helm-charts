@@ -63,6 +63,9 @@ You can read more information on how to add firewall rules for the GKE control p
 | provider | string | `""` | One of the supported secret providers:   - `google` (Google Cloud Secrets Manager)   - `aws` (AWS Secrets Manager and SSM Parameter Store) |
 | defaultImagePullSecret.name | string | `""` | Fallback secret name to use when no image pull secret is found. |
 | defaultImagePullSecret.namespace | string | `""` | Namespace of the fallback secret name. |
+| initContainer.image.repository | string | `doitintl/secrets-init` (from CLI defaults) | Name of the image repository to pull the init container image from. |
+| initContainer.image.pullPolicy | string | `IfNotPresent` (from CLI defaults) | [Image pull policy](https://kubernetes.io/docs/concepts/containers/images/#updating-images) for updating already existing images on a node. |
+| initContainer.image.tag | string | `latest` (from CLI defaults) | Image tag for the init container. **Note:** it is **strongly** recommended to change the image tag to avoid issues like [this](https://github.com/doitintl/kube-secrets-init/issues/21). |
 | certificate.useCertManager | bool | `false` | Use jetstack/cert-manager for creating the necessary certificates. This is usually preferred as cert-manager automatically renews certificates. Mutually exclusive with `generate`. |
 | certificate.generate | bool | `true` | Generate the necessary certificates during chart install. Mutually exclusive with `useCertManager`. |
 | certificate.secretName | string | `""` | The name of the secret to use. If not set and useCertManager or generate is true, a name is generated using the fullname template. |

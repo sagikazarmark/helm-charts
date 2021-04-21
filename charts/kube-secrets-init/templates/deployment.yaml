@@ -49,6 +49,8 @@ spec:
             {{- with .Values.defaultImagePullSecret.namespace }}
             - --default-image-pull-secret-namespace={{ . }}
             {{- end }}
+            - --image={{ .Values.initContainer.image.repository }}:{{ .Values.initContainer.image.tag }}
+            - --pull-policy={{ .Values.initContainer.image.pullPolicy }}
           volumeMounts:
             - name: certs
               mountPath: /etc/webhook/certs

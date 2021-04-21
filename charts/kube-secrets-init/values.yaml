@@ -34,6 +34,21 @@ defaultImagePullSecret:
   # -- Namespace of the fallback secret name.
   namespace: ""
 
+initContainer:
+  image:
+    # -- Name of the image repository to pull the init container image from.
+    # @default -- `doitintl/secrets-init` (from CLI defaults)
+    repository: doitintl/secrets-init
+
+    # -- [Image pull policy](https://kubernetes.io/docs/concepts/containers/images/#updating-images) for updating already existing images on a node.
+    # @default -- `IfNotPresent` (from CLI defaults)
+    pullPolicy: IfNotPresent
+
+    # -- Image tag for the init container.
+    # **Note:** it is **strongly** recommended to change the image tag to avoid issues like [this](https://github.com/doitintl/kube-secrets-init/issues/21).
+    # @default -- `latest` (from CLI defaults)
+    tag: latest
+
 certificate:
   # -- Use jetstack/cert-manager for creating the necessary certificates.
   # This is usually preferred as cert-manager automatically renews certificates.
