@@ -164,8 +164,8 @@ podDisruptionBudget:
   # It is **highly recommended** for webhooks as disruptions can prevent launching new pods.
   enabled: false
 
-  ## -- (int/percentage) Number or percentage of pods that must remain available.
+  # -- (int/percentage) Number or percentage of pods that must remain available.
   minAvailable:
 
-  ## - (int/percentage) Number or percentage of pods that can be unavailable.
+  # -- (int/percentage) Number or percentage of pods that can be unavailable.
   maxUnavailable:

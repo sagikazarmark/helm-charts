@@ -144,8 +144,8 @@ You can read more information on how to add firewall rules for the GKE control p
 | namespaceSelector | object | `kube-system` namespace is excluded. | [Namespace selector](https://kubernetes.io/docs/reference/access-authn-authz/extensible-admission-controllers/#matching-requests-namespaceselector) for the mutating webhook configuration. |
 | objectSelector | object | Exclude objects labeled with `kube-init-secrets.doit-intl.com/mutate: skip`. | [Object selector](https://kubernetes.io/docs/reference/access-authn-authz/extensible-admission-controllers/#matching-requests-objectselector) for the mutating webhook configuration. |
 | podDisruptionBudget.enabled | bool | `false` | Enable a [pod distruption budget](https://kubernetes.io/docs/tasks/run-application/configure-pdb/) to help dealing with [disruptions](https://kubernetes.io/docs/concepts/workloads/pods/disruptions/). It is **highly recommended** for webhooks as disruptions can prevent launching new pods. |
-| podDisruptionBudget.minAvailable | string | `nil` |  |
-| podDisruptionBudget.maxUnavailable | string | `nil` |  |
+| podDisruptionBudget.minAvailable | int/percentage | `nil` | Number or percentage of pods that must remain available. |
+| podDisruptionBudget.maxUnavailable | int/percentage | `nil` | Number or percentage of pods that can be unavailable. |
 
 ## Attributions
 
