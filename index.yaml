@@ -288,6 +288,32 @@ entries:
   kube-secrets-init:
   - annotations:
       artifacthub.io/changes: |
+        - Update application
+      artifacthub.io/images: |
+        - name: kube-secrets-init
+          image: doitintl/kube-secrets-init:0.3.1
+    apiVersion: v2
+    appVersion: 0.3.1
+    created: "2021-04-21T20:55:07.853153055Z"
+    description: kube-secrets-init is a Kubernetes mutating admission webhook, that
+      mutates any Pod that is using specially prefixed environment variables, directly
+      or from Kubernetes as Secret or ConfigMap.
+    digest: c2fc6e3daccc5d981d9b049ad15bd59b80db3b005e44e299e3536bd7927c1748
+    home: https://github.com/doitintl/kube-secrets-init
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: mark.sagikazar@gmail.com
+      name: sagikazarmark
+      url: https://sagikazarmark.hu
+    name: kube-secrets-init
+    sources:
+    - https://github.com/doitintl/kube-secrets-init
+    type: application
+    urls:
+    - https://github.com/sagikazarmark/helm-charts/releases/download/kube-secrets-init-0.6.0/kube-secrets-init-0.6.0.tgz
+    version: 0.6.0
+  - annotations:
+      artifacthub.io/changes: |
         - Improve documentation
       artifacthub.io/images: |
         - name: kube-secrets-init
@@ -1586,4 +1612,4 @@ entries:
     urls:
     - https://github.com/sagikazarmark/helm-charts/releases/download/tusd-0.0.1/tusd-0.0.1.tgz
     version: 0.0.1
-generated: "2021-04-21T20:03:56.934314623Z"
+generated: "2021-04-21T20:55:07.853373255Z"
