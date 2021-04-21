@@ -68,11 +68,13 @@ resources:
 affinity:
   podAntiAffinity:
     preferredDuringSchedulingIgnoredDuringExecution:
-      - topologyKey: kubernetes.io/hostname
-        labelSelector:
-          matchLabels:
-            app.kubernetes.io/name: kube-secrets-init
-            app.kubernetes.io/instance: kube-secrets-init
+      - weight: 100
+        podAffinityTerm:
+          topologyKey: kubernetes.io/hostname
+          labelSelector:
+            matchLabels:
+              app.kubernetes.io/name: kube-secrets-init
+              app.kubernetes.io/instance: kube-secrets-init
 
 podDisruptionBudget:
   enabled: true

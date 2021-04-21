@@ -1,10 +1,5 @@
 provider: none
 
-# Until https://github.com/doitintl/kube-secrets-init/issues/21 is fixed
-initContainer:
-  image:
-    tag: 0.2.12
-
 replicas: 3
 
 resources:
@@ -18,7 +13,9 @@ resources:
 affinity:
   podAntiAffinity:
     preferredDuringSchedulingIgnoredDuringExecution:
-      - topologyKey: kubernetes.io/hostname
+    - weight: 100
+      podAffinityTerm:
+        topologyKey: kubernetes.io/hostname
         labelSelector:
           matchLabels:
             app.kubernetes.io/name: kube-secrets-init

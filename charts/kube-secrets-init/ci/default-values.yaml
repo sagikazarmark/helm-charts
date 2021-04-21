@@ -1,6 +1,1 @@
 provider: none
-
-# Until https://github.com/doitintl/kube-secrets-init/issues/21 is fixed
-initContainer:
-  image:
-    tag: 0.2.12
