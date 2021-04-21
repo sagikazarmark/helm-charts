@@ -21,7 +21,7 @@ maintainers:
     url: https://sagikazarmark.hu
 annotations:
   artifacthub.io/changes: |
-    - Trigger deployment when config changes
+    - Improve documentation
   artifacthub.io/images: |
     - name: caddy
       image: caddy:2.3.0
