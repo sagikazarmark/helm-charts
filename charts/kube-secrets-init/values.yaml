@@ -7,7 +7,7 @@ replicaCount: 1
 
 image:
   # -- Name of the image repository to pull the container image from.
-  repository: doitintl/kube-secrets-init
+  repository: ghcr.io/doitintl/kube-secrets-init
 
   # -- [Image pull policy](https://kubernetes.io/docs/concepts/containers/images/#updating-images) for updating already existing images on a node.
   pullPolicy: IfNotPresent
@@ -39,8 +39,8 @@ defaultImagePullSecret:
 initContainer:
   image:
     # -- Name of the image repository to pull the init container image from.
-    # @default -- `doitintl/secrets-init` (from CLI defaults)
-    repository: doitintl/secrets-init
+    # @default -- `ghcr.io/doitintl/secrets-init` (from CLI defaults)
+    repository: ghcr.io/doitintl/secrets-init
 
     # -- [Image pull policy](https://kubernetes.io/docs/concepts/containers/images/#updating-images) for updating already existing images on a node.
     # @default -- `IfNotPresent` (from CLI defaults)

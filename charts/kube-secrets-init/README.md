@@ -1,6 +1,6 @@
 # kube-secrets-init
 
-![version: 0.6.0](https://img.shields.io/badge/version-0.6.0-informational?style=flat-square) ![type: application](https://img.shields.io/badge/type-application-informational?style=flat-square) ![app version: 0.3.1](https://img.shields.io/badge/app%20version-0.3.1-informational?style=flat-square) ![kube version: >=1.16.0-0](https://img.shields.io/badge/kube%20version->=1.16.0--0-informational?style=flat-square) [![artifact hub](https://img.shields.io/badge/artifact%20hub-kube--secrets--init-informational?style=flat-square)](https://artifacthub.io/packages/helm/sagikazarmark/kube-secrets-init)
+![version: 0.7.0](https://img.shields.io/badge/version-0.7.0-informational?style=flat-square) ![type: application](https://img.shields.io/badge/type-application-informational?style=flat-square) ![app version: 0.4.0](https://img.shields.io/badge/app%20version-0.4.0-informational?style=flat-square) ![kube version: >=1.16.0-0](https://img.shields.io/badge/kube%20version->=1.16.0--0-informational?style=flat-square) [![artifact hub](https://img.shields.io/badge/artifact%20hub-kube--secrets--init-informational?style=flat-square)](https://artifacthub.io/packages/helm/sagikazarmark/kube-secrets-init)
 
 kube-secrets-init is a Kubernetes mutating admission webhook, that mutates any Pod that is using specially prefixed environment variables, directly or from Kubernetes as Secret or ConfigMap.
 
@@ -112,7 +112,7 @@ You can read more information on how to add firewall rules for the GKE control p
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
 | replicaCount | int | `1` | Number of replicas (pods) to launch. |
-| image.repository | string | `"doitintl/kube-secrets-init"` | Name of the image repository to pull the container image from. |
+| image.repository | string | `"ghcr.io/doitintl/kube-secrets-init"` | Name of the image repository to pull the container image from. |
 | image.pullPolicy | string | `"IfNotPresent"` | [Image pull policy](https://kubernetes.io/docs/concepts/containers/images/#updating-images) for updating already existing images on a node. |
 | image.tag | string | `""` | Image tag override for the default value (chart appVersion). |
 | imagePullSecrets | list | `[]` | Reference to one or more secrets to be used when [pulling images](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/#create-a-pod-that-uses-your-secret) (from private registries). |
@@ -121,7 +121,7 @@ You can read more information on how to add firewall rules for the GKE control p
 | provider | string | `""` | One of the supported secret providers:   - `google` (Google Cloud Secrets Manager)   - `aws` (AWS Secrets Manager and SSM Parameter Store) |
 | defaultImagePullSecret.name | string | `""` | Fallback secret name to use when no image pull secret is found. |
 | defaultImagePullSecret.namespace | string | `""` | Namespace of the fallback secret name. |
-| initContainer.image.repository | string | `doitintl/secrets-init` (from CLI defaults) | Name of the image repository to pull the init container image from. |
+| initContainer.image.repository | string | `ghcr.io/doitintl/secrets-init` (from CLI defaults) | Name of the image repository to pull the init container image from. |
 | initContainer.image.pullPolicy | string | `IfNotPresent` (from CLI defaults) | [Image pull policy](https://kubernetes.io/docs/concepts/containers/images/#updating-images) for updating already existing images on a node. |
 | initContainer.image.tag | string | `latest` (from CLI defaults) | Image tag for the init container. **Note:** it is **strongly** recommended to change the image tag to avoid issues like [this](https://github.com/doitintl/kube-secrets-init/issues/21). |
 | certificate.useCertManager | bool | `false` | Use jetstack/cert-manager for creating the necessary certificates. This is usually preferred as cert-manager automatically renews certificates. Mutually exclusive with `generate`. |
