@@ -1,6 +1,6 @@
 # caddy
 
-![version: 0.0.7](https://img.shields.io/badge/version-0.0.7-informational?style=flat-square) ![type: application](https://img.shields.io/badge/type-application-informational?style=flat-square) ![app version: 2.3.0](https://img.shields.io/badge/app%20version-2.3.0-informational?style=flat-square) ![kube version: >=1.16.0-0](https://img.shields.io/badge/kube%20version->=1.16.0--0-informational?style=flat-square) [![artifact hub](https://img.shields.io/badge/artifact%20hub-caddy-informational?style=flat-square)](https://artifacthub.io/packages/helm/sagikazarmark/caddy)
+![version: 0.0.8](https://img.shields.io/badge/version-0.0.8-informational?style=flat-square) ![type: application](https://img.shields.io/badge/type-application-informational?style=flat-square) ![app version: 2.3.0](https://img.shields.io/badge/app%20version-2.3.0-informational?style=flat-square) ![kube version: >=1.16.0-0](https://img.shields.io/badge/kube%20version->=1.16.0--0-informational?style=flat-square) [![artifact hub](https://img.shields.io/badge/artifact%20hub-caddy-informational?style=flat-square)](https://artifacthub.io/packages/helm/sagikazarmark/caddy)
 
 A powerful, enterprise-ready, open source web server with automatic HTTPS written in Go.
 
@@ -50,7 +50,7 @@ HTTPS service support, metrics and a lot of other features are coming in later v
 | service.nodePort | int | `nil` | Service node port (when applicable). |
 | service.externalTrafficPolicy | string | `nil` | Route external traffic to node-local or cluster-wide endoints. Useful for [preserving the client source IP](https://kubernetes.io/docs/tasks/access-application-cluster/create-external-load-balancer/#preserving-the-client-source-ip). |
 | ingress.enabled | bool | `false` | Enable [ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/). |
-| ingress.className | string | `nil` | Ingress [class name](https://kubernetes.io/docs/concepts/services-networking/ingress/#ingress-class). |
+| ingress.className | string | `""` | Ingress [class name](https://kubernetes.io/docs/concepts/services-networking/ingress/#ingress-class). |
 | ingress.annotations | object | `{}` | Annotations to be added to the ingress. |
 | ingress.hosts | list | See [values.yaml](values.yaml). | Ingress host configuration. |
 | ingress.tls | list | See [values.yaml](values.yaml). | Ingress TLS configuration. |
