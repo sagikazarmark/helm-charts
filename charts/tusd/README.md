@@ -1,6 +1,6 @@
 # tusd
 
-![version: 0.0.8](https://img.shields.io/badge/version-0.0.8-informational?style=flat-square) ![type: application](https://img.shields.io/badge/type-application-informational?style=flat-square) ![app version: 1.6.0](https://img.shields.io/badge/app%20version-1.6.0-informational?style=flat-square) ![kube version: >=1.16.0-0](https://img.shields.io/badge/kube%20version->=1.16.0--0-informational?style=flat-square) [![artifact hub](https://img.shields.io/badge/artifact%20hub-tusd-informational?style=flat-square)](https://artifacthub.io/packages/helm/sagikazarmark/tusd)
+![version: 0.0.9](https://img.shields.io/badge/version-0.0.9-informational?style=flat-square) ![type: application](https://img.shields.io/badge/type-application-informational?style=flat-square) ![app version: 1.6.0](https://img.shields.io/badge/app%20version-1.6.0-informational?style=flat-square) ![kube version: >=1.16.0-0](https://img.shields.io/badge/kube%20version->=1.16.0--0-informational?style=flat-square) [![artifact hub](https://img.shields.io/badge/artifact%20hub-tusd-informational?style=flat-square)](https://artifacthub.io/packages/helm/sagikazarmark/tusd)
 
 Reference server implementation in Go of tus: the open protocol for resumable file uploads.
 
