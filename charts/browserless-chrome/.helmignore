@@ -22,4 +22,5 @@
 *.tmproj
 .vscode/
 
+ci/
 README.md.gotmpl

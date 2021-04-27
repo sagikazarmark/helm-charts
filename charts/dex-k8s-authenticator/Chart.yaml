@@ -1,7 +1,7 @@
 apiVersion: v2
 type: application
 name: dex-k8s-authenticator
-version: 0.0.1
+version: 0.0.2
 appVersion: "1.4.0"
 kubeVersion: ">=1.14.0-0"
 description: A helper web-app which talks to one or more Dex Identity services to generate kubectl commands for creating and modifying a kubeconfig.
@@ -21,7 +21,7 @@ maintainers:
     url: https://sagikazarmark.hu
 annotations:
   artifacthub.io/changes: |
-    - Initial version
+    - Add license file
   artifacthub.io/images: |
     - name: dex-k8s-authenticator
       image: mintel/dex-k8s-authenticator:1.4.0
