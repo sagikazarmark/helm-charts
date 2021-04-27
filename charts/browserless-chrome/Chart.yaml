@@ -21,6 +21,7 @@ maintainers:
 annotations:
   artifacthub.io/changes: |
     - Add license file
+    - Remove test files from final Helm package
   artifacthub.io/images: |
     - name: browserless-chrome
       image: browserless/chrome:1.45.1-chrome-stable
