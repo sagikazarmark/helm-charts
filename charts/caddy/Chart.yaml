@@ -21,7 +21,7 @@ maintainers:
     url: https://sagikazarmark.hu
 annotations:
   artifacthub.io/changes: |
-    - Add default value to ingress.className
+    - Fix ingress in NOTES.txt
   artifacthub.io/images: |
     - name: caddy
       image: caddy:2.3.0
