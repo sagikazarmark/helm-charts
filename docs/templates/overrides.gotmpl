@@ -27,10 +27,14 @@ helm install --generate-name --wait skm/{{ .Name }}
 ```
 {{- end -}}
 
+{{- define "chart.badges" -}}
+{{ template "chart.versionBadge" . }} {{ template "chart.typeBadge" . }} {{ template "chart.appVersionBadge" . }} {{ template "chart.kubeVersionBadge" . }} {{ template "chart.artifactHubBadge" . }}
+{{- end -}}
+
 {{- define "chart.baseHead" -}}
 {{ template "chart.header" . }}
 
-{{ template "chart.versionBadge" . }} {{ template "chart.typeBadge" . }} {{ template "chart.appVersionBadge" . }} {{ template "chart.kubeVersionBadge" . }} {{ template "chart.artifactHubBadge" . }}
+{{ template "chart.badges" . }}
 
 {{ template "chart.description" . }}
 
