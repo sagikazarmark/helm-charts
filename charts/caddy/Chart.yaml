@@ -21,7 +21,7 @@ maintainers:
     url: https://sagikazarmark.hu
 annotations:
   artifacthub.io/changes: |
-    - Fix ingress in NOTES.txt
+    - Remove test files from final Helm package
   artifacthub.io/images: |
     - name: caddy
       image: caddy:2.3.0
