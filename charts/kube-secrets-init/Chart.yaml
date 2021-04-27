@@ -14,8 +14,7 @@ maintainers:
     url: https://sagikazarmark.hu
 annotations:
   artifacthub.io/changes: |
-    - Update application
-    - Use images published on ghcr.io
+    - Remove test files from final Helm package
   artifacthub.io/images: |
     - name: kube-secrets-init
       image: ghcr.io/doitintl/kube-secrets-init:0.4.0
