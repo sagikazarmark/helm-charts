@@ -1,0 +1,7 @@
+envFrom:
+  - configMapRef:
+      name: non-existent
+      optional: true
+
+env:
+  KEY: value
