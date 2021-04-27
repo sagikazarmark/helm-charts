@@ -19,7 +19,7 @@ maintainers:
     url: https://sagikazarmark.hu
 annotations:
   artifacthub.io/changes: |
-    - Fix ingress in NOTES.txt
+    - Remove test files from final Helm package
   artifacthub.io/images: |
     - name: tusd
       image: tusproject/tusd:v1.6.0
