@@ -21,7 +21,7 @@ maintainers:
     url: https://sagikazarmark.hu
 annotations:
   artifacthub.io/changes: |
-    - Initial version
+    - Add license file
   artifacthub.io/images: |
     - name: dex-k8s-authenticator
       image: mintel/dex-k8s-authenticator:1.4.0
