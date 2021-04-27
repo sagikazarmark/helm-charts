@@ -1,6 +1,6 @@
 # dex-k8s-authenticator
 
-![version: 0.0.1](https://img.shields.io/badge/version-0.0.1-informational?style=flat-square) ![type: application](https://img.shields.io/badge/type-application-informational?style=flat-square) ![app version: 1.4.0](https://img.shields.io/badge/app%20version-1.4.0-informational?style=flat-square) ![kube version: >=1.14.0-0](https://img.shields.io/badge/kube%20version->=1.14.0--0-informational?style=flat-square) [![artifact hub](https://img.shields.io/badge/artifact%20hub-dex--k8s--authenticator-informational?style=flat-square)](https://artifacthub.io/packages/helm/sagikazarmark/dex-k8s-authenticator)
+![version: 0.0.2](https://img.shields.io/badge/version-0.0.2-informational?style=flat-square) ![type: application](https://img.shields.io/badge/type-application-informational?style=flat-square) ![app version: 1.4.0](https://img.shields.io/badge/app%20version-1.4.0-informational?style=flat-square) ![kube version: >=1.14.0-0](https://img.shields.io/badge/kube%20version->=1.14.0--0-informational?style=flat-square) [![artifact hub](https://img.shields.io/badge/artifact%20hub-dex--k8s--authenticator-informational?style=flat-square)](https://artifacthub.io/packages/helm/sagikazarmark/dex-k8s-authenticator)
 
 A helper web-app which talks to one or more Dex Identity services to generate kubectl commands for creating and modifying a kubeconfig.
 
