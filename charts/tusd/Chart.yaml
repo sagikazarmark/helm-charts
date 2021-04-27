@@ -19,7 +19,7 @@ maintainers:
     url: https://sagikazarmark.hu
 annotations:
   artifacthub.io/changes: |
-    - Add default value to ingress.className
+    - Fix ingress in NOTES.txt
   artifacthub.io/images: |
     - name: tusd
       image: tusproject/tusd:v1.6.0
