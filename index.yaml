@@ -3,6 +3,37 @@ entries:
   browserless-chrome:
   - annotations:
       artifacthub.io/changes: |
+        - Add license file
+        - Remove test files from final Helm package
+      artifacthub.io/images: |
+        - name: browserless-chrome
+          image: browserless/chrome:1.45.1-chrome-stable
+    apiVersion: v2
+    appVersion: 1.45.1
+    created: "2021-04-27T23:49:53.199585851Z"
+    description: Chrome as a service container. Bring your own hardware or cloud.
+    digest: 25d38ab4b6526772861135d692a86976492af4e47accd6c1b40a140b3cb7d191
+    home: https://www.browserless.io/
+    icon: https://www.browserless.io/assets/apple-touch-icon.png
+    keywords:
+    - chrome
+    - headless
+    - puppeteer
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: mark.sagikazar@gmail.com
+      name: sagikazarmark
+      url: https://sagikazarmark.hu
+    name: browserless-chrome
+    sources:
+    - https://github.com/browserless/chrome
+    - https://github.com/sagikazarmark/helm-charts/tree/master/charts/browserless-chrome
+    type: application
+    urls:
+    - https://github.com/sagikazarmark/helm-charts/releases/download/browserless-chrome-0.0.3/browserless-chrome-0.0.3.tgz
+    version: 0.0.3
+  - annotations:
+      artifacthub.io/changes: |
         - Improve documentation
       artifacthub.io/images: |
         - name: browserless-chrome
@@ -62,6 +93,38 @@ entries:
     - https://github.com/sagikazarmark/helm-charts/releases/download/browserless-chrome-0.0.1/browserless-chrome-0.0.1.tgz
     version: 0.0.1
   caddy:
+  - annotations:
+      artifacthub.io/changes: |
+        - Remove test files from final Helm package
+      artifacthub.io/images: |
+        - name: caddy
+          image: caddy:2.3.0
+    apiVersion: v2
+    appVersion: 2.3.0
+    created: "2021-04-27T23:49:53.451694308Z"
+    description: A powerful, enterprise-ready, open source web server with automatic
+      HTTPS written in Go.
+    digest: c538294b886bd326316961293c4f4594f4dccb04232a5ef0eeeca66c4045aab1
+    home: https://caddyserver.com/
+    icon: https://caddyserver.com/resources/images/favicon.png
+    keywords:
+    - http
+    - https
+    - web
+    - server
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: mark.sagikazar@gmail.com
+      name: sagikazarmark
+      url: https://sagikazarmark.hu
+    name: caddy
+    sources:
+    - https://github.com/caddyserver/caddy
+    - https://github.com/sagikazarmark/helm-charts/tree/master/charts/caddy
+    type: application
+    urls:
+    - https://github.com/sagikazarmark/helm-charts/releases/download/caddy-0.0.10/caddy-0.0.10.tgz
+    version: 0.0.10
   - annotations:
       artifacthub.io/changes: |
         - Fix ingress in NOTES.txt
@@ -352,6 +415,38 @@ entries:
   dex-k8s-authenticator:
   - annotations:
       artifacthub.io/changes: |
+        - Add license file
+      artifacthub.io/images: |
+        - name: dex-k8s-authenticator
+          image: mintel/dex-k8s-authenticator:1.4.0
+    apiVersion: v2
+    appVersion: 1.4.0
+    created: "2021-04-27T23:49:53.751655565Z"
+    description: A helper web-app which talks to one or more Dex Identity services
+      to generate kubectl commands for creating and modifying a kubeconfig.
+    digest: 0ba17d09b5bc374e02fb1d7f3bec720a8930b0f59241ba40759e484232b4c796
+    home: https://github.com/mintel/dex-k8s-authenticator
+    icon: https://dexidp.io/favicon.png
+    keywords:
+    - oidc
+    - dex
+    - kubernetes
+    - k8s
+    kubeVersion: '>=1.14.0-0'
+    maintainers:
+    - email: mark.sagikazar@gmail.com
+      name: sagikazarmark
+      url: https://sagikazarmark.hu
+    name: dex-k8s-authenticator
+    sources:
+    - https://github.com/mintel/dex-k8s-authenticator
+    - https://github.com/sagikazarmark/helm-charts/tree/master/charts/dex-k8s-authenticator
+    type: application
+    urls:
+    - https://github.com/sagikazarmark/helm-charts/releases/download/dex-k8s-authenticator-0.0.2/dex-k8s-authenticator-0.0.2.tgz
+    version: 0.0.2
+  - annotations:
+      artifacthub.io/changes: |
         - Initial version
       artifacthub.io/images: |
         - name: dex-k8s-authenticator
@@ -383,6 +478,32 @@ entries:
     - https://github.com/sagikazarmark/helm-charts/releases/download/dex-k8s-authenticator-0.0.1/dex-k8s-authenticator-0.0.1.tgz
     version: 0.0.1
   kube-secrets-init:
+  - annotations:
+      artifacthub.io/changes: |
+        - Remove test files from final Helm package
+      artifacthub.io/images: |
+        - name: kube-secrets-init
+          image: ghcr.io/doitintl/kube-secrets-init:0.4.0
+    apiVersion: v2
+    appVersion: 0.4.0
+    created: "2021-04-27T23:49:54.013547544Z"
+    description: kube-secrets-init is a Kubernetes mutating admission webhook, that
+      mutates any Pod that is using specially prefixed environment variables, directly
+      or from Kubernetes as Secret or ConfigMap.
+    digest: 74039b4772c1895a717ff0294ef5977fd40f2a78ffbf13e88ed717ca04bd0ff2
+    home: https://github.com/doitintl/kube-secrets-init
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: mark.sagikazar@gmail.com
+      name: sagikazarmark
+      url: https://sagikazarmark.hu
+    name: kube-secrets-init
+    sources:
+    - https://github.com/doitintl/kube-secrets-init
+    type: application
+    urls:
+    - https://github.com/sagikazarmark/helm-charts/releases/download/kube-secrets-init-0.7.1/kube-secrets-init-0.7.1.tgz
+    version: 0.7.1
   - annotations:
       artifacthub.io/changes: |
         - Update application
@@ -786,6 +907,38 @@ entries:
     - https://github.com/sagikazarmark/helm-charts/releases/download/kube-secrets-init-0.1.0/kube-secrets-init-0.1.0.tgz
     version: 0.1.0
   sftpgo:
+  - annotations:
+      artifacthub.io/changes: |
+        - Remove test files from final Helm package
+      artifacthub.io/images: |
+        - name: sftpgo
+          image: ghcr.io/drakkan/sftpgo:v2.0.4
+        - name: sftpgo-alpine
+          image: ghcr.io/drakkan/sftpgo:v2.0.4-alpine
+    apiVersion: v2
+    appVersion: 2.0.4
+    created: "2021-04-27T23:49:54.269953956Z"
+    description: Fully featured and highly configurable SFTP server with optional
+      FTP/S and WebDAV support.
+    digest: b74d5ec65c89fe26650c96e087fa831655fc828e0719d6cebaf958769988a8a9
+    home: https://github.com/drakkan/sftpgo
+    keywords:
+    - sftp
+    - ftp
+    - webdav
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: mark.sagikazar@gmail.com
+      name: sagikazarmark
+      url: https://sagikazarmark.hu
+    name: sftpgo
+    sources:
+    - https://github.com/drakkan/sftpgo
+    - https://github.com/sagikazarmark/helm-charts/tree/master/charts/sftpgo
+    type: application
+    urls:
+    - https://github.com/sagikazarmark/helm-charts/releases/download/sftpgo-0.5.3/sftpgo-0.5.3.tgz
+    version: 0.5.3
   - annotations:
       artifacthub.io/changes: |
         - Improve documentation
@@ -1558,6 +1711,36 @@ entries:
   tusd:
   - annotations:
       artifacthub.io/changes: |
+        - Remove test files from final Helm package
+      artifacthub.io/images: |
+        - name: tusd
+          image: tusproject/tusd:v1.6.0
+    apiVersion: v2
+    appVersion: 1.6.0
+    created: "2021-04-27T23:49:54.534394767Z"
+    description: 'Reference server implementation in Go of tus: the open protocol
+      for resumable file uploads.'
+    digest: 6b5ca102ba48100d567a8a0306f120372c4960d070226de0ecf6501866e46107
+    home: https://tus.io
+    keywords:
+    - http
+    - upload
+    - protocol
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: mark.sagikazar@gmail.com
+      name: sagikazarmark
+      url: https://sagikazarmark.hu
+    name: tusd
+    sources:
+    - https://github.com/tus/tusd
+    - https://github.com/sagikazarmark/helm-charts/tree/master/charts/tusd
+    type: application
+    urls:
+    - https://github.com/sagikazarmark/helm-charts/releases/download/tusd-0.0.9/tusd-0.0.9.tgz
+    version: 0.0.9
+  - annotations:
+      artifacthub.io/changes: |
         - Fix ingress in NOTES.txt
       artifacthub.io/images: |
         - name: tusd
@@ -1796,4 +1979,4 @@ entries:
     urls:
     - https://github.com/sagikazarmark/helm-charts/releases/download/tusd-0.0.1/tusd-0.0.1.tgz
     version: 0.0.1
-generated: "2021-04-27T19:03:53.477027207Z"
+generated: "2021-04-27T23:49:54.535514881Z"
