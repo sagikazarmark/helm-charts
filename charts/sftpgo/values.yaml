@@ -75,6 +75,9 @@ podAnnotations: {}
 podSecurityContext: {}
   # fsGroup: 2000
 
+# -- Share node's network interfaces with the Pods
+hostNetwork: false
+
 # -- Container [security context](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-container).
 # See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#security-context-1) for details.
 securityContext: {}
