@@ -19,7 +19,6 @@ maintainers:
     url: https://sagikazarmark.hu
 annotations:
   artifacthub.io/changes: |
-    - Remove test files from final Helm package
     - Add hostNetwork field to the deployment
   artifacthub.io/images: |
     - name: sftpgo
