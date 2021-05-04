@@ -1,0 +1,17 @@
+charts/browserless-chrome:
+  - charts/browserless-chrome/**/*
+
+charts/caddy:
+  - charts/caddy/**/*
+
+charts/dex-k8s-authenticator:
+  - charts/dex-k8s-authenticator/**/*
+
+charts/kube-secrets-init:
+  - charts/kube-secrets-init/**/*
+
+charts/sftpgo:
+  - charts/sftpgo/**/*
+
+charts/tusd:
+  - charts/tusd/**/*
