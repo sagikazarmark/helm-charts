@@ -31,6 +31,9 @@ config:
 # -- Caddyfile [config adapter](https://caddyserver.com/docs/config-adapters). Set it to empty string to use JSON.
 adapter: caddyfile
 
+# -- Additional command line arguments for `caddy run`.
+extraArgs: []
+
 # -- Additional storage [volumes](https://kubernetes.io/docs/concepts/storage/volumes/).
 # See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#volumes-1) for details.
 volumes: []
