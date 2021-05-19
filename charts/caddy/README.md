@@ -1,6 +1,6 @@
 # caddy
 
-![version: 0.0.12](https://img.shields.io/badge/version-0.0.12-informational?style=flat-square) ![type: application](https://img.shields.io/badge/type-application-informational?style=flat-square) ![app version: 2.3.0](https://img.shields.io/badge/app%20version-2.3.0-informational?style=flat-square) ![kube version: >=1.16.0-0](https://img.shields.io/badge/kube%20version->=1.16.0--0-informational?style=flat-square) [![artifact hub](https://img.shields.io/badge/artifact%20hub-caddy-informational?style=flat-square)](https://artifacthub.io/packages/helm/sagikazarmark/caddy)
+![version: 0.0.13](https://img.shields.io/badge/version-0.0.13-informational?style=flat-square) ![type: application](https://img.shields.io/badge/type-application-informational?style=flat-square) ![app version: 2.3.0](https://img.shields.io/badge/app%20version-2.3.0-informational?style=flat-square) ![kube version: >=1.16.0-0](https://img.shields.io/badge/kube%20version->=1.16.0--0-informational?style=flat-square) [![artifact hub](https://img.shields.io/badge/artifact%20hub-caddy-informational?style=flat-square)](https://artifacthub.io/packages/helm/sagikazarmark/caddy)
 
 A powerful, enterprise-ready, open source web server with automatic HTTPS written in Go.
 
@@ -60,3 +60,5 @@ HTTPS service support, metrics and a lot of other features are coming in later v
 | nodeSelector | object | `{}` | [Node selector](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#nodeselector) configuration. |
 | tolerations | list | `[]` | [Tolerations](https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/) for node taints. See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#scheduling) for details. |
 | affinity | object | `{}` | [Affinity](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#affinity-and-anti-affinity) configuration. See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#scheduling) for details. |
+| livenessProbe | object | `{"httpGet":{"path":"/","port":"http"}}` | [Liveness probe](https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#container-probes) See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#Probe) for details. |
+| readinessProbe | object | `{"httpGet":{"path":"/","port":"http"}}` | [Readiness probe](https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#container-probes) See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#Probe) for details. |
