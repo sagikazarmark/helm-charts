@@ -20,6 +20,9 @@ spec:
   {{- with .Values.service.loadBalancerSourceRanges }}
   loadBalancerSourceRanges: {{ toYaml . | nindent 4 }}
   {{- end }}
+  {{- with .Values.service.sessionAffinity }}
+  sessionAffinity: {{ . }}
+  {{- end }}
   {{- end }}
   ports:
     {{- if .Values.sftpd.enabled }}
@@ -103,6 +106,9 @@ spec:
   {{- end }}
   {{- with $service.loadBalancerSourceRanges }}
   loadBalancerSourceRanges: {{ toYaml . | nindent 4 }}
+  {{- end }}
+  {{- with $service.sessionAffinity }}
+  sessionAffinity: {{ . }}
   {{- end }}
   {{- end }}
   ports:
