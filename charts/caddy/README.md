@@ -32,7 +32,7 @@ HTTPS service support, metrics and a lot of other features are coming in later v
 | fullnameOverride | string | `""` | A name to substitute for the full names of resources. |
 | config | string | `nil` | Caddy configuration file content. Accepts [Caddyfile](https://caddyserver.com/docs/caddyfile) format by default. See `adapter` for other formats. |
 | adapter | string | `"caddyfile"` | Caddyfile [config adapter](https://caddyserver.com/docs/config-adapters). Set it to empty string to use JSON. |
-| extraArgs | list | `[]` | Additional command line arguments for `caddy run`. |
+| watch | bool | `false` | Watch config file for changes and reload it automatically. |
 | volumes | list | `[]` | Additional storage [volumes](https://kubernetes.io/docs/concepts/storage/volumes/). See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#volumes-1) for details. |
 | volumeMounts | list | `[]` | Additional [volume mounts](https://kubernetes.io/docs/tasks/configure-pod-container/configure-volume-storage/). See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#volumes-1) for details. |
 | envFrom | list | `[]` | Additional environment variables mounted from [secrets](https://kubernetes.io/docs/concepts/configuration/secret/#using-secrets-as-environment-variables) or [config maps](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/#configure-all-key-value-pairs-in-a-configmap-as-container-environment-variables). See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#environment-variables) for details. |
