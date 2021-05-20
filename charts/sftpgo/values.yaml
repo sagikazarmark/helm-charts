@@ -56,6 +56,15 @@ envFrom: []
 # See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#environment-variables) for details.
 env: {}
 
+# -- Additional environment variables values of which are populated from specific [secrets and keys](https://kubernetes.io/docs/concepts/configuration/secret/#using-secrets-as-environment-variables)
+envFromSecrets: []
+# - name: SOME_ENV_VAR
+#   valueFrom:
+#     secretKeyRef:
+#       name: SOME_SECRET_NAME
+#       key: SOME_SECRET_KEY
+
+
 serviceAccount:
   # -- Enable service account creation.
   create: true

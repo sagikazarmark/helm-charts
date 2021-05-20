@@ -38,6 +38,13 @@ spec:
             - sftpgo
             - serve
           env:
+            {{- range .Values.envFromSecrets }}
+            - name: {{ .name | quote }}
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .valueFrom.secretKeyRef.name | quote }}
+                  key: {{ .valueFrom.secretKeyRef.key | quote }}
+            {{- end }}
             {{- if .Values.sftpd.enabled }}
             - name: SFTPGO_SFTPD__BINDINGS__0__PORT
               value: "2022"
