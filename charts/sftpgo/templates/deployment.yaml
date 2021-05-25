@@ -38,12 +38,8 @@ spec:
             - sftpgo
             - serve
           env:
-            {{- range .Values.envFromSecrets }}
-            - name: {{ .name | quote }}
-              valueFrom:
-                secretKeyRef:
-                  name: {{ .valueFrom.secretKeyRef.name | quote }}
-                  key: {{ .valueFrom.secretKeyRef.key | quote }}
+            {{- with .Values.envVars }}
+            {{- toYaml . | nindent 12 }}
             {{- end }}
             {{- if .Values.sftpd.enabled }}
             - name: SFTPGO_SFTPD__BINDINGS__0__PORT
