@@ -52,7 +52,8 @@ volumeMounts: []
 # See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#environment-variables) for details.
 envFrom: []
 
-# -- Allows to set additional environment variables. See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#environment-variables) for details.
+# -- Additional environment variables passed directly to containers.
+# See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#environment-variables) for details.
 envVars: []
   # - name: SOME_ENV_VAR
   #   value: SOME_VALUE
@@ -68,7 +69,7 @@ envVars: []
   #       key: SOME_CONFIGMAP_KEY
 
 
-# -- Allows to set additional environment variables based on simplified key-value syntax.
+# -- Additional environment variables passed directly to containers using a simplified key-value syntax.
 env: {}
   # SOME_ENV_VAR: SOME_VALUE
 
