@@ -949,6 +949,38 @@ entries:
           image: ghcr.io/drakkan/sftpgo:v2.0.4-alpine
     apiVersion: v2
     appVersion: 2.0.4
+    created: "2021-05-25T12:53:21.125414833Z"
+    description: Fully featured and highly configurable SFTP server with optional
+      FTP/S and WebDAV support.
+    digest: d50b7cc91137273bee54252bcdf95bf04bff162addcc6f6f17e5e49bd39603a1
+    home: https://github.com/drakkan/sftpgo
+    keywords:
+    - sftp
+    - ftp
+    - webdav
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: mark.sagikazar@gmail.com
+      name: sagikazarmark
+      url: https://sagikazarmark.hu
+    name: sftpgo
+    sources:
+    - https://github.com/drakkan/sftpgo
+    - https://github.com/sagikazarmark/helm-charts/tree/master/charts/sftpgo
+    type: application
+    urls:
+    - https://github.com/sagikazarmark/helm-charts/releases/download/sftpgo-0.6.0/sftpgo-0.6.0.tgz
+    version: 0.6.0
+  - annotations:
+      artifacthub.io/changes: |
+        - Add hostNetwork field to the deployment
+      artifacthub.io/images: |
+        - name: sftpgo
+          image: ghcr.io/drakkan/sftpgo:v2.0.4
+        - name: sftpgo-alpine
+          image: ghcr.io/drakkan/sftpgo:v2.0.4-alpine
+    apiVersion: v2
+    appVersion: 2.0.4
     created: "2021-05-04T16:39:18.33400952Z"
     description: Fully featured and highly configurable SFTP server with optional
       FTP/S and WebDAV support.
@@ -2043,4 +2075,4 @@ entries:
     urls:
     - https://github.com/sagikazarmark/helm-charts/releases/download/tusd-0.0.1/tusd-0.0.1.tgz
     version: 0.0.1
-generated: "2021-05-04T16:39:18.334395022Z"
+generated: "2021-05-25T12:53:21.126033065Z"
