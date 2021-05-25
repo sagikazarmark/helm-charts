@@ -1,6 +1,6 @@
 # caddy
 
-![version: 0.0.11](https://img.shields.io/badge/version-0.0.11-informational?style=flat-square) ![type: application](https://img.shields.io/badge/type-application-informational?style=flat-square) ![app version: 2.3.0](https://img.shields.io/badge/app%20version-2.3.0-informational?style=flat-square) ![kube version: >=1.16.0-0](https://img.shields.io/badge/kube%20version->=1.16.0--0-informational?style=flat-square) [![artifact hub](https://img.shields.io/badge/artifact%20hub-caddy-informational?style=flat-square)](https://artifacthub.io/packages/helm/sagikazarmark/caddy)
+![version: 0.0.12](https://img.shields.io/badge/version-0.0.12-informational?style=flat-square) ![type: application](https://img.shields.io/badge/type-application-informational?style=flat-square) ![app version: 2.3.0](https://img.shields.io/badge/app%20version-2.3.0-informational?style=flat-square) ![kube version: >=1.16.0-0](https://img.shields.io/badge/kube%20version->=1.16.0--0-informational?style=flat-square) [![artifact hub](https://img.shields.io/badge/artifact%20hub-caddy-informational?style=flat-square)](https://artifacthub.io/packages/helm/sagikazarmark/caddy)
 
 A powerful, enterprise-ready, open source web server with automatic HTTPS written in Go.
 
@@ -32,6 +32,7 @@ HTTPS service support, metrics and a lot of other features are coming in later v
 | fullnameOverride | string | `""` | A name to substitute for the full names of resources. |
 | config | string | `nil` | Caddy configuration file content. Accepts [Caddyfile](https://caddyserver.com/docs/caddyfile) format by default. See `adapter` for other formats. |
 | adapter | string | `"caddyfile"` | Caddyfile [config adapter](https://caddyserver.com/docs/config-adapters). Set it to empty string to use JSON. |
+| watch | bool | `false` | Watch config file for changes and reload it automatically. |
 | volumes | list | `[]` | Additional storage [volumes](https://kubernetes.io/docs/concepts/storage/volumes/). See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#volumes-1) for details. |
 | volumeMounts | list | `[]` | Additional [volume mounts](https://kubernetes.io/docs/tasks/configure-pod-container/configure-volume-storage/). See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#volumes-1) for details. |
 | envFrom | list | `[]` | Additional environment variables mounted from [secrets](https://kubernetes.io/docs/concepts/configuration/secret/#using-secrets-as-environment-variables) or [config maps](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/#configure-all-key-value-pairs-in-a-configmap-as-container-environment-variables). See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#environment-variables) for details. |

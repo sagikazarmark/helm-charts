@@ -14,7 +14,9 @@ spec:
   template:
     metadata:
       annotations:
+      {{- if not .Values.watch }}
         checksum/config: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
+      {{- end }}
       {{- with .Values.podAnnotations }}
         {{- toYaml . | nindent 8 }}
       {{- end }}
@@ -42,6 +44,9 @@ spec:
             {{- if and .Values.config .Values.adapter }}
             - --adapter
             - {{ .Values.adapter }}
+            {{- end }}
+            {{- if .Values.watch }}
+            - --watch
             {{- end }}
           {{- with .Values.env }}
           env:
