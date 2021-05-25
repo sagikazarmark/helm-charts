@@ -54,7 +54,24 @@ envFrom: []
 
 # -- Additional environment variables passed directly to containers.
 # See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#environment-variables) for details.
+envVars: []
+  # - name: SOME_ENV_VAR
+  #   value: SOME_VALUE
+  # - name: SOME_ENV_VAR2
+  #   valueFrom:
+  #     secretKeyRef:
+  #       name: SOME_SECRET_NAME
+  #       key: SOME_SECRET_KEY
+  # - name: SOME_ENV_VAR3
+  #   valueFrom:
+  #     configMapKeyRef:
+  #       name: SOME_CONFIGMAP_NAME
+  #       key: SOME_CONFIGMAP_KEY
+
+
+# -- Additional environment variables passed directly to containers using a simplified key-value syntax.
 env: {}
+  # SOME_ENV_VAR: SOME_VALUE
 
 serviceAccount:
   # -- Enable service account creation.
