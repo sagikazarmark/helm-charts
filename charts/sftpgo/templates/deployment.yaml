@@ -38,9 +38,6 @@ spec:
             - sftpgo
             - serve
           env:
-            {{- with .Values.envVars }}
-            {{- toYaml . | nindent 12 }}
-            {{- end }}
             {{- if .Values.sftpd.enabled }}
             - name: SFTPGO_SFTPD__BINDINGS__0__PORT
               value: "2022"
@@ -67,6 +64,9 @@ spec:
               value: "10000"
             - name: SFTPGO_TELEMETRY__BIND_ADDRESS
               value: "0.0.0.0"
+            {{- with .Values.envVars }}
+            {{- toYaml . | nindent 12 }}
+            {{- end }}
             {{- range $key, $value := .Values.env }}
             - name: {{ $key }}
               value: {{ $value | quote }}
