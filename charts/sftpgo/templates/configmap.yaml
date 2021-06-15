@@ -7,3 +7,16 @@ metadata:
 data:
   sftpgo.json: |-
     {{- toJson .Values.config | nindent 4 }}
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "sftpgo.fullname" . }}-defender-lists
+  labels:
+    {{- include "sftpgo.labels" . | nindent 4 }}
+data:
+  safelist: |-
+    {{- toJson .Values.safelist | nindent 4 }}
+  blocklist: |-
+    {{- toJson .Values.blocklist | nindent 4 }}

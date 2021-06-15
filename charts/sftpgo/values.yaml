@@ -40,6 +40,22 @@ webdavd:
 # See the [official documentation](https://github.com/drakkan/sftpgo/blob/master/docs/full-configuration.md).
 config: {}
 
+# -- Populate the [SFTPGo Defender](https://github.com/drakkan/sftpgo/blob/main/docs/defender.md) safelist/blocklist
+# Usage:
+# safelist:
+#   hosts:
+#     - 127.0.0.1
+#   networks:
+#     - 127.0.0.0/8
+# config:
+#   defender:
+#     safelist_file: /etc/sftpgo/defender/safelist
+#     blocklist_file: /etc/sftpgo/defender/blocklist
+
+safelist: {}
+
+blocklist: {}
+
 # -- Additional storage [volumes](https://kubernetes.io/docs/concepts/storage/volumes/).
 # See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#volumes-1) for details.
 volumes: []

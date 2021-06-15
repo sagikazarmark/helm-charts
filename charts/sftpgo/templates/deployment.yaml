@@ -111,6 +111,9 @@ spec:
             - name: config
               mountPath: /etc/sftpgo
               readOnly: true
+            - name: defender-lists
+              mountPath: /etc/sftpgo/defender
+              readOnly: true
           {{- with .Values.volumeMounts }}
             {{- toYaml . | nindent 12 }}
           {{- end }}
@@ -118,6 +121,14 @@ spec:
         - name: config
           configMap:
             name: {{ include "sftpgo.fullname" . }}
+        - name: defender-lists
+          configMap:
+            name: {{ include "sftpgo.fullname" . }}-defender-lists
+            items:
+              - key: safelist
+                path: safelist
+              - key: blocklist
+                path: blocklist
       {{- with .Values.volumes }}
         {{- toYaml . | nindent 8 }}
       {{- end }}
