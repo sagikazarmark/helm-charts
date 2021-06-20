@@ -74,6 +74,22 @@ jobs:
       - name: Set up chart-testing
         uses: helm/chart-testing-action@v2.1.0
 
+      - name: Exclude unsupported charts
+        id: exclusions
+        env:
+          DOCKER_IMAGES: "ghcr.io/${{ github.repository }}"
+        run: |
+          CHARTS=()
+
+          for chart in $(ct list-changed); do
+            if cat exclusions | grep "${chart} ${{ matrix.kube }}" > /dev/null; then
+              echo "Excluding chart from testing: ${chart}"
+              CHARTS+=("${chart#charts/}")
+            fi
+          done
+
+          echo ::set-output name=charts::$(IFS=,; echo "${CHARTS[*]}")
+
       # See https://github.com/kubernetes-sigs/kind/releases/tag/v0.11.1
       - name: Determine KinD node image version
         id: node_image
@@ -102,4 +118,4 @@ jobs:
           node_image: ${{ steps.node_image.outputs.image }}
 
       - name: Test
-        run: ct install
+        run: ct install --excluded-charts "${{ steps.exclusions.outputs.charts }}"
