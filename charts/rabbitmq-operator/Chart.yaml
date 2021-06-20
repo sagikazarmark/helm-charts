@@ -1,0 +1,45 @@
+apiVersion: v2
+type: application
+name: rabbitmq-operator
+version: 0.0.1
+appVersion: 1.7.0
+kubeVersion: ">=1.18.0-0"
+description: Kubernetes operator to deploy and manage RabbitMQ clusters.
+icon: https://bitnami.com/assets/stacks/rabbitmq/img/rabbitmq-stack-220x234.png
+keywords:
+  - rabbitmq
+  - message queue
+  - AMQP
+  - operator
+home: https://www.rabbitmq.com/kubernetes/operator/operator-overview.html
+sources:
+  - https://github.com/rabbitmq/cluster-operator
+  - https://github.com/sagikazarmark/helm-charts/tree/master/charts/rabbitmq-operator
+maintainers:
+  - name: sagikazarmark
+    email: mark.sagikazar@gmail.com
+    url: https://sagikazarmark.hu
+annotations:
+  artifacthub.io/changes: |
+    - kind: added
+      description: Initial version
+  artifacthub.io/images: |
+    - name: operator
+      image: rabbitmqoperator/cluster-operator:1.7.0
+    - name: rabbitmq
+      image: rabbitmq:3.8.16-management
+  artifacthub.io/operator: "true"
+  artifacthub.io/operatorCapabilities: "Full Lifecycle"
+  artifacthub.io/crds: |
+    - kind: RabbitmqCluster
+      version: rabbitmq.com/v1beta1
+      name: rabbitmqcluster
+      displayName: RabbitMQ cluster
+      description: Lifecycle (creation, upgrade, graceful shutdown) of a RabbitMQ cluster.
+  artifacthub.io/crdsExamples: |
+    - apiVersion: rabbitmq.com/v1beta1
+      kind: RabbitmqCluster
+      metadata:
+        name: my-cluster
+      spec:
+        replicas: 1
