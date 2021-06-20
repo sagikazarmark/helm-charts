@@ -121,7 +121,6 @@ require at least one port.
 | serviceAccount.name | string | `""` | The name of the service account to use. If not set and create is true, a name is generated using the fullname template. |
 | podAnnotations | object | `{}` | Annotations to be added to pods. |
 | podSecurityContext | object | `{}` | Pod [security context](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-pod). See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#security-context) for details. |
-| hostNetwork | bool | `false` | Run pods in the host network of nodes. Warning: The use of host network is [discouraged](https://kubernetes.io/docs/concepts/configuration/overview/#services). Make sure to use it only when absolutely necessary. |
 | securityContext | object | `{}` | Container [security context](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-container). See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#security-context-1) for details. |
 | service.annotations | object | `{}` | Annotations to be added to the service. |
 | service.type | string | `"ClusterIP"` | Kubernetes [service type](https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types). |
@@ -142,3 +141,4 @@ require at least one port.
 | nodeSelector | object | `{}` | [Node selector](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#nodeselector) configuration. |
 | tolerations | list | `[]` | [Tolerations](https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/) for node taints. See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#scheduling) for details. |
 | affinity | object | `{}` | [Affinity](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#affinity-and-anti-affinity) configuration. See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#scheduling) for details. |
+| hostNetwork | bool | `false` | Run pods in the host network of nodes. Warning: The use of host network is [discouraged](https://kubernetes.io/docs/concepts/configuration/overview/#services). Make sure to use it only when absolutely necessary. |

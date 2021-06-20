@@ -20,10 +20,7 @@ maintainers:
 annotations:
   artifacthub.io/changes: |
     - kind: changed
-      description: Updated SFTPGo to 2.1.0
-      links:
-        - name: Release
-          url: https://github.com/drakkan/sftpgo/releases/tag/v2.1.0
+      description: Updated documentation
   artifacthub.io/images: |
     - name: sftpgo
       image: ghcr.io/drakkan/sftpgo:v2.1.0
