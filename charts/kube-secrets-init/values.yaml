@@ -153,13 +153,7 @@ namespaceSelector:
   #   secret-injection: enabled
 
 # -- [Object selector](https://kubernetes.io/docs/reference/access-authn-authz/extensible-admission-controllers/#matching-requests-objectselector) for the mutating webhook configuration.
-# @default -- Exclude objects labeled with `kube-init-secrets.doit-intl.com/mutate: skip`.
-objectSelector:
-  matchExpressions:
-    - key: kube-init-secrets.doit-intl.com/mutate
-      operator: NotIn
-      values:
-        - skip
+objectSelector: {}
 
 podDisruptionBudget:
   # -- Enable a [pod distruption budget](https://kubernetes.io/docs/tasks/run-application/configure-pdb/) to help dealing with [disruptions](https://kubernetes.io/docs/concepts/workloads/pods/disruptions/).

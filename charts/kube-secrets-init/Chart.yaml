@@ -14,7 +14,8 @@ maintainers:
     url: https://sagikazarmark.hu
 annotations:
   artifacthub.io/changes: |
-    - Remove test files from final Helm package
+    - kind: changed
+      description: Removed redundant objectSelector default
   artifacthub.io/images: |
     - name: kube-secrets-init
       image: ghcr.io/doitintl/kube-secrets-init:0.4.0
