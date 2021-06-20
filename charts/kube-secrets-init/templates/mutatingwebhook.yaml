@@ -77,6 +77,10 @@ webhooks:
             - {{ .Release.Namespace }}
   {{- if semverCompare ">=1.15-0" .Capabilities.KubeVersion.GitVersion }}
     objectSelector:
+    {{- with .Values.objectSelector.matchLabels }}
+      matchLabels:
+        {{- toYaml . | indent 8 }}
+    {{- end }}
       matchExpressions:
       {{- with .Values.objectSelector.matchExpressions }}
 {{ toYaml . | indent 8 }}
