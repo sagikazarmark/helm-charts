@@ -132,15 +132,6 @@ resources: {}
   #   cpu: 100m
   #   memory: 128Mi
 
-# -- Autoscaling configuration (see [values.yaml](values.yaml) for details).
-# @default -- Disabled by default.
-autoscaling:
-  enabled: false
-  minReplicas: 1
-  maxReplicas: 100
-  targetCPUUtilizationPercentage: 80
-  # targetMemoryUtilizationPercentage: 80
-
 # -- [Node selector](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#nodeselector) configuration.
 nodeSelector: {}
 

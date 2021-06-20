@@ -26,6 +26,8 @@ annotations:
       description: Default mutating webhook object selector key
     - kind: added
       description: Secondary object selector to mutating webhook
+    - kind: changed
+      description: Removed unused autoscaling configuration
   artifacthub.io/images: |
     - name: kube-secrets-init
       image: ghcr.io/doitintl/kube-secrets-init:0.4.0
