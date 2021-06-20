@@ -10,7 +10,11 @@ spec:
   containers:
     - name: secrets-init
       image: busybox
+      {{- if .Values.namespaceSelector.matchLabels  }}
+      args: ['test', '!', '-f', '/helper/bin/secrets-init']
+      {{ else }}
       args: ['test', '-f', '/helper/bin/secrets-init']
+      {{- end }}
       env:
         # Cheating the webhook into mutating the pod
         - name: SECRET

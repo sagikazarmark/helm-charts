@@ -1,5 +1,7 @@
+provider: none
+
 failurePolicy: Ignore
-timeoutSeconds: 10s
+timeoutSeconds: 30
 
 namespaceSelector:
   matchLabels:
