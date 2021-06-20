@@ -20,7 +20,7 @@ spec:
       {{- end }}
       labels:
         {{- include "kube-secrets-init.selectorLabels" . | nindent 8 }}
-        kube-init-secrets.doit-intl.com/mutate: skip
+        kube-secrets-init.doit-intl.com/mutate: skip
     spec:
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:

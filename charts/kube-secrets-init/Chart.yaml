@@ -22,6 +22,8 @@ annotations:
       description: Label matching to objectSelector
     - kind: added
       description: Mutating webhook timeout configuration
+    - kind: fixed
+      description: Default mutating webhook object selector key
   artifacthub.io/images: |
     - name: kube-secrets-init
       image: ghcr.io/doitintl/kube-secrets-init:0.4.0
