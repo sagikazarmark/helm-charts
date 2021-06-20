@@ -62,6 +62,9 @@ webhooks:
         resources:
           - pods
     failurePolicy: {{ .Values.failurePolicy }}
+    {{- with .Values.timeoutSeconds }}
+    timeoutSeconds: {{ . }}
+    {{- end }}
     namespaceSelector:
     {{- with .Values.namespaceSelector.matchLabels }}
       matchLabels:

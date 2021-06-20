@@ -145,6 +145,10 @@ affinity: {}
 # Allowed values are `Ignore` or `Fail`.
 failurePolicy: Fail
 
+# -- Allows configuring how long the API server should wait for a webhook to respond before treating the call as a failure.
+# See the [documentation](https://kubernetes.io/docs/reference/access-authn-authz/extensible-admission-controllers/#timeouts) for details.
+timeoutSeconds:
+
 # -- [Namespace selector](https://kubernetes.io/docs/reference/access-authn-authz/extensible-admission-controllers/#matching-requests-namespaceselector) for the mutating webhook configuration.
 # @default -- `kube-system` namespace is excluded.
 namespaceSelector:
