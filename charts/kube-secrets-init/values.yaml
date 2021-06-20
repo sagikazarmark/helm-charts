@@ -152,7 +152,7 @@ failurePolicy: Fail
 timeoutSeconds:
 
 # -- [Namespace selector](https://kubernetes.io/docs/reference/access-authn-authz/extensible-admission-controllers/#matching-requests-namespaceselector) for the mutating webhook configuration.
-# @default -- `kube-system` namespace is excluded.
+# @default -- Namespaces matching `name=kube-system` selector are excluded.
 namespaceSelector:
   matchExpressions:
     - key: name

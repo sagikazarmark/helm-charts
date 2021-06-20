@@ -77,6 +77,10 @@ webhooks:
       {{- with .Values.namespaceSelector.matchExpressions }}
 {{ toYaml . | indent 8 }}
       {{- end }}
+        - key: kube-secrets-init.doit-intl.com/disable-mutation
+          operator: NotIn
+          values:
+            - "true"
         - key: name
           operator: NotIn
           values:

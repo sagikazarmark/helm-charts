@@ -28,6 +28,8 @@ annotations:
       description: Secondary object selector to mutating webhook
     - kind: changed
       description: Removed unused autoscaling configuration
+    - kind: added
+      description: Operations guide
   artifacthub.io/images: |
     - name: kube-secrets-init
       image: ghcr.io/doitintl/kube-secrets-init:0.4.0
