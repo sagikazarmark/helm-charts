@@ -1,0 +1,20 @@
+failurePolicy: Ignore
+timeoutSeconds: 10s
+
+namespaceSelector:
+  matchLabels:
+    "kube-secrets-init.doit-intl.com/enable-mutation": "true"
+  matchExpressions:
+    - key: name
+      operator: NotIn
+      values:
+        - kube-system
+
+objectSelector:
+  matchLabels:
+    "kube-secrets-init.doit-intl.com/enable-mutation": "true"
+  matchExpressions:
+    - key: name
+      operator: NotIn
+      values:
+        - kube-system

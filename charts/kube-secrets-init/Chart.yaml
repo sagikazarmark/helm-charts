@@ -14,22 +14,8 @@ maintainers:
     url: https://sagikazarmark.hu
 annotations:
   artifacthub.io/changes: |
-    - kind: changed
-      description: Removed redundant objectSelector default
-    - kind: added
-      description: Mutating webhook failure policy configuration
-    - kind: added
-      description: Label matching to objectSelector
-    - kind: added
-      description: Mutating webhook timeout configuration
     - kind: fixed
-      description: Default mutating webhook object selector key
-    - kind: added
-      description: Secondary object selector to mutating webhook
-    - kind: changed
-      description: Removed unused autoscaling configuration
-    - kind: added
-      description: Operations guide
+      description: Mutating webhook config template
   artifacthub.io/images: |
     - name: kube-secrets-init
       image: ghcr.io/doitintl/kube-secrets-init:0.4.0
