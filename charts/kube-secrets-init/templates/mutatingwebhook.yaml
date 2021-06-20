@@ -92,6 +92,10 @@ webhooks:
           operator: NotIn
           values:
             - skip
+        - key: kube-secrets-init.doit-intl.com/disable-mutation
+          operator: NotIn
+          values:
+            - "true"
   {{- end }}
   {{- if semverCompare ">=1.12-0" .Capabilities.KubeVersion.GitVersion }}
     sideEffects: None
