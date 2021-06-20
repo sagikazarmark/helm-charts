@@ -61,30 +61,46 @@ webhooks:
           - "*"
         resources:
           - pods
+    failurePolicy: {{ .Values.failurePolicy }}
+    {{- with .Values.timeoutSeconds }}
+    timeoutSeconds: {{ . }}
+    {{- end }}
+    {{- if semverCompare ">=1.12-0" .Capabilities.KubeVersion.GitVersion }}
+    sideEffects: None
+    {{- end }}
     namespaceSelector:
-    {{- with .Values.namespaceSelector.matchLabels }}
+      {{- with .Values.namespaceSelector.matchLabels }}
       matchLabels:
         {{- toYaml . | indent 8 }}
-    {{- end }}
+      {{- end }}
       matchExpressions:
       {{- with .Values.namespaceSelector.matchExpressions }}
 {{ toYaml . | indent 8 }}
       {{- end }}
+        - key: kube-secrets-init.doit-intl.com/disable-mutation
+          operator: NotIn
+          values:
+            - "true"
         - key: name
           operator: NotIn
           values:
             - {{ .Release.Namespace }}
-  {{- if semverCompare ">=1.15-0" .Capabilities.KubeVersion.GitVersion }}
+    {{- if semverCompare ">=1.15-0" .Capabilities.KubeVersion.GitVersion }}
     objectSelector:
+      {{- with .Values.objectSelector.matchLabels }}
+      matchLabels:
+        {{- toYaml . | indent 8 }}
+      {{- end }}
       matchExpressions:
       {{- with .Values.objectSelector.matchExpressions }}
 {{ toYaml . | indent 8 }}
       {{- end }}
-        - key: kube-init-secrets.doit-intl.com/mutate
+        - key: kube-secrets-init.doit-intl.com/mutate
           operator: NotIn
           values:
             - skip
-  {{- end }}
-  {{- if semverCompare ">=1.12-0" .Capabilities.KubeVersion.GitVersion }}
-    sideEffects: None
-  {{- end }}
+        - key: kube-secrets-init.doit-intl.com/disable-mutation
+          operator: NotIn
+          values:
+            - "true"
+    {{- end }}

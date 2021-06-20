@@ -84,6 +84,17 @@ rbac:
 # -- Annotations to be added to pods.
 podAnnotations: {}
 
+podDisruptionBudget:
+  # -- Enable a [pod distruption budget](https://kubernetes.io/docs/tasks/run-application/configure-pdb/) to help dealing with [disruptions](https://kubernetes.io/docs/concepts/workloads/pods/disruptions/).
+  # It is **highly recommended** for webhooks as disruptions can prevent launching new pods.
+  enabled: false
+
+  # -- (int/percentage) Number or percentage of pods that must remain available.
+  minAvailable:
+
+  # -- (int/percentage) Number or percentage of pods that can be unavailable.
+  maxUnavailable:
+
 # -- Pod [security context](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-pod).
 # See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#security-context) for details.
 podSecurityContext: {}
@@ -121,15 +132,6 @@ resources: {}
   #   cpu: 100m
   #   memory: 128Mi
 
-# -- Autoscaling configuration (see [values.yaml](values.yaml) for details).
-# @default -- Disabled by default.
-autoscaling:
-  enabled: false
-  minReplicas: 1
-  maxReplicas: 100
-  targetCPUUtilizationPercentage: 80
-  # targetMemoryUtilizationPercentage: 80
-
 # -- [Node selector](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#nodeselector) configuration.
 nodeSelector: {}
 
@@ -141,8 +143,16 @@ tolerations: []
 # See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#scheduling) for details.
 affinity: {}
 
+# -- [Failure policy](https://kubernetes.io/docs/reference/access-authn-authz/extensible-admission-controllers/#failure-policy) defines how unrecognized errors and timeout errors from the admission webhook are handled.
+# Allowed values are `Ignore` or `Fail`.
+failurePolicy: Fail
+
+# -- Allows configuring how long the API server should wait for a webhook to respond before treating the call as a failure.
+# See the [documentation](https://kubernetes.io/docs/reference/access-authn-authz/extensible-admission-controllers/#timeouts) for details.
+timeoutSeconds:
+
 # -- [Namespace selector](https://kubernetes.io/docs/reference/access-authn-authz/extensible-admission-controllers/#matching-requests-namespaceselector) for the mutating webhook configuration.
-# @default -- `kube-system` namespace is excluded.
+# @default -- Namespaces matching `name=kube-system` selector are excluded.
 namespaceSelector:
   matchExpressions:
     - key: name
@@ -153,21 +163,4 @@ namespaceSelector:
   #   secret-injection: enabled
 
 # -- [Object selector](https://kubernetes.io/docs/reference/access-authn-authz/extensible-admission-controllers/#matching-requests-objectselector) for the mutating webhook configuration.
-# @default -- Exclude objects labeled with `kube-init-secrets.doit-intl.com/mutate: skip`.
-objectSelector:
-  matchExpressions:
-    - key: kube-init-secrets.doit-intl.com/mutate
-      operator: NotIn
-      values:
-        - skip
-
-podDisruptionBudget:
-  # -- Enable a [pod distruption budget](https://kubernetes.io/docs/tasks/run-application/configure-pdb/) to help dealing with [disruptions](https://kubernetes.io/docs/concepts/workloads/pods/disruptions/).
-  # It is **highly recommended** for webhooks as disruptions can prevent launching new pods.
-  enabled: false
-
-  # -- (int/percentage) Number or percentage of pods that must remain available.
-  minAvailable:
-
-  # -- (int/percentage) Number or percentage of pods that can be unavailable.
-  maxUnavailable:
+objectSelector: {}

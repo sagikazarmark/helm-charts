@@ -1,5 +1,7 @@
 {{ template "chart.baseHead" . }}
 
+⚠️⚠️⚠️ **Make sure to read the [Operations guide](#operations-guide) before running this chart in production!** ⚠️⚠️⚠️
+
 ## Configuration
 
 ### Certificate
@@ -40,6 +42,11 @@ initContainer:
 ```
 
 Make sure that the webhook version if compatible with the init container version.
+
+## Operations guide
+
+Running this webhook with the default configuration can cause serious trouble,
+so reading the following sections before doing so is **highly recommended**.
 
 ### Availability and disruptions
 
@@ -85,6 +92,112 @@ You can further reduce the blast-radius of involuntary disruptions by configurin
 to limit the webhooks to the required namespaces/workloads.
 
 Read more about dealing with disruptions in the [Kubernetes documentation](https://kubernetes.io/docs/concepts/workloads/pods/disruptions/).
+
+### Scope of mutated resources
+
+By default, the webhook mutates **every pod** in the cluster. While this may not sound scary at first,
+it can actually bring down your entire cluster (even with the default configuration) if a mutation fails.
+
+The following sections describe how to limit the scope of mutations.
+
+#### Default exclusions
+
+As mentioned above, the webhook mutates **every pod** in the cluster,
+but there are a couple builtin exclusions:
+
+- Pods in namespaces labeled with `kube-secrets-init.doit-intl.com/disable-mutation=true`
+- Pods in namespaces labeled with `name=RELEASE_NAMESPACE` (Helm release namespace)
+- Pods labeled with `kube-secrets-init.doit-intl.com/disable-mutation=true`
+- Pods labeled with `kube-secrets-init.doit-intl.com/mutate=skip` (legacy)
+
+Although the webhook pod is tagged with `kube-secrets-init.doit-intl.com/disable-mutation=true`,
+you can label the entire namespace where the chart is installed if you want:
+
+```bash
+kubectl create namespace kube-secrets-init
+kubectl label namespace kube-secrets-init name=kube-secrets-init
+```
+
+> _Tip: It's always a good practice to label namespaces with their own name to make namespace selection easier._
+
+#### ⚠️⚠️⚠️ `kube-system` namespace ⚠️⚠️⚠️
+
+Unwanted mutations in the `kube-system` namespace can cause serious trouble,
+so it's a good idea to exclude it from mutations to avoid accidental cluster outages caused by failed mutations.
+(Even if mutations don't fail generally, a single failure can easily cause a [ripple effect](https://en.wikipedia.org/wiki/Ripple_effect) with catastrophic consequences.)
+
+The default chart configuration excludes namespaces labeled with `name=kube-system`.
+
+You can easily label the `kube-system` namespace with its own name (if it isn't already):
+
+```bash
+kubectl label namespace kube-system name=kube-system
+```
+
+**Keep in mind that if you provide your own `namespaceSelector` the default gets overridden.**
+
+Read on to learn more about custom selectors and other options to avoid mutations in the `kube-system`.
+
+#### Custom selectors
+
+Mutating webhooks can be [configured](https://kubernetes.io/docs/reference/access-authn-authz/extensible-admission-controllers/#webhook-configuration)
+to mutate various resources matching various rules.
+
+This webhook only mutates pod resources, but there are a couple options that this chart allows you to modify:
+
+[Namespace selectors](https://kubernetes.io/docs/reference/access-authn-authz/extensible-admission-controllers/#matching-requests-namespaceselector)
+can limit mutations for objects found in namespaces matching the selectors.
+
+For example, the default namespace selector excludes namespaces labeled with `name=kube-system` (see the `kube-system` section above):
+
+```yaml
+namespaceSelector:
+  matchExpressions:
+    - key: name
+      operator: NotIn
+      values:
+        - kube-system
+```
+
+A simplified syntax if you want to _include_ matches instead of excluding them:
+
+```yaml
+namespaceSelector:
+  matchLabels:
+    kube-secrets-init.doit-intl.com/enable-mutation: "true"
+```
+
+[Object selectors](https://kubernetes.io/docs/reference/access-authn-authz/extensible-admission-controllers/#matching-requests-objectselector)
+are similar to namespace selectors, except they are evaluated against the objects themselves.
+
+It is important to understand that all conditions (namespace and object selectors, `matchExpressions` and `matchLabels`)
+**must all be satisfied** at the same time in order to match. As a result, there are several strategies for limiting mutations:
+
+An _exclude-only_ approach only uses `matchExpressions` and operators, like `NotIn` (see the examples above).
+This way you can exclude anything you don't want to mutate, everything else will be mutated.
+While this is a good default approach, misconfiguration (eg. forgeting to label a namespace)
+can easily lead to unwanted outages if a mutation fails.
+
+An _include_ approach ensures that only those objects are mutated that you specifically label.
+This is a safer approach, but requires you to label more resources.
+
+Choose the approach that fits your use case best. You can even combine the two if you want to
+(for example label namespaces you want mutations to happen in, but label some objects within those namespaces that you don't want to mutate).
+
+See the [documentation](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels)
+to read more about labels, selectors, `matchExpressions` and `matchLabels`.
+
+### Ignoring failures
+
+The previous sections mentioned failing mutations and their consequences, particularly when pods in the `kube-system` namespace are mutated.
+Mutations can fail for various reasons from bugs to the webhook service not being available (see [Availability and disruptions](#availability-and-disruptions)).
+
+If you find that mutations fail a lot, even when the webhook runs in a highly available manner,
+you don't have a lot of options: you either accept the fact that mutations will sometimes fail (keeping pods from start),
+or you decide to _ignore_ these failures by changing the default [failure policy](https://kubernetes.io/docs/reference/access-authn-authz/extensible-admission-controllers/#failure-policy)
+to `Ignore`.
+
+This is useful if a running, but non-functional application is still better than nothing (for example in case of a web application).
 
 ## About GKE Private Clusters
 
