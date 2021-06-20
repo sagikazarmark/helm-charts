@@ -141,6 +141,10 @@ tolerations: []
 # See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#scheduling) for details.
 affinity: {}
 
+# -- [Failure policy](https://kubernetes.io/docs/reference/access-authn-authz/extensible-admission-controllers/#failure-policy) defines how unrecognized errors and timeout errors from the admission webhook are handled.
+# Allowed values are `Ignore` or `Fail`.
+failurePolicy: Fail
+
 # -- [Namespace selector](https://kubernetes.io/docs/reference/access-authn-authz/extensible-admission-controllers/#matching-requests-namespaceselector) for the mutating webhook configuration.
 # @default -- `kube-system` namespace is excluded.
 namespaceSelector:
