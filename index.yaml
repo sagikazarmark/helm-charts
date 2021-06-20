@@ -576,6 +576,49 @@ entries:
   kube-secrets-init:
   - annotations:
       artifacthub.io/changes: |
+        - kind: changed
+          description: Removed redundant objectSelector default
+        - kind: added
+          description: Mutating webhook failure policy configuration
+        - kind: added
+          description: Label matching to objectSelector
+        - kind: added
+          description: Mutating webhook timeout configuration
+        - kind: fixed
+          description: Default mutating webhook object selector key
+        - kind: added
+          description: Secondary object selector to mutating webhook
+        - kind: changed
+          description: Removed unused autoscaling configuration
+        - kind: added
+          description: Operations guide
+      artifacthub.io/images: |
+        - name: kube-secrets-init
+          image: ghcr.io/doitintl/kube-secrets-init:0.4.0
+        - name: secrets-init
+          image: ghcr.io/doitintl/secrets-init:latest
+    apiVersion: v2
+    appVersion: 0.4.0
+    created: "2021-06-20T22:05:33.944107819Z"
+    description: kube-secrets-init is a Kubernetes mutating admission webhook, that
+      mutates any Pod that is using specially prefixed environment variables, directly
+      or from Kubernetes as Secret or ConfigMap.
+    digest: 36e4f901726ad7562e35013fd42ea8e5df80d5af8c5c7620265aa4acac525269
+    home: https://github.com/doitintl/kube-secrets-init
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: mark.sagikazar@gmail.com
+      name: sagikazarmark
+      url: https://sagikazarmark.hu
+    name: kube-secrets-init
+    sources:
+    - https://github.com/doitintl/kube-secrets-init
+    type: application
+    urls:
+    - https://github.com/sagikazarmark/helm-charts/releases/download/kube-secrets-init-0.8.0/kube-secrets-init-0.8.0.tgz
+    version: 0.8.0
+  - annotations:
+      artifacthub.io/changes: |
         - Remove test files from final Helm package
       artifacthub.io/images: |
         - name: kube-secrets-init
@@ -1053,6 +1096,39 @@ entries:
     - https://github.com/sagikazarmark/helm-charts/releases/download/rabbitmq-operator-0.0.1/rabbitmq-operator-0.0.1.tgz
     version: 0.0.1
   sftpgo:
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
+          description: Updated documentation
+      artifacthub.io/images: |
+        - name: sftpgo
+          image: ghcr.io/drakkan/sftpgo:v2.1.0
+        - name: sftpgo-alpine
+          image: ghcr.io/drakkan/sftpgo:v2.1.0-alpine
+    apiVersion: v2
+    appVersion: 2.1.0
+    created: "2021-06-20T22:05:37.152246929Z"
+    description: Fully featured and highly configurable SFTP server with optional
+      FTP/S and WebDAV support.
+    digest: 65d40c409b680499e8744da5d8e03013b5542c988eba82e02571bbdfed6976a8
+    home: https://github.com/drakkan/sftpgo
+    keywords:
+    - sftp
+    - ftp
+    - webdav
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: mark.sagikazar@gmail.com
+      name: sagikazarmark
+      url: https://sagikazarmark.hu
+    name: sftpgo
+    sources:
+    - https://github.com/drakkan/sftpgo
+    - https://github.com/sagikazarmark/helm-charts/tree/master/charts/sftpgo
+    type: application
+    urls:
+    - https://github.com/sagikazarmark/helm-charts/releases/download/sftpgo-0.7.1/sftpgo-0.7.1.tgz
+    version: 0.7.1
   - annotations:
       artifacthub.io/changes: |
         - kind: changed
@@ -2225,4 +2301,4 @@ entries:
     urls:
     - https://github.com/sagikazarmark/helm-charts/releases/download/tusd-0.0.1/tusd-0.0.1.tgz
     version: 0.0.1
-generated: "2021-06-20T18:41:50.223349303Z"
+generated: "2021-06-20T22:05:37.152692863Z"
