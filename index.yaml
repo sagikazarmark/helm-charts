@@ -1002,6 +1002,56 @@ entries:
     urls:
     - https://github.com/sagikazarmark/helm-charts/releases/download/kube-secrets-init-0.1.0/kube-secrets-init-0.1.0.tgz
     version: 0.1.0
+  rabbitmq-operator:
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: added
+          description: Initial version
+      artifacthub.io/crds: |
+        - kind: RabbitmqCluster
+          version: rabbitmq.com/v1beta1
+          name: rabbitmqcluster
+          displayName: RabbitMQ cluster
+          description: Lifecycle (creation, upgrade, graceful shutdown) of a RabbitMQ cluster.
+      artifacthub.io/crdsExamples: |
+        - apiVersion: rabbitmq.com/v1beta1
+          kind: RabbitmqCluster
+          metadata:
+            name: my-cluster
+          spec:
+            replicas: 1
+      artifacthub.io/images: |
+        - name: operator
+          image: rabbitmqoperator/cluster-operator:1.7.0
+        - name: rabbitmq
+          image: rabbitmq:3.8.16-management
+      artifacthub.io/operator: "true"
+      artifacthub.io/operatorCapabilities: Full Lifecycle
+    apiVersion: v2
+    appVersion: 1.7.0
+    created: "2021-06-20T18:41:50.222458191Z"
+    description: Kubernetes operator to deploy and manage RabbitMQ clusters.
+    digest: 859405926c07bd3c2cf61113edcb8d9535b948bafa03729c043203166084d7c0
+    home: https://www.rabbitmq.com/kubernetes/operator/operator-overview.html
+    icon: https://bitnami.com/assets/stacks/rabbitmq/img/rabbitmq-stack-220x234.png
+    keywords:
+    - rabbitmq
+    - message queue
+    - AMQP
+    - operator
+    kubeVersion: '>=1.18.0-0'
+    maintainers:
+    - email: mark.sagikazar@gmail.com
+      name: sagikazarmark
+      url: https://sagikazarmark.hu
+    name: rabbitmq-operator
+    sources:
+    - https://github.com/rabbitmq/cluster-operator
+    - https://github.com/sagikazarmark/helm-charts/tree/master/charts/rabbitmq-operator
+    type: application
+    urls:
+    - https://github.com/sagikazarmark/helm-charts/releases/download/rabbitmq-operator-0.0.1/rabbitmq-operator-0.0.1.tgz
+    version: 0.0.1
   sftpgo:
   - annotations:
       artifacthub.io/changes: |
@@ -2175,4 +2225,4 @@ entries:
     urls:
     - https://github.com/sagikazarmark/helm-charts/releases/download/tusd-0.0.1/tusd-0.0.1.tgz
     version: 0.0.1
-generated: "2021-06-20T14:01:02.268018561Z"
+generated: "2021-06-20T18:41:50.223349303Z"
