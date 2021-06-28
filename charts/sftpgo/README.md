@@ -136,6 +136,16 @@ require at least one port.
 | service.ports.http.nodePort | int | `nil` | REST API node port (when applicable). |
 | service.externalTrafficPolicy | string | `nil` | Route external traffic to node-local or cluster-wide endoints. Useful for [preserving the client source IP](https://kubernetes.io/docs/tasks/access-application-cluster/create-external-load-balancer/#preserving-the-client-source-ip). |
 | services | object | `{}` | Additional services exposing servers (SFTP, FTP, WebDAV, HTTP) individually. The schema matches the one under the `service` key. Additional services need at least one port. |
+| ingress.app.enabled | bool | `false` | Create an Ingress for the user and admin Web UI |
+| ingress.app.className | string | `nil` | Ingress class name. See [Kubernetes Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/) for details. |
+| ingress.app.annotations | object | `{}` | Annotations to be added to the Ingress. |
+| ingress.app.hosts | object | `[]` | List of virtual hosts. See [Kubernetes Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/) for details. |
+| ingress.app.tls | object | `[]` | List of TLS secrets. See [Kubernetes Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/) for details. |
+| ingress.api.enabled | bool | `false` | Create an Ingress for the API and health endpoint. |
+| ingress.api.className | string | `nil` | Ingress class name. See [Kubernetes Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/) for details. |
+| ingress.api.annotations | object | `{}` | Annotations to be added to the Ingress. |
+| ingress.api.hosts | object | `[]` | List of virtual hosts. See [Kubernetes Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/) for details. |
+| ingress.api.tls | object | `[]` | List of TLS secrets. See [Kubernetes Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/) for details. |
 | resources | object | No requests or limits. | Container resource [requests and limits](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/). See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#resources) for details. |
 | autoscaling | object | Disabled by default. | Autoscaling configuration (see [values.yaml](values.yaml) for details). |
 | nodeSelector | object | `{}` | [Node selector](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#nodeselector) configuration. |
