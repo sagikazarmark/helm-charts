@@ -84,6 +84,9 @@ rbac:
 # -- Annotations to be added to pods.
 podAnnotations: {}
 
+# -- Specify a priority class name to set [pod priority](https://kubernetes.io/docs/concepts/scheduling-eviction/pod-priority-preemption/#pod-priority).
+priorityClassName: ""
+
 podDisruptionBudget:
   # -- Enable a [pod distruption budget](https://kubernetes.io/docs/tasks/run-application/configure-pdb/) to help dealing with [disruptions](https://kubernetes.io/docs/concepts/workloads/pods/disruptions/).
   # It is **highly recommended** for webhooks as disruptions can prevent launching new pods.
