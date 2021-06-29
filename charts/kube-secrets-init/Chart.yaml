@@ -14,8 +14,8 @@ maintainers:
     url: https://sagikazarmark.hu
 annotations:
   artifacthub.io/changes: |
-    - kind: fixed
-      description: Mutating webhook config template
+    - kind: added
+      description: Priority class
   artifacthub.io/images: |
     - name: kube-secrets-init
       image: ghcr.io/doitintl/kube-secrets-init:0.4.0
