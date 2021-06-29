@@ -19,8 +19,8 @@ maintainers:
     url: https://sagikazarmark.hu
 annotations:
   artifacthub.io/changes: |
-    - kind: changed
-      description: Updated documentation
+    - kind: added
+      description: Support for topology spread constraints
   artifacthub.io/images: |
     - name: sftpgo
       image: ghcr.io/drakkan/sftpgo:v2.1.0

@@ -142,8 +142,7 @@ require at least one port.
 | tolerations | list | `[]` | [Tolerations](https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/) for node taints. See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#scheduling) for details. |
 | affinity | object | `{}` | [Affinity](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#affinity-and-anti-affinity) configuration. See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#scheduling) for details. |
 | hostNetwork | bool | `false` | Run pods in the host network of nodes. Warning: The use of host network is [discouraged](https://kubernetes.io/docs/concepts/configuration/overview/#services). Make sure to use it only when absolutely necessary. |
-| topologySpreadConstraints | object | `{"enabled":false,"maxSkew":1,"topologyKey":"topology.kubernetes.io/zone","whenUnsatisfiable":"DoNotSchedule"}` | Configure Pod [Topology Spread Constraints](https://kubernetes.io/docs/concepts/workloads/pods/pod-topology-spread-constraints/) Requires Kubernetes >= v1.16 |
-| topologySpreadConstraints.enabled | bool | `false` | Enable Kubernetes [Topology Spread Constraints](https://kubernetes.io/docs/concepts/workloads/pods/pod-topology-spread-constraints/). Note: Request Kubernetes v1.16+. |
-| topologySpreadConstraints.maxSkew | int | `1` | Degree to which Pods may be unevenly distributed |
-| topologySpreadConstraints.topologyKey | string | `"topology.kubernetes.io/zone"` | Topology key See https://kubernetes.io/docs/reference/kubernetes-api/labels-annotations-taints/ |
-| topologySpreadConstraints.whenUnsatisfiable | string | `"DoNotSchedule"` | How to deal with a Pod if it doesn't satisfy the spread constraint |
+| topologySpreadConstraints.enabled | bool | `false` | Enable pod [Topology Spread Constraints](https://kubernetes.io/docs/concepts/workloads/pods/pod-topology-spread-constraints/). |
+| topologySpreadConstraints.maxSkew | int | `1` | Degree to which pods may be unevenly distributed. |
+| topologySpreadConstraints.topologyKey | string | `"topology.kubernetes.io/zone"` | The key of node labels. See https://kubernetes.io/docs/reference/kubernetes-api/labels-annotations-taints/ |
+| topologySpreadConstraints.whenUnsatisfiable | string | `"DoNotSchedule"` | How to deal with a Pod if it doesn't satisfy the spread constraint. |
