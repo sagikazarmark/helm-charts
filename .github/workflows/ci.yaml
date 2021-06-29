@@ -116,6 +116,7 @@ jobs:
         with:
           version: v0.11.1
           node_image: ${{ steps.node_image.outputs.image }}
+          config: kind.yaml
 
       - name: Test
         run: ct install --excluded-charts "${{ steps.exclusions.outputs.charts }}"
