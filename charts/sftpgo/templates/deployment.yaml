@@ -136,11 +136,11 @@ spec:
 {{- if semverCompare ">=1.16-0" .Capabilities.KubeVersion.GitVersion -}}
 {{- if .Values.topologySpreadConstraints.enabled }}
       topologySpreadConstraints:
-      - labelSelector:
-          matchLabels:
-            {{- include "sftpgo.selectorLabels" . | nindent 12 }}
-        maxSkew: {{ .Values.topologySpreadConstraints.maxSkew }}
-        topologyKey: {{ .Values.topologySpreadConstraints.topologyKey }}
-        whenUnsatisfiable: {{ .Values.topologySpreadConstraints.whenUnsatisfiable }}
+        - labelSelector:
+            matchLabels:
+              {{- include "sftpgo.selectorLabels" . | nindent 12 }}
+          maxSkew: {{ .Values.topologySpreadConstraints.maxSkew }}
+          topologyKey: {{ .Values.topologySpreadConstraints.topologyKey }}
+          whenUnsatisfiable: {{ .Values.topologySpreadConstraints.whenUnsatisfiable }}
 {{- end }}
 {{- end }}
