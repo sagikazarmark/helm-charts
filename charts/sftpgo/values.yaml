@@ -201,3 +201,12 @@ affinity: {}
 # -- Run pods in the host network of nodes.
 # Warning: The use of host network is [discouraged](https://kubernetes.io/docs/concepts/configuration/overview/#services). Make sure to use it only when absolutely necessary.
 hostNetwork: false
+
+# -- Configure Pod [Topology Spread Constraints](https://kubernetes.io/docs/concepts/workloads/pods/pod-topology-spread-constraints/)
+# Requires Kubernetes >= v1.16
+topologySpreadConstraints:
+  enabled: false
+  maxSkew: 1
+  # See https://kubernetes.io/docs/reference/kubernetes-api/labels-annotations-taints/
+  topologyKey: topology.kubernetes.io/zone
+  whenUnsatisfiable: DoNotSchedule
