@@ -203,6 +203,7 @@ api:
       # kubernetes.io/tls-acme: "true"
 
     # -- List of virtual hosts. See [Kubernetes Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/) for details.
+
     # sftpgo does not change the path for the API endpoint if httpd.web_root is set. So, we need to rewrite to the root path.
     hosts: []
     #  - host: chart-example.local

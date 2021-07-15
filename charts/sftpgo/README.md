@@ -144,7 +144,7 @@ require at least one port.
 | api.ingress.enabled | bool | `false` | Create an Ingress for the API and health endpoint. |
 | api.ingress.className | string | `""` | Ingress class name. See [Kubernetes Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/) for details. |
 | api.ingress.annotations | object | `{}` | Annotations to be added to the Ingress. |
-| api.ingress.hosts | list | `[]` | List of virtual hosts. See [Kubernetes Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/) for details. sftpgo does not change the path for the health check and API endpoint if httpd.web_root is set. So, we need to rewrite these paths to the root. |
+| api.ingress.hosts | list | `[]` | List of virtual hosts. See [Kubernetes Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/) for details. sftpgo does not change the path for the API endpoint if httpd.web_root is set. So, we need to rewrite to the root path. |
 | api.ingress.tls | list | `[]` | List of TLS secrets. See [Kubernetes Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/) for details. |
 | resources | object | No requests or limits. | Container resource [requests and limits](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/). See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#resources) for details. |
 | autoscaling | object | Disabled by default. | Autoscaling configuration (see [values.yaml](values.yaml) for details). |
