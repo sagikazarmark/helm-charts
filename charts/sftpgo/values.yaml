@@ -166,7 +166,7 @@ services: {}
 ui:
   # Ingress for the Web UIs (user and admin interface)
   ingress:
-    # -- Create an Ingress for the user and admin Web UI
+    # -- Create an Ingress for the user and admin Web UI.
     enabled: false
     # -- Ingress class name. See [Kubernetes Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/) for details.
     className: ""
