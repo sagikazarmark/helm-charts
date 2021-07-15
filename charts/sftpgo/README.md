@@ -136,7 +136,7 @@ require at least one port.
 | service.ports.http.nodePort | int | `nil` | REST API node port (when applicable). |
 | service.externalTrafficPolicy | string | `nil` | Route external traffic to node-local or cluster-wide endoints. Useful for [preserving the client source IP](https://kubernetes.io/docs/tasks/access-application-cluster/create-external-load-balancer/#preserving-the-client-source-ip). |
 | services | object | `{}` | Additional services exposing servers (SFTP, FTP, WebDAV, HTTP) individually. The schema matches the one under the `service` key. Additional services need at least one port. |
-| ui.ingress.enabled | bool | `false` | Create an Ingress for the user and admin Web UI |
+| ui.ingress.enabled | bool | `false` | Create an Ingress for the user and admin Web UI. |
 | ui.ingress.className | string | `""` | Ingress class name. See [Kubernetes Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/) for details. |
 | ui.ingress.annotations | object | `{}` | Annotations to be added to the Ingress. |
 | ui.ingress.hosts | list | `[]` | List of virtual hosts. See [Kubernetes Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/) for details. |
