@@ -15,7 +15,7 @@ apiVersion: extensions/v1beta1
 {{- end }}
 kind: Ingress
 metadata:
-  name: {{ $fullName }}-api
+  name: {{ include "sftpgo.componentname" (list . "api") }}
   labels:
     {{- include "sftpgo.labels" . | nindent 4 }}
   {{- with .Values.ingress.api.annotations }}
