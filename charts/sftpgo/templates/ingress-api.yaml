@@ -1,9 +1,9 @@
-{{- if .Values.ingress.api.enabled -}}
+{{- if .Values.api.ingress.enabled -}}
 {{- $fullName := include "sftpgo.fullname" . -}}
 {{- $svcPort := .Values.service.ports.http.port -}}
-{{- if and .Values.ingress.api.className (not (semverCompare ">=1.18-0" .Capabilities.KubeVersion.GitVersion)) }}
-  {{- if not (hasKey .Values.ingress.api.annotations "kubernetes.io/ingress.class") }}
-  {{- $_ := set .Values.ingress.api.annotations "kubernetes.io/ingress.class" .Values.ingress.api.className}}
+{{- if and .Values.api.ingress.className (not (semverCompare ">=1.18-0" .Capabilities.KubeVersion.GitVersion)) }}
+  {{- if not (hasKey .Values.api.ingress.annotations "kubernetes.io/ingress.class") }}
+  {{- $_ := set .Values.api.ingress.annotations "kubernetes.io/ingress.class" .Values.api.ingress.className}}
   {{- end }}
 {{- end }}
 {{- if semverCompare ">=1.19-0" .Capabilities.KubeVersion.GitVersion -}}
@@ -18,17 +18,17 @@ metadata:
   name: {{ include "sftpgo.componentname" (list . "api") }}
   labels:
     {{- include "sftpgo.labels" . | nindent 4 }}
-  {{- with .Values.ingress.api.annotations }}
+  {{- with .Values.api.ingress.annotations }}
   annotations:
     {{- toYaml . | nindent 4 }}
   {{- end }}
 spec:
-  {{- if and .Values.ingress.api.className (semverCompare ">=1.18-0" .Capabilities.KubeVersion.GitVersion) }}
-  ingressClassName: {{ .Values.ingress.api.className }}
+  {{- if and .Values.api.ingress.className (semverCompare ">=1.18-0" .Capabilities.KubeVersion.GitVersion) }}
+  ingressClassName: {{ .Values.api.ingress.className }}
   {{- end }}
-  {{- if .Values.ingress.api.tls }}
+  {{- if .Values.api.ingress.tls }}
   tls:
-    {{- range .Values.ingress.api.tls }}
+    {{- range .Values.api.ingress.tls }}
     - hosts:
         {{- range .hosts }}
         - {{ . | quote }}
@@ -37,7 +37,7 @@ spec:
     {{- end }}
   {{- end }}
   rules:
-    {{- range .Values.ingress.api.hosts }}
+    {{- range .Values.api.ingress.hosts }}
     - host: {{ .host | quote }}
       http:
         paths:

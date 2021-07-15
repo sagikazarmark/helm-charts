@@ -163,9 +163,9 @@ services: {}
   #       nodePort:
   #   externalTrafficPolicy:
 
-ingress:
+ui:
   # Ingress for the Web UIs (user and admin interface)
-  app:
+  ingress:
     # -- Create an Ingress for the user and admin Web UI
     enabled: false
     # -- Ingress class name. See [Kubernetes Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/) for details.
@@ -189,8 +189,9 @@ ingress:
     #    hosts:
     #      - chart-example.local
 
+api:
   # Ingress for the API endpoint
-  api:
+  ingress:
     # -- Create an Ingress for the API and health endpoint.
     enabled: false
     # -- Ingress class name. See [Kubernetes Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/) for details.
@@ -202,6 +203,7 @@ ingress:
       # kubernetes.io/tls-acme: "true"
 
     # -- List of virtual hosts. See [Kubernetes Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/) for details.
+    # sftpgo does not change the path for the health check and API endpoint if httpd.web_root is set. So, we need to rewrite these paths to the root.
     hosts: []
     #  - host: chart-example.local
     #    paths:
