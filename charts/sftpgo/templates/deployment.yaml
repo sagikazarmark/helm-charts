@@ -83,14 +83,12 @@ spec:
               protocol: TCP
             {{- end }}
             {{- $globals := . }}
-            {{- if hasKey .Values "config" }}
-            {{- if hasKey .Values.config "ftpd" }}
-            {{- range $e := until (sub .Values.config.ftpd.passive_port_range.end .Values.config.ftpd.passive_port_range.start| add1 | int) }}
-            {{- $pasvport:= add $.Values.config.ftpd.passive_port_range.start . }}
+            {{- if hasKey .Values.service.ports "ftpPasv" }}
+            {{- range $e := until (sub .Values.service.ports.ftpPasv.ports.end .Values.service.ports.ftpPasv.ports.start| add1 | int) }}
+            {{- $pasvport:= add $.Values.service.ports.ftpPasv.ports.start . }}
             - name: ftp-pasv-{{ $pasvport }}
               containerPort: {{ $pasvport }}
               protocol: TCP
-            {{- end }}
             {{- end }}
             {{- end }}
             {{- if .Values.webdavd.enabled }}

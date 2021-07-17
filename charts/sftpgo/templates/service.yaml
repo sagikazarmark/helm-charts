@@ -34,6 +34,7 @@ spec:
       appProtocol: sftp-ssh
       {{- end }}
     {{- end }}
+
     {{- if .Values.ftpd.enabled }}
     - name: ftp
       port: {{ .Values.service.ports.ftp.port }}
@@ -45,21 +46,23 @@ spec:
       {{- if semverCompare ">=1.20-0" .Capabilities.KubeVersion.GitVersion }}
       appProtocol: ftp
       {{- end }}
-    {{- $globals := . }}
-    {{- if hasKey .Values "config" }}
-    {{- if hasKey .Values.config "ftpd" }}
-    {{- range $e := until (sub .Values.config.ftpd.passive_port_range.end .Values.config.ftpd.passive_port_range.start| add1 | int) }}
-    {{- $pasvport:= add $.Values.config.ftpd.passive_port_range.start . }}
+      {{- if hasKey .Values.service.ports "ftpPasv" }}
+        {{- $serviceType := .Values.service.type }}
+        {{- range $e := until (sub .Values.service.ports.ftpPasv.ports.end .Values.service.ports.ftpPasv.ports.start| add1 | int) }}
+        {{- $pasvport:= add $.Values.service.ports.ftpPasv.ports.start . }}
     - name: ftp-pasv-{{ $pasvport }}
       port: {{ $pasvport }}
       targetPort:  {{ $pasvport }}
-      protocol: TCP
-      {{- if semverCompare ">=1.20-0" $globals.Capabilities.KubeVersion.GitVersion }}
-      appProtocol: ftp-data
+      {{- if eq $serviceType "NodePort" }}
+      {{- $pasvNodePort:= add $.Values.service.ports.ftpPasv.nodeports.start . }}
+      nodePort: {{ $pasvNodePort }}
       {{- end }}
-    {{- end }}
-    {{- end }}
-    {{- end }}
+      protocol: TCP
+      {{- if semverCompare ">=1.20-0" $.Capabilities.KubeVersion.GitVersion }}
+      appProtocol: ftp-data
+        {{- end }}
+        {{- end}}
+      {{- end}}
     {{- end }}
     {{- if .Values.webdavd.enabled }}
     - name: webdav
@@ -92,7 +95,6 @@ spec:
       {{- end }}
   selector:
     {{- include "sftpgo.selectorLabels" . | nindent 4 }}
-
 {{- range $name, $service := .Values.services }}
 ---
 apiVersion: v1
@@ -142,6 +144,22 @@ spec:
       {{- if semverCompare ">=1.20-0" $.Capabilities.KubeVersion.GitVersion }}
       appProtocol: ftp
       {{- end }}
+      {{- if hasKey $service.ports "ftpPasv" }}
+        {{- range $e := until (sub $service.ports.ftpPasv.ports.end $service.ports.ftpPasv.ports.start| add1 | int) }}
+        {{- $pasvport:= add $service.ports.ftpPasv.ports.start . }}
+    - name: ftp-pasv-{{ $pasvport }}
+      port: {{ $pasvport }}
+      targetPort:  {{ $pasvport }}
+      protocol: TCP
+      {{- if eq $service.type "NodePort" }}
+      nodePort: {{ $pasvport }}
+      {{- end }}
+      {{- if semverCompare ">=1.20-0" $.Capabilities.KubeVersion.GitVersion }}
+      appProtocol: ftp-data
+        {{- end }}
+        {{- end}}
+      {{- end}}
+
     {{- end }}
     {{- if and $.Values.webdavd.enabled $service.ports.webdav }}
     - name: webdav
@@ -170,3 +188,19 @@ spec:
   selector:
     {{- include "sftpgo.selectorLabels" $ | nindent 4 }}
 {{- end }}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

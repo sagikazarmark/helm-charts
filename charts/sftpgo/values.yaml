@@ -111,6 +111,14 @@ service:
 
       # -- (int) FTP node port (when applicable).
       nodePort:
+    # This declares passive ports on service. This must be equal to Values.config values
+    # if Servie.type equals Nodeport, a nodePort port will be created for each pasvPort with same number
+#    ftpPasv:
+#      ports:
+#        start: 20000
+#        end: 21000
+#       nodeports:
+#        start: 30000
 
     webdav:
       # -- WebDAV service port.
