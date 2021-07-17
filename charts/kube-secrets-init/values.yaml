@@ -7,9 +7,11 @@ replicaCount: 1
 
 image:
   # -- Name of the image repository to pull the container image from.
-  repository: doitintl/kube-secrets-init
+  repository: ghcr.io/doitintl/kube-secrets-init
+
   # -- [Image pull policy](https://kubernetes.io/docs/concepts/containers/images/#updating-images) for updating already existing images on a node.
   pullPolicy: IfNotPresent
+
   # -- Image tag override for the default value (chart appVersion).
   tag: ""
 
@@ -27,11 +29,27 @@ fullnameOverride: ""
 #   - `aws` (AWS Secrets Manager and SSM Parameter Store)
 provider: ""
 
-# -- Fallback secret name to use when no image pull secret is found.
-defaultImagePullSecret: ""
+defaultImagePullSecret:
+  # -- Fallback secret name to use when no image pull secret is found.
+  name: ""
 
-# -- Namespace of the fallback secret name.
-defaultImagePullSecretNamespace: ""
+  # -- Namespace of the fallback secret name.
+  namespace: ""
+
+initContainer:
+  image:
+    # -- Name of the image repository to pull the init container image from.
+    # @default -- `ghcr.io/doitintl/secrets-init` (from CLI defaults)
+    repository: ghcr.io/doitintl/secrets-init
+
+    # -- [Image pull policy](https://kubernetes.io/docs/concepts/containers/images/#updating-images) for updating already existing images on a node.
+    # @default -- `IfNotPresent` (from CLI defaults)
+    pullPolicy: IfNotPresent
+
+    # -- Image tag for the init container.
+    # **Note:** it is **strongly** recommended to change the image tag to avoid issues like [this](https://github.com/doitintl/kube-secrets-init/issues/21).
+    # @default -- `latest` (from CLI defaults)
+    tag: latest
 
 certificate:
   # -- Use jetstack/cert-manager for creating the necessary certificates.
@@ -66,13 +84,27 @@ rbac:
 # -- Annotations to be added to pods.
 podAnnotations: {}
 
+# -- Specify a priority class name to set [pod priority](https://kubernetes.io/docs/concepts/scheduling-eviction/pod-priority-preemption/#pod-priority).
+priorityClassName: ""
+
+podDisruptionBudget:
+  # -- Enable a [pod distruption budget](https://kubernetes.io/docs/tasks/run-application/configure-pdb/) to help dealing with [disruptions](https://kubernetes.io/docs/concepts/workloads/pods/disruptions/).
+  # It is **highly recommended** for webhooks as disruptions can prevent launching new pods.
+  enabled: false
+
+  # -- (int/percentage) Number or percentage of pods that must remain available.
+  minAvailable:
+
+  # -- (int/percentage) Number or percentage of pods that can be unavailable.
+  maxUnavailable:
+
 # -- Pod [security context](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-pod).
-# See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workloads-resources/pod-v1/#security-context) for details.
+# See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#security-context) for details.
 podSecurityContext: {}
   # fsGroup: 2000
 
 # -- Container [security context](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-container).
-# See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workloads-resources/container/#security-context) for details.
+# See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#security-context-1) for details.
 securityContext: {}
   # capabilities:
   #   drop:
@@ -89,7 +121,7 @@ serviceMonitor:
   interval: 30s
 
 # -- Container resource [requests and limits](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/).
-# See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workloads-resources/container/#resources) for details.
+# See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#resources) for details.
 # @default -- No requests or limits.
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
@@ -103,28 +135,27 @@ resources: {}
   #   cpu: 100m
   #   memory: 128Mi
 
-# -- Autoscaling configuration (see [values.yaml](values.yaml) for details).
-# @default -- Disabled by default.
-autoscaling:
-  enabled: false
-  minReplicas: 1
-  maxReplicas: 100
-  targetCPUUtilizationPercentage: 80
-  # targetMemoryUtilizationPercentage: 80
-
 # -- [Node selector](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#nodeselector) configuration.
 nodeSelector: {}
 
 # -- [Tolerations](https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/) for node taints.
-# See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workloads-resources/pod-v1/#scheduling) for details.
+# See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#scheduling) for details.
 tolerations: []
 
 # -- [Affinity](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#affinity-and-anti-affinity) configuration.
-# See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workloads-resources/pod-v1/#scheduling) for details.
+# See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#scheduling) for details.
 affinity: {}
 
+# -- [Failure policy](https://kubernetes.io/docs/reference/access-authn-authz/extensible-admission-controllers/#failure-policy) defines how unrecognized errors and timeout errors from the admission webhook are handled.
+# Allowed values are `Ignore` or `Fail`.
+failurePolicy: Fail
+
+# -- Allows configuring how long the API server should wait for a webhook to respond before treating the call as a failure.
+# See the [documentation](https://kubernetes.io/docs/reference/access-authn-authz/extensible-admission-controllers/#timeouts) for details.
+timeoutSeconds:
+
 # -- [Namespace selector](https://kubernetes.io/docs/reference/access-authn-authz/extensible-admission-controllers/#matching-requests-namespaceselector) for the mutating webhook configuration.
-# @default -- `kube-system` namespace is excluded.
+# @default -- Namespaces matching `name=kube-system` selector are excluded.
 namespaceSelector:
   matchExpressions:
     - key: name
@@ -135,10 +166,4 @@ namespaceSelector:
   #   secret-injection: enabled
 
 # -- [Object selector](https://kubernetes.io/docs/reference/access-authn-authz/extensible-admission-controllers/#matching-requests-objectselector) for the mutating webhook configuration.
-# @default -- Exclude objects labeled with `kube-init-secrets.doit-intl.com/mutate: skip`.
-objectSelector:
-  matchExpressions:
-    - key: kube-init-secrets.doit-intl.com/mutate
-      operator: NotIn
-      values:
-        - skip
+objectSelector: {}

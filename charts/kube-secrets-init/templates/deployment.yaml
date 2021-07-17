@@ -5,9 +5,7 @@ metadata:
   labels:
     {{- include "kube-secrets-init.labels" . | nindent 4 }}
 spec:
-{{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
-{{- end }}
   selector:
     matchLabels:
       {{- include "kube-secrets-init.selectorLabels" . | nindent 6 }}
@@ -20,13 +18,16 @@ spec:
       {{- end }}
       labels:
         {{- include "kube-secrets-init.selectorLabels" . | nindent 8 }}
-        kube-init-secrets.doit-intl.com/mutate: skip
+        kube-secrets-init.doit-intl.com/disable-mutation: "true"
     spec:
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       serviceAccountName: {{ include "kube-secrets-init.serviceAccountName" . }}
+      {{- with .Values.priorityClassName }}
+      priorityClassName: {{ . | quote }}
+      {{- end }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
@@ -43,12 +44,14 @@ spec:
             - --tls-private-key-file=/etc/webhook/certs/tls.key
             - --telemetry-listen-address=:9090
             - --provider={{ required "Secret provider is required!" .Values.provider }}
-            {{- with .Values.defaultImagePullSecret }}
+            {{- with .Values.defaultImagePullSecret.name }}
             - --default-image-pull-secret={{ . }}
             {{- end }}
-            {{- with .Values.defaultImagePullSecretNamespace }}
+            {{- with .Values.defaultImagePullSecret.namespace }}
             - --default-image-pull-secret-namespace={{ . }}
             {{- end }}
+            - --image={{ .Values.initContainer.image.repository }}:{{ .Values.initContainer.image.tag }}
+            - --pull-policy={{ .Values.initContainer.image.pullPolicy }}
           volumeMounts:
             - name: certs
               mountPath: /etc/webhook/certs

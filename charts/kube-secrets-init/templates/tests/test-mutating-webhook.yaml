@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: "{{ include "kube-secrets-init.fullname" . }}-test-mutating-webhook"
+  labels:
+    {{- include "kube-secrets-init.labels" . | nindent 4 }}
+  annotations:
+    "helm.sh/hook": test
+spec:
+  containers:
+    - name: secrets-init
+      image: busybox
+      {{- if .Values.namespaceSelector.matchLabels  }}
+      args: ['test', '!', '-f', '/helper/bin/secrets-init']
+      {{ else }}
+      args: ['test', '-f', '/helper/bin/secrets-init']
+      {{- end }}
+      env:
+        # Cheating the webhook into mutating the pod
+        - name: SECRET
+          value: "gcp:secretmanager:test"
+  restartPolicy: Never

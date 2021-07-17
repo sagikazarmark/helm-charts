@@ -26,3 +26,25 @@ helm repo add skm https://charts.sagikazarmark.dev
 helm install --generate-name --wait skm/{{ .Name }}
 ```
 {{- end -}}
+
+{{- define "chart.badges" -}}
+{{ template "chart.versionBadge" . }} {{ template "chart.typeBadge" . }} {{ template "chart.appVersionBadge" . }} {{ template "chart.kubeVersionBadge" . }} {{ template "chart.artifactHubBadge" . }}
+{{- end -}}
+
+{{- define "chart.baseHead" -}}
+{{ template "chart.header" . }}
+
+{{ template "chart.badges" . }}
+
+{{ template "chart.description" . }}
+
+{{ template "chart.homepageLine" . }}
+
+{{ template "tldr" . }}
+{{- end -}}
+
+{{- define "chart.base" -}}
+{{ template "chart.baseHead" . }}
+
+{{ template "chart.valuesSection" . }}
+{{- end -}}

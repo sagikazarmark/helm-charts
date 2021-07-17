@@ -1,0 +1,11 @@
+{{- if .Values.config -}}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "caddy.fullname" . }}
+  labels:
+    {{- include "caddy.labels" . | nindent 4 }}
+data:
+  {{ include "caddy.configFileName" . }}: |-
+    {{- .Values.config | nindent 4 }}
+{{- end }}

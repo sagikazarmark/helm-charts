@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: "{{ include "caddy.fullname" . }}-test-connection"
+  labels:
+    {{- include "caddy.labels" . | nindent 4 }}
+  annotations:
+    "helm.sh/hook": test
+spec:
+  containers:
+    - name: wget
+      image: busybox
+      command:
+        - /bin/sh
+        - -c
+        - |
+            sleep 10 # Readiness takes some time
+            wget {{ include "caddy.fullname" . }}:{{ .Values.service.port }}
+  restartPolicy: Never

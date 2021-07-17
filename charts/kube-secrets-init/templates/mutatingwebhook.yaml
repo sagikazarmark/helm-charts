@@ -45,7 +45,7 @@ metadata:
   {{- end }}
 webhooks:
   - name: pods.{{ template "kube-secrets-init.name" . }}.admission.doit-intl.com
-    admissionReviewVersions: ["v1beta1"]
+    admissionReviewVersions: ["v1beta1", "v1"]
     clientConfig:
       service:
         name: {{ include "kube-secrets-init.fullname" . }}
@@ -61,30 +61,46 @@ webhooks:
           - "*"
         resources:
           - pods
-    namespaceSelector:
-    {{- with .Values.namespaceSelector.matchLabels }}
-      matchLabels:
-        {{- toYaml . | indent 8 }}
+    failurePolicy: {{ .Values.failurePolicy }}
+    {{- with .Values.timeoutSeconds }}
+    timeoutSeconds: {{ . }}
     {{- end }}
-      matchExpressions:
-      {{- with .Values.namespaceSelector.matchExpressions }}
-{{ toYaml . | indent 8 }}
+    {{- if semverCompare ">=1.12-0" .Capabilities.KubeVersion.GitVersion }}
+    sideEffects: None
+    {{- end }}
+    namespaceSelector:
+      {{- with .Values.namespaceSelector.matchLabels }}
+      matchLabels:
+        {{- toYaml . | nindent 8 }}
       {{- end }}
+      matchExpressions:
+        {{- with .Values.namespaceSelector.matchExpressions }}
+        {{- toYaml . | nindent 8 }}
+        {{- end }}
+        - key: kube-secrets-init.doit-intl.com/disable-mutation
+          operator: NotIn
+          values:
+            - "true"
         - key: name
           operator: NotIn
           values:
             - {{ .Release.Namespace }}
-  {{- if semverCompare ">=1.15-0" .Capabilities.KubeVersion.GitVersion }}
+    {{- if semverCompare ">=1.15-0" .Capabilities.KubeVersion.GitVersion }}
     objectSelector:
-      matchExpressions:
-      {{- with .Values.objectSelector.matchExpressions }}
-{{ toYaml . | indent 8 }}
+      {{- with .Values.objectSelector.matchLabels }}
+      matchLabels:
+        {{- toYaml . | nindent 8 }}
       {{- end }}
-        - key: kube-init-secrets.doit-intl.com/mutate
+      matchExpressions:
+        {{- with .Values.objectSelector.matchExpressions }}
+        {{- toYaml . | nindent 8 }}
+        {{- end }}
+        - key: kube-secrets-init.doit-intl.com/mutate
           operator: NotIn
           values:
             - skip
-  {{- end }}
-  {{- if semverCompare ">=1.12-0" .Capabilities.KubeVersion.GitVersion }}
-    sideEffects: None
-  {{- end }}
+        - key: kube-secrets-init.doit-intl.com/disable-mutation
+          operator: NotIn
+          values:
+            - "true"
+    {{- end }}

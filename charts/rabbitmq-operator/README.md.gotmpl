@@ -1,0 +1,41 @@
+{{ template "chart.baseHead" . }}
+
+{{ template "chart.valuesSection" . }}
+
+## Development
+
+### Updating the operator
+
+Always start by getting the latest manifest for the operator:
+
+```bash
+VERSION="1.7.0"
+
+mkdir tmp
+
+curl -L "https://github.com/rabbitmq/cluster-operator/releases/download/v${VERSION}/cluster-operator.yml" > tmp/cluster-operator.yaml
+```
+
+Download the k8split tool:
+
+```bash
+go get github.com/brendanjryan/k8split
+```
+
+Split up the resources:
+
+```bash
+k8split -o tmp tmp/cluster-operator.yaml
+```
+
+Update the templates based on the created resources.
+
+Finally, clean up the resources:
+
+```bash
+rm -rf tmp
+```
+
+## Attribution
+
+This chart is created from the "remains" of the official chart removed in [#296](https://github.com/rabbitmq/cluster-operator/pull/296).
