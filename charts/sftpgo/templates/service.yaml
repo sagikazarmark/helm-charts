@@ -152,7 +152,8 @@ spec:
       targetPort:  {{ $pasvport }}
       protocol: TCP
       {{- if eq $service.type "NodePort" }}
-      nodePort: {{ $pasvport }}
+      {{- $pasvNodePort:= add $service.ports.ftpPasv.nodeports.start . }}
+      nodePort: {{ $pasvNodePort }}
       {{- end }}
       {{- if semverCompare ">=1.20-0" $.Capabilities.KubeVersion.GitVersion }}
       appProtocol: ftp-data
