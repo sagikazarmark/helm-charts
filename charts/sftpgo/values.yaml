@@ -164,54 +164,59 @@ services: {}
   #   externalTrafficPolicy:
 
 ui:
-  # Ingress for the Web UIs (user and admin interface)
   ingress:
-    # -- Create an Ingress for the user and admin Web UI.
+    # -- Enable [ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/).
     enabled: false
-    # -- Ingress class name. See [Kubernetes Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/) for details.
+
+    # -- Ingress [class name](https://kubernetes.io/docs/concepts/services-networking/ingress/#ingress-class).
     className: ""
-    # -- Annotations to be added to the Ingress.
+
+    # -- Annotations to be added to the ingress.
     annotations: {}
       # kubernetes.io/ingress.class: nginx
       # kubernetes.io/tls-acme: "true"
 
-    # -- List of virtual hosts. See [Kubernetes Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/) for details.
-    hosts: []
-    #  - host: chart-example.local
-    #    # Change httpd.web_root in the sftpgo configuration if you change the path
-    #    paths:
-    #      - path: /
-    #        pathType: ImplementationSpecific
+    # -- Ingress host configuration.
+    # @default -- See [values.yaml](values.yaml).
+    hosts:
+      - host: chart-example.local
+        # Change httpd.web_root in the sftpgo configuration if you change the path
+        paths:
+          - path: /
+            pathType: ImplementationSpecific
 
-    # -- List of TLS secrets. See [Kubernetes Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/) for details.
+    # -- Ingress TLS configuration.
+    # @default -- See [values.yaml](values.yaml).
     tls: []
     #  - secretName: chart-example-tls
     #    hosts:
     #      - chart-example.local
 
 api:
-  # Ingress for the API endpoint
   ingress:
-    # -- Create an Ingress for the API and health endpoint.
+    # -- Enable [ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/).
     enabled: false
-    # -- Ingress class name. See [Kubernetes Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/) for details.
+
+    # -- Ingress [class name](https://kubernetes.io/docs/concepts/services-networking/ingress/#ingress-class).
     className: ""
-    # -- Annotations to be added to the Ingress.
+
+    # -- Annotations to be added to the ingress.
     annotations: {}
       # nginx.ingress.kubernetes.io/rewrite-target: /$1
       # kubernetes.io/ingress.class: nginx
       # kubernetes.io/tls-acme: "true"
 
-    # -- List of virtual hosts. See [Kubernetes Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/) for details.
+    # -- Ingress host configuration.
+    # @default -- See [values.yaml](values.yaml).
+    hosts:
+      - host: chart-example.local
+        # SFTPGo does not change the path for the API endpoint if httpd.web_root is set. So, we need to rewrite to the root path.
+        paths:
+          - path: /api/(.*)
+            pathType: ImplementationSpecific
 
-    # sftpgo does not change the path for the API endpoint if httpd.web_root is set. So, we need to rewrite to the root path.
-    hosts: []
-    #  - host: chart-example.local
-    #    paths:
-    #      - path: /api/(.*)
-    #        pathType: ImplementationSpecific
-
-    # -- List of TLS secrets. See [Kubernetes Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/) for details.
+    # -- Ingress TLS configuration.
+    # @default -- See [values.yaml](values.yaml).
     tls: []
     #  - secretName: chart-example-tls
     #    hosts:
