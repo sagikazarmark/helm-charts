@@ -1170,6 +1170,55 @@ entries:
   rabbitmq-operator:
   - annotations:
       artifacthub.io/changes: |
+        - kind: fixed
+          description: Reformat CRD
+      artifacthub.io/crds: |
+        - kind: RabbitmqCluster
+          version: rabbitmq.com/v1beta1
+          name: rabbitmqcluster
+          displayName: RabbitMQ cluster
+          description: Lifecycle (creation, upgrade, graceful shutdown) of a RabbitMQ cluster.
+      artifacthub.io/crdsExamples: |
+        - apiVersion: rabbitmq.com/v1beta1
+          kind: RabbitmqCluster
+          metadata:
+            name: my-cluster
+          spec:
+            replicas: 1
+      artifacthub.io/images: |
+        - name: operator
+          image: rabbitmqoperator/cluster-operator:1.8.3
+        - name: rabbitmq
+          image: rabbitmq:3.8.21-management
+      artifacthub.io/operator: "true"
+      artifacthub.io/operatorCapabilities: Full Lifecycle
+    apiVersion: v2
+    appVersion: 1.8.3
+    created: "2021-09-08T16:39:51.474237934Z"
+    description: Kubernetes operator to deploy and manage RabbitMQ clusters.
+    digest: f5d26870de6e1a48e77a200f0b1bcd93da64df99dd83a62fbd827b9f994d5635
+    home: https://www.rabbitmq.com/kubernetes/operator/operator-overview.html
+    icon: https://bitnami.com/assets/stacks/rabbitmq/img/rabbitmq-stack-220x234.png
+    keywords:
+    - rabbitmq
+    - message queue
+    - AMQP
+    - operator
+    kubeVersion: '>=1.18.0-0'
+    maintainers:
+    - email: mark.sagikazar@gmail.com
+      name: sagikazarmark
+      url: https://sagikazarmark.hu
+    name: rabbitmq-operator
+    sources:
+    - https://github.com/rabbitmq/cluster-operator
+    - https://github.com/sagikazarmark/helm-charts/tree/master/charts/rabbitmq-operator
+    type: application
+    urls:
+    - https://github.com/sagikazarmark/helm-charts/releases/download/rabbitmq-operator-0.0.3/rabbitmq-operator-0.0.3.tgz
+    version: 0.0.3
+  - annotations:
+      artifacthub.io/changes: |
         - kind: changed
           description: Bump application to 1.8.3
       artifacthub.io/crds: |
@@ -2604,4 +2653,4 @@ entries:
     urls:
     - https://github.com/sagikazarmark/helm-charts/releases/download/tusd-0.0.1/tusd-0.0.1.tgz
     version: 0.0.1
-generated: "2021-09-08T16:27:47.131912977Z"
+generated: "2021-09-08T16:39:51.47468554Z"
