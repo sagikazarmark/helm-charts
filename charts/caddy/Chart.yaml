@@ -2,7 +2,7 @@ apiVersion: v2
 type: application
 name: caddy
 version: 0.0.13
-appVersion: "2.3.0"
+appVersion: "2.4.5"
 kubeVersion: ">=1.16.0-0"
 description: A powerful, enterprise-ready, open source web server with automatic HTTPS written in Go.
 icon: https://caddyserver.com/resources/images/favicon.png
@@ -21,7 +21,8 @@ maintainers:
     url: https://sagikazarmark.hu
 annotations:
   artifacthub.io/changes: |
-    - Fix ingress template
+    - kind: changed
+      description: Bump application to 2.4.5
   artifacthub.io/images: |
     - name: caddy
-      image: caddy:2.3.0
+      image: caddy:2.4.5
