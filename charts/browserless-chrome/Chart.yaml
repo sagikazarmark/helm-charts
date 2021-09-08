@@ -2,7 +2,7 @@ apiVersion: v2
 type: application
 name: browserless-chrome
 version: 0.0.3
-appVersion: "1.45.1"
+appVersion: "1.48.0"
 kubeVersion: ">=1.16.0-0"
 description: Chrome as a service container. Bring your own hardware or cloud.
 icon: https://www.browserless.io/assets/apple-touch-icon.png
@@ -20,8 +20,8 @@ maintainers:
     url: https://sagikazarmark.hu
 annotations:
   artifacthub.io/changes: |
-    - Add license file
-    - Remove test files from final Helm package
+    - kind: changed
+      description: Bump application to 1.48.0
   artifacthub.io/images: |
     - name: browserless-chrome
-      image: browserless/chrome:1.45.1-chrome-stable
+      image: browserless/chrome:1.48.0-chrome-stable
