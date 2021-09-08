@@ -3,6 +3,37 @@ entries:
   browserless-chrome:
   - annotations:
       artifacthub.io/changes: |
+        - kind: changed
+          description: Bump application to 1.48.0
+      artifacthub.io/images: |
+        - name: browserless-chrome
+          image: browserless/chrome:1.48.0-chrome-stable
+    apiVersion: v2
+    appVersion: 1.48.0
+    created: "2021-09-08T16:27:46.819187386Z"
+    description: Chrome as a service container. Bring your own hardware or cloud.
+    digest: c1d341ef3068d2ce27b9049d4ee0ef84a88de579051e29e34f592ad6b8b83cd7
+    home: https://www.browserless.io/
+    icon: https://www.browserless.io/assets/apple-touch-icon.png
+    keywords:
+    - chrome
+    - headless
+    - puppeteer
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: mark.sagikazar@gmail.com
+      name: sagikazarmark
+      url: https://sagikazarmark.hu
+    name: browserless-chrome
+    sources:
+    - https://github.com/browserless/chrome
+    - https://github.com/sagikazarmark/helm-charts/tree/master/charts/browserless-chrome
+    type: application
+    urls:
+    - https://github.com/sagikazarmark/helm-charts/releases/download/browserless-chrome-0.0.4/browserless-chrome-0.0.4.tgz
+    version: 0.0.4
+  - annotations:
+      artifacthub.io/changes: |
         - Add license file
         - Remove test files from final Helm package
       artifacthub.io/images: |
@@ -93,6 +124,39 @@ entries:
     - https://github.com/sagikazarmark/helm-charts/releases/download/browserless-chrome-0.0.1/browserless-chrome-0.0.1.tgz
     version: 0.0.1
   caddy:
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
+          description: Bump application to 2.4.5
+      artifacthub.io/images: |
+        - name: caddy
+          image: caddy:2.4.5
+    apiVersion: v2
+    appVersion: 2.4.5
+    created: "2021-09-08T16:27:46.970284584Z"
+    description: A powerful, enterprise-ready, open source web server with automatic
+      HTTPS written in Go.
+    digest: b43e0e705f05ce97f57cc9e0617b91cbf84fc72ef044b26814759ad1f956073c
+    home: https://caddyserver.com/
+    icon: https://caddyserver.com/resources/images/favicon.png
+    keywords:
+    - http
+    - https
+    - web
+    - server
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: mark.sagikazar@gmail.com
+      name: sagikazarmark
+      url: https://sagikazarmark.hu
+    name: caddy
+    sources:
+    - https://github.com/caddyserver/caddy
+    - https://github.com/sagikazarmark/helm-charts/tree/master/charts/caddy
+    type: application
+    urls:
+    - https://github.com/sagikazarmark/helm-charts/releases/download/caddy-0.0.14/caddy-0.0.14.tgz
+    version: 0.0.14
   - annotations:
       artifacthub.io/changes: |
         - Fix ingress template
@@ -1104,6 +1168,55 @@ entries:
     - https://github.com/sagikazarmark/helm-charts/releases/download/kube-secrets-init-0.1.0/kube-secrets-init-0.1.0.tgz
     version: 0.1.0
   rabbitmq-operator:
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
+          description: Bump application to 1.8.3
+      artifacthub.io/crds: |
+        - kind: RabbitmqCluster
+          version: rabbitmq.com/v1beta1
+          name: rabbitmqcluster
+          displayName: RabbitMQ cluster
+          description: Lifecycle (creation, upgrade, graceful shutdown) of a RabbitMQ cluster.
+      artifacthub.io/crdsExamples: |
+        - apiVersion: rabbitmq.com/v1beta1
+          kind: RabbitmqCluster
+          metadata:
+            name: my-cluster
+          spec:
+            replicas: 1
+      artifacthub.io/images: |
+        - name: operator
+          image: rabbitmqoperator/cluster-operator:1.8.3
+        - name: rabbitmq
+          image: rabbitmq:3.8.21-management
+      artifacthub.io/operator: "true"
+      artifacthub.io/operatorCapabilities: Full Lifecycle
+    apiVersion: v2
+    appVersion: 1.8.3
+    created: "2021-09-08T16:27:47.131486645Z"
+    description: Kubernetes operator to deploy and manage RabbitMQ clusters.
+    digest: 57306a214d100f2cde8598e499710d89151bfe4fa1550acf6ad8fe3a0c67c0d7
+    home: https://www.rabbitmq.com/kubernetes/operator/operator-overview.html
+    icon: https://bitnami.com/assets/stacks/rabbitmq/img/rabbitmq-stack-220x234.png
+    keywords:
+    - rabbitmq
+    - message queue
+    - AMQP
+    - operator
+    kubeVersion: '>=1.18.0-0'
+    maintainers:
+    - email: mark.sagikazar@gmail.com
+      name: sagikazarmark
+      url: https://sagikazarmark.hu
+    name: rabbitmq-operator
+    sources:
+    - https://github.com/rabbitmq/cluster-operator
+    - https://github.com/sagikazarmark/helm-charts/tree/master/charts/rabbitmq-operator
+    type: application
+    urls:
+    - https://github.com/sagikazarmark/helm-charts/releases/download/rabbitmq-operator-0.0.2/rabbitmq-operator-0.0.2.tgz
+    version: 0.0.2
   - annotations:
       artifacthub.io/changes: |
         - kind: added
@@ -2491,4 +2604,4 @@ entries:
     urls:
     - https://github.com/sagikazarmark/helm-charts/releases/download/tusd-0.0.1/tusd-0.0.1.tgz
     version: 0.0.1
-generated: "2021-07-31T00:26:29.352522153Z"
+generated: "2021-09-08T16:27:47.131912977Z"
