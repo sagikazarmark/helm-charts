@@ -24,6 +24,8 @@ nameOverride: ""
 # -- A name to substitute for the full names of resources.
 fullnameOverride: ""
 
+# [Init Containers](https://kubernetes.io/docs/concepts/workloads/pods/init-containers/)
+initContainers: []
 # -- Additional storage [volumes](https://kubernetes.io/docs/concepts/storage/volumes/).
 # See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#volumes-1) for details.
 volumes: []
