@@ -24,13 +24,6 @@ nameOverride: ""
 # -- A name to substitute for the full names of resources.
 fullnameOverride: ""
 
-deployment:
-  extraLabels: {}
-  extraAnnotations: {}
-pod:
-  extraLabels: {}
-  extraAnnotations: {}
-
 sftpd:
   # -- Enable SFTP service.
   enabled: true
@@ -90,8 +83,15 @@ serviceAccount:
   # If not set and create is true, a name is generated using the fullname template.
   name: ""
 
+# -- Annotations to be added to deployment.
+deploymentAnnotations: {}
+# -- Labels to be added to deployment.
+deploymentLabels: {}
+
 # -- Annotations to be added to pods.
 podAnnotations: {}
+# -- Labels to be added to pods.
+podLabels: {}
 
 # -- Pod [security context](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-pod).
 # See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#security-context) for details.

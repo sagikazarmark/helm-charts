@@ -4,12 +4,12 @@ metadata:
   name: {{ include "sftpgo.fullname" . }}
   labels:
     {{- include "sftpgo.labels" . | nindent 4 }}
-    {{- if .Values.deployment.extraLabels }}
-    {{ toYaml .Values.deployment.extraLabels }}
+    {{- with .Values.deploymentLabels }}
+    {{-- toYaml . | nindent 4 }}
     {{- end }}
-  {{- if .Values.deployment.extraAnnotations }}
+  {{- with .Values.deploymentAnnotations }}
   annotations:
-    {{ toYaml .Values.deployment.extraAnnotations }}
+    {{- toYaml . | nindent 4  }}
   {{- end }}
 spec:
   {{- if not .Values.autoscaling.enabled }}
@@ -26,13 +26,9 @@ spec:
       {{- end }}
       labels:
         {{- include "sftpgo.selectorLabels" . | nindent 8 }}
-        {{- if .Values.pod.extraLabels }}
-        {{ toYaml .Values.pod.extraLabels }}
+        {{- with .Values.podLabels }}
+        {{- toYaml . | nindent 8 }}
         {{- end }}
-      {{- if .Values.pod.extraAnnotations }}
-      annotations:
-        {{ toYaml .Values.pod.extraAnnotations }}
-      {{- end }}
     spec:
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
