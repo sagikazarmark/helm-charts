@@ -56,10 +56,15 @@ spec:
             - name: SFTPGO_WEBDAVD__BINDINGS__0__ADDRESS
               value: "0.0.0.0"
             {{- end }}
+            {{- if .Values.httpd.enabled }}
             - name: SFTPGO_HTTPD__BINDINGS__0__PORT
               value: "8080"
             - name: SFTPGO_HTTPD__BINDINGS__0__ADDRESS
               value: "0.0.0.0"
+            {{- else }}
+            - name: SFTPGO_HTTPD__BINDINGS__0__PORT
+              value: "0"
+            {{- end }}
             - name: SFTPGO_TELEMETRY__BIND_PORT
               value: "10000"
             - name: SFTPGO_TELEMETRY__BIND_ADDRESS
@@ -91,9 +96,11 @@ spec:
               containerPort: 8081
               protocol: TCP
             {{- end }}
+            {{- if .Values.httpd.enabled }}
             - name: http
               containerPort: 8080
               protocol: TCP
+            {{- end }}
             - name: telemetry
               containerPort: 10000
               protocol: TCP
