@@ -1,6 +1,6 @@
 # sftpgo
 
-![version: 0.10.1](https://img.shields.io/badge/version-0.10.1-informational?style=flat-square) ![type: application](https://img.shields.io/badge/type-application-informational?style=flat-square) ![app version: 2.2.1](https://img.shields.io/badge/app%20version-2.2.1-informational?style=flat-square) ![kube version: >=1.16.0-0](https://img.shields.io/badge/kube%20version->=1.16.0--0-informational?style=flat-square) [![artifact hub](https://img.shields.io/badge/artifact%20hub-sftpgo-informational?style=flat-square)](https://artifacthub.io/packages/helm/sagikazarmark/sftpgo)
+![version: 0.11.0](https://img.shields.io/badge/version-0.11.0-informational?style=flat-square) ![type: application](https://img.shields.io/badge/type-application-informational?style=flat-square) ![app version: 2.2.1](https://img.shields.io/badge/app%20version-2.2.1-informational?style=flat-square) ![kube version: >=1.16.0-0](https://img.shields.io/badge/kube%20version->=1.16.0--0-informational?style=flat-square) [![artifact hub](https://img.shields.io/badge/artifact%20hub-sftpgo-informational?style=flat-square)](https://artifacthub.io/packages/helm/sagikazarmark/sftpgo)
 
 Fully featured and highly configurable SFTP server with optional FTP/S and WebDAV support.
 
@@ -110,6 +110,7 @@ require at least one port.
 | sftpd.enabled | bool | `true` | Enable SFTP service. |
 | ftpd.enabled | bool | `false` | Enable FTP service. |
 | webdavd.enabled | bool | `false` | Enable WebDAV service. |
+| httpd.enabled | bool | `true` | Enable HTTP service. |
 | config | object | `{}` | Application configuration. See the [official documentation](https://github.com/drakkan/sftpgo/blob/master/docs/full-configuration.md). |
 | volumes | list | `[]` | Additional storage [volumes](https://kubernetes.io/docs/concepts/storage/volumes/). See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#volumes-1) for details. |
 | volumeMounts | list | `[]` | Additional [volume mounts](https://kubernetes.io/docs/tasks/configure-pod-container/configure-volume-storage/). See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#volumes-1) for details. |

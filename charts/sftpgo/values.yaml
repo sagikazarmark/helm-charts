@@ -36,6 +36,10 @@ webdavd:
   # -- Enable WebDAV service.
   enabled: false
 
+httpd:
+  # -- Enable HTTP service.
+  enabled: true
+
 # -- Application configuration.
 # See the [official documentation](https://github.com/drakkan/sftpgo/blob/master/docs/full-configuration.md).
 config: {}
