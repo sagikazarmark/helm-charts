@@ -1,0 +1,96 @@
+name: Manual CI
+
+on:
+  workflow_dispatch:
+    inputs:
+      charts:
+        description: Charts to test (comma separated)
+        required: false
+        default: ""
+
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    needs: lint
+    strategy:
+      fail-fast: false
+      matrix:
+        kube: ["1.16", "1.17", "1.18", "1.19", "1.20", "1.21", "1.22", "1.23"]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Set up Helm
+        uses: azure/setup-helm@v1
+        with:
+          version: v3.6.1
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.7
+
+      - name: Set up chart-testing
+        uses: helm/chart-testing-action@v2.1.0
+
+
+      - name: Determine list of charts
+        id: charts
+        run: |
+          if [ "${{ github.event.inputs.charts }}" == "" ]; then
+            echo ::set-output name=selector::--all
+          else
+            echo "::set-output name=selector::--charts ${{ github.event.inputs.charts }}"
+          fi
+
+      - name: Exclude unsupported charts
+        id: exclusions
+        run: |
+          CHARTS=()
+
+          for chart in $(ct list-changed); do
+            if cat exclusions | grep "${chart} ${{ matrix.kube }}" > /dev/null; then
+              echo "Excluding chart from testing: ${chart}"
+              CHARTS+=("${chart#charts/}")
+            fi
+          done
+
+          echo ::set-output name=charts::$(IFS=,; echo "${CHARTS[*]}")
+
+      # See https://github.com/kubernetes-sigs/kind/releases/tag/v0.11.1
+      - name: Determine KinD node image version
+        id: node_image
+        run: |
+          case ${{ matrix.kube }} in
+            1.16)
+              NODE_IMAGE=kindest/node:v1.16.15@sha256:83067ed51bf2a3395b24687094e283a7c7c865ccc12a8b1d7aa673ba0c5e8861 ;;
+            1.17)
+              NODE_IMAGE=kindest/node:v1.17.17@sha256:66f1d0d91a88b8a001811e2f1054af60eef3b669a9a74f9b6db871f2f1eeed00 ;;
+            1.18)
+              NODE_IMAGE=kindest/node:v1.18.19@sha256:7af1492e19b3192a79f606e43c35fb741e520d195f96399284515f077b3b622c ;;
+            1.19)
+              NODE_IMAGE=kindest/node:v1.19.11@sha256:07db187ae84b4b7de440a73886f008cf903fcf5764ba8106a9fd5243d6f32729 ;;
+            1.20)
+              NODE_IMAGE=kindest/node:v1.20.7@sha256:cbeaf907fc78ac97ce7b625e4bf0de16e3ea725daf6b04f930bd14c67c671ff9 ;;
+            1.21)
+              NODE_IMAGE=kindest/node:v1.21.1@sha256:69860bda5563ac81e3c0057d654b5253219618a22ec3a346306239bba8cfa1a6 ;;
+            1.22)
+              NODE_IMAGE=kindest/node:v1.22.0@sha256:b8bda84bb3a190e6e028b1760d277454a72267a5454b57db34437c34a588d047 ;;
+            1.23)
+              NODE_IMAGE=kindest/node:v1.23.0@sha256:49824ab1727c04e56a21a5d8372a402fcd32ea51ac96a2706a12af38934f81ac ;;
+            esac
+
+            echo "::set-output name=image::$NODE_IMAGE"
+
+      - name: Create KinD cluster
+        uses: helm/kind-action@v1.1.0
+        with:
+          version: v0.11.1
+          node_image: ${{ steps.node_image.outputs.image }}
+
+      - name: Test
+        run: ct lint-and-install ${{ steps.charts.outputs.selector }} --excluded-charts "${{ steps.exclusions.outputs.charts }}"
