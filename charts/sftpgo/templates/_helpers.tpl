@@ -73,3 +73,10 @@ Usage: {{ include "sftpgo.componentname" (list . "component") }}
 {{- $component := index . 1 | trimPrefix "-" -}}
 {{- printf "%s-%s" (include "sftpgo.fullname" $global | trunc (sub 62 (len $component) | int) | trimSuffix "-" ) $component | trimSuffix "-" -}}
 {{- end -}}
+
+{{/*
+Create the name for the signing passphrase secret
+*/}}
+{{- define "sftpgo.signingPassphraseName" -}}
+{{- include "sftpgo.componentname" (list . "signingpass") -}}
+{{- end -}}

@@ -278,3 +278,20 @@ topologySpreadConstraints:
 
   # -- How to deal with a Pod if it doesn't satisfy the spread constraint.
   whenUnsatisfiable: DoNotSchedule
+
+# -- `sftpgo` application configuration
+sftpgo:
+
+  # Enable sharing the sftpgo signing passphrase across multiple instances
+  # Note: Requires sftpgo 2.2.0 or later
+  signingPassphrase:
+
+    # -- (bool) Use an existing or create a Kubernetes Secret holding the passphrase to use for deriving the signing key for JWT and CSRF tokens. This is required when running more than one sftpgo instance and to keep tokens valid across server restarts. Consider using a suitable external database (e.g., Postgres), too.
+    # See https://github.com/drakkan/sftpgo/blob/main/docs/full-configuration.md for more information on `httpd.signing_passphrase` and https://github.com/drakkan/sftpgo/issues/466.
+    enabled: false
+
+    # -- (string) Name of an existing Kubernetes Secret holding the passphrase. Leave empty to auto-generate the secret.
+    secretName: ""
+
+    # -- (string) Name of the key in the Kubernetes Secret holding the actual passphrase
+    secretKey: passphrase

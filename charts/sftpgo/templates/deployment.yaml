@@ -65,6 +65,13 @@ spec:
             - name: SFTPGO_HTTPD__BINDINGS__0__PORT
               value: "0"
             {{- end }}
+{{- if .Values.sftpgo.signingPassphrase.enabled }}
+            - name: SFTPGO_HTTPD__SIGNING_PASSPHRASE
+              valueFrom:
+                secretKeyRef:
+                  name: {{ default (include "sftpgo.signingPassphraseName" .) .Values.sftpgo.signingPassphrase.secretName }}
+                  key: {{ .Values.sftpgo.signingPassphrase.secretKey }}
+{{- end }}
             - name: SFTPGO_TELEMETRY__BIND_PORT
               value: "10000"
             - name: SFTPGO_TELEMETRY__BIND_ADDRESS

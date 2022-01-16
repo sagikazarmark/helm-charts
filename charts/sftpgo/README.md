@@ -157,3 +157,7 @@ require at least one port.
 | topologySpreadConstraints.maxSkew | int | `1` | Degree to which pods may be unevenly distributed. |
 | topologySpreadConstraints.topologyKey | string | `"topology.kubernetes.io/zone"` | The key of node labels. See https://kubernetes.io/docs/reference/kubernetes-api/labels-annotations-taints/ |
 | topologySpreadConstraints.whenUnsatisfiable | string | `"DoNotSchedule"` | How to deal with a Pod if it doesn't satisfy the spread constraint. |
+| sftpgo | object | `{"signingPassphrase":{"enabled":false,"secretKey":"passphrase","secretName":""}}` | `sftpgo` application configuration |
+| sftpgo.signingPassphrase.enabled | bool | `false` | (bool) Use an existing or create a Kubernetes Secret holding the passphrase to use for deriving the signing key for JWT and CSRF tokens. This is required when running more than one sftpgo instance and to keep tokens valid across server restarts. Consider using a suitable external database (e.g., Postgres), too. See https://github.com/drakkan/sftpgo/blob/main/docs/full-configuration.md for more information on `httpd.signing_passphrase` and https://github.com/drakkan/sftpgo/issues/466. |
+| sftpgo.signingPassphrase.secretName | string | `""` | (string) Name of an existing Kubernetes Secret holding the passphrase. Leave empty to auto-generate the secret. |
+| sftpgo.signingPassphrase.secretKey | string | `"passphrase"` | (string) Name of the key in the Kubernetes Secret holding the actual passphrase |
