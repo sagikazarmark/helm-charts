@@ -1,6 +1,6 @@
 # sftpgo
 
-![version: 0.12.0](https://img.shields.io/badge/version-0.12.0-informational?style=flat-square) ![type: application](https://img.shields.io/badge/type-application-informational?style=flat-square) ![app version: 2.2.1](https://img.shields.io/badge/app%20version-2.2.1-informational?style=flat-square) ![kube version: >=1.16.0-0](https://img.shields.io/badge/kube%20version->=1.16.0--0-informational?style=flat-square) [![artifact hub](https://img.shields.io/badge/artifact%20hub-sftpgo-informational?style=flat-square)](https://artifacthub.io/packages/helm/sagikazarmark/sftpgo)
+![version: 0.13.0](https://img.shields.io/badge/version-0.13.0-informational?style=flat-square) ![type: application](https://img.shields.io/badge/type-application-informational?style=flat-square) ![app version: 2.2.1](https://img.shields.io/badge/app%20version-2.2.1-informational?style=flat-square) ![kube version: >=1.16.0-0](https://img.shields.io/badge/kube%20version->=1.16.0--0-informational?style=flat-square) [![artifact hub](https://img.shields.io/badge/artifact%20hub-sftpgo-informational?style=flat-square)](https://artifacthub.io/packages/helm/sagikazarmark/sftpgo)
 
 Fully featured and highly configurable SFTP server with optional FTP/S and WebDAV support.
 
@@ -157,7 +157,12 @@ require at least one port.
 | topologySpreadConstraints.maxSkew | int | `1` | Degree to which pods may be unevenly distributed. |
 | topologySpreadConstraints.topologyKey | string | `"topology.kubernetes.io/zone"` | The key of node labels. See https://kubernetes.io/docs/reference/kubernetes-api/labels-annotations-taints/ |
 | topologySpreadConstraints.whenUnsatisfiable | string | `"DoNotSchedule"` | How to deal with a Pod if it doesn't satisfy the spread constraint. |
-| sftpgo | object | `{"signingPassphrase":{"enabled":false,"secretKey":"passphrase","secretName":""}}` | `sftpgo` application configuration |
+| sftpgo | object | `{"defaultAdmin":{"enabled":true,"passwordKey":"password","secretName":"","username":"admin","usernameKey":"username"},"signingPassphrase":{"enabled":false,"secretKey":"passphrase","secretName":""}}` | `sftpgo` application configuration |
+| sftpgo.defaultAdmin.enabled | bool | `true` | (bool) Create a default admin account. sftpgo v2.1.0 and later no longer create a default admin account unless requested. |
+| sftpgo.defaultAdmin.username | string | `"admin"` | (string) Default admin account name |
+| sftpgo.defaultAdmin.secretName | string | `""` | (string) Name of an existing Kubernetes Secret holding the admin account credentials. Leave empty to auto-generate the secret. |
+| sftpgo.defaultAdmin.usernameKey | string | `"username"` | (string) Name of the key in the Kubernetes Secret holding the default admin account name |
+| sftpgo.defaultAdmin.passwordKey | string | `"password"` | (string) Name of the key in the Kubernetes Secret holding the default admin account password (this is _not_ the actual password!) |
 | sftpgo.signingPassphrase.enabled | bool | `false` | (bool) Use an existing or create a Kubernetes Secret holding the passphrase to use for deriving the signing key for JWT and CSRF tokens. This is required when running more than one sftpgo instance and to keep tokens valid across server restarts. Consider using a suitable external database (e.g., Postgres), too. See https://github.com/drakkan/sftpgo/blob/main/docs/full-configuration.md for more information on `httpd.signing_passphrase` and https://github.com/drakkan/sftpgo/issues/466. |
 | sftpgo.signingPassphrase.secretName | string | `""` | (string) Name of an existing Kubernetes Secret holding the passphrase. Leave empty to auto-generate the secret. |
 | sftpgo.signingPassphrase.secretKey | string | `"passphrase"` | (string) Name of the key in the Kubernetes Secret holding the actual passphrase |
