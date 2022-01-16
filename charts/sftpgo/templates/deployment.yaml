@@ -65,6 +65,20 @@ spec:
             - name: SFTPGO_HTTPD__BINDINGS__0__PORT
               value: "0"
             {{- end }}
+{{- if .Values.sftpgo.defaultAdmin.enabled }}
+            - name: SFTPGO_DATA_PROVIDER__CREATE_DEFAULT_ADMIN
+              value: "true"
+            - name: SFTPGO_DEFAULT_ADMIN_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: {{ default (include "sftpgo.adminAccount" .) .Values.sftpgo.defaultAdmin.secretName }}
+                  key: {{ .Values.sftpgo.defaultAdmin.usernameKey }}
+            - name: SFTPGO_DEFAULT_ADMIN_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ default (include "sftpgo.adminAccount" .) .Values.sftpgo.defaultAdmin.secretName }}
+                  key: {{ .Values.sftpgo.defaultAdmin.passwordKey }}
+{{- end }}
 {{- if .Values.sftpgo.signingPassphrase.enabled }}
             - name: SFTPGO_HTTPD__SIGNING_PASSPHRASE
               valueFrom:

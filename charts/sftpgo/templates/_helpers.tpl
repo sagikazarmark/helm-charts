@@ -80,3 +80,10 @@ Create the name for the signing passphrase secret
 {{- define "sftpgo.signingPassphraseName" -}}
 {{- include "sftpgo.componentname" (list . "signingpass") -}}
 {{- end -}}
+
+{{/*
+Create the name for the default admin account secret
+*/}}
+{{- define "sftpgo.adminAccount" -}}
+{{- include "sftpgo.componentname" (list . "admin") -}}
+{{- end -}}

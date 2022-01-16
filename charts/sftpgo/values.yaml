@@ -282,6 +282,24 @@ topologySpreadConstraints:
 # -- `sftpgo` application configuration
 sftpgo:
 
+  defaultAdmin:
+
+    # -- (bool) Create a default admin account.
+    # sftpgo v2.1.0 and later no longer create a default admin account unless requested.
+    enabled: true
+
+    # -- (string) Default admin account name
+    username: admin
+
+    # -- (string) Name of an existing Kubernetes Secret holding the admin account credentials. Leave empty to auto-generate the secret.
+    secretName: ""
+
+    # -- (string) Name of the key in the Kubernetes Secret holding the default admin account name
+    usernameKey: username
+
+    # -- (string) Name of the key in the Kubernetes Secret holding the default admin account password (this is _not_ the actual password!)
+    passwordKey: password
+
   # Enable sharing the sftpgo signing passphrase across multiple instances
   # Note: Requires sftpgo 2.2.0 or later
   signingPassphrase:
