@@ -18,8 +18,13 @@ spec:
   loadBalancerIP: {{ . }}
   {{- end }}
   {{- with .Values.service.loadBalancerSourceRanges }}
-  loadBalancerSourceRanges: {{ toYaml . | nindent 4 }}
+  loadBalancerSourceRanges:
+    {{ toYaml . | nindent 4 }}
   {{- end }}
+  {{- end }}
+  {{- with .Values.service.externalIPs }}
+  externalIPs:
+    {{ toYaml . | indent 4 }}
   {{- end }}
   ports:
     {{- if .Values.sftpd.enabled }}
@@ -102,8 +107,13 @@ spec:
   loadBalancerIP: {{ . }}
   {{- end }}
   {{- with $service.loadBalancerSourceRanges }}
-  loadBalancerSourceRanges: {{ toYaml . | nindent 4 }}
+  loadBalancerSourceRanges:
+    {{ toYaml . | nindent 4 }}
   {{- end }}
+  {{- end }}
+  {{- with $service.externalIPs }}
+  externalIPs:
+    {{ toYaml . | indent 4 }}
   {{- end }}
   ports:
     {{- if and $.Values.sftpd.enabled $service.ports.sftp }}

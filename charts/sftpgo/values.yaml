@@ -120,6 +120,10 @@ service:
   # Valid values are IP CIDR blocks.
   loadBalancerSourceRanges: []
 
+  # -- (list) Expose service on the named IPs. Note that Kubernetes does [not take care of assigning the IP address the nodes](https://kubernetes.io/docs/concepts/services-networking/service/#external-ips).
+  # External IPs that route to one or more cluster nodes
+  externalIPs: []
+
   ports:
     sftp:
       # -- SFTP service port.
@@ -161,6 +165,7 @@ services: {}
   #   type: LoadBalancer
   #   loadBalancerIP:
   #   loadBalancerSourceRanges: []
+  #   externalIPs: []
   #   ports:
   #     sftp: # Only SFTP will be exposed
   #       port: 22
