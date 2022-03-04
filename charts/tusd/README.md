@@ -35,6 +35,7 @@ helm install --generate-name --wait skm/tusd
 | podAnnotations | object | `{}` | Annotations to be added to pods. |
 | podSecurityContext | object | `{}` | Pod [security context](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-pod). See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#security-context) for details. |
 | securityContext | object | `{}` | Container [security context](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-container). See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#security-context-1) for details. |
+| initContainers | list | `[]` | Additional [init containers](https://kubernetes.io/docs/concepts/workloads/pods/init-containers/) to be added to pods. |
 | containerArgs | list | `[]` | List of container arguments. **Note:** This is a temporary solution until there is a better way to configure the application. See [sagikazarmark/helm-charts#49](https://github.com/sagikazarmark/helm-charts/issues/49) for details. |
 | service.annotations | object | `{}` | Annotations to be added to the service. |
 | service.type | string | `"ClusterIP"` | Kubernetes [service type](https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types). |

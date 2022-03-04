@@ -72,6 +72,9 @@ securityContext: {}
   # runAsNonRoot: true
   # runAsUser: 1000
 
+# -- Additional [init containers](https://kubernetes.io/docs/concepts/workloads/pods/init-containers/) to be added to pods.
+initContainers: []
+
 # -- List of container arguments.
 # **Note:** This is a temporary solution until there is a better way to configure the application.
 # See [sagikazarmark/helm-charts#49](https://github.com/sagikazarmark/helm-charts/issues/49) for details.
