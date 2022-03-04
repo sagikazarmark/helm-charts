@@ -2585,6 +2585,36 @@ entries:
           image: tusproject/tusd:v1.6.0
     apiVersion: v2
     appVersion: 1.6.0
+    created: "2022-03-04T11:53:42.727142862Z"
+    description: 'Reference server implementation in Go of tus: the open protocol
+      for resumable file uploads.'
+    digest: 092e47e9df5d21299cfadf350fa2b3ed6e4040989169f6a27eee334cf60f1b67
+    home: https://tus.io
+    keywords:
+    - http
+    - upload
+    - protocol
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: mark.sagikazar@gmail.com
+      name: sagikazarmark
+      url: https://sagikazarmark.hu
+    name: tusd
+    sources:
+    - https://github.com/tus/tusd
+    - https://github.com/sagikazarmark/helm-charts/tree/master/charts/tusd
+    type: application
+    urls:
+    - https://github.com/sagikazarmark/helm-charts/releases/download/tusd-0.0.11/tusd-0.0.11.tgz
+    version: 0.0.11
+  - annotations:
+      artifacthub.io/changes: |
+        - Add support for Deployment annotations
+      artifacthub.io/images: |
+        - name: tusd
+          image: tusproject/tusd:v1.6.0
+    apiVersion: v2
+    appVersion: 1.6.0
     created: "2022-01-13T07:51:20.060506954Z"
     description: 'Reference server implementation in Go of tus: the open protocol
       for resumable file uploads.'
@@ -2877,4 +2907,4 @@ entries:
     urls:
     - https://github.com/sagikazarmark/helm-charts/releases/download/tusd-0.0.1/tusd-0.0.1.tgz
     version: 0.0.1
-generated: "2022-02-21T00:32:52.917679357Z"
+generated: "2022-03-04T11:53:42.727589365Z"
