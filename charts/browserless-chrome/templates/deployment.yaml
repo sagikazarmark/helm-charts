@@ -57,10 +57,11 @@ spec:
               port: http
           readinessProbe:
             httpGet:
-              {{- if .Values.env.TOKEN }}
-              path: /pressure?token={{ .Values.env.TOKEN }}
-              {{- else }}
               path: /pressure
+              {{- with .Values.env -}}
+                {{- if .TOKEN -}}
+                  {{- printf "?token=%s" .TOKEN }}
+                {{- end -}}
               {{- end }}
               port: http
           resources:
