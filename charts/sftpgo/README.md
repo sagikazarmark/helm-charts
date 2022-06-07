@@ -126,7 +126,7 @@ require at least one port.
 | service.annotations | object | `{}` | Annotations to be added to the service. |
 | service.type | string | `"ClusterIP"` | Kubernetes [service type](https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types). |
 | service.loadBalancerIP | string | `nil` | Only applies when the service type is LoadBalancer. Load balancer will get created with the IP specified in this field. |
-| service.loadBalancerSourceRanges | list | `[]` | (list) If specified (and supported by the cloud provider), traffic through the load balancer will be restricted to the specified client IPs. Valid values are IP CIDR blocks. |
+| service.loadBalancerSourceRanges | list | `[]` | If specified (and supported by the cloud provider), traffic through the load balancer will be restricted to the specified client IPs. Valid values are IP CIDR blocks. |
 | service.ports.sftp.port | int | `22` | SFTP service port. |
 | service.ports.sftp.nodePort | int | `nil` | SFTP node port (when applicable). |
 | service.ports.ftp.port | int | `21` | FTP service port. |
