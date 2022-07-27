@@ -90,7 +90,8 @@ services:
       external-dns.alpha.kubernetes.io/hostname: sftp.mydomain.com.
     type: LoadBalancer
     ports:
-      sftp: 22
+      sftp:
+	  	port: 22
 ```
 
 Additional services accept the same options as the `service` option in the values file and
