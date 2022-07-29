@@ -37,7 +37,7 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           args:
-            - --log-level={{ required "Secret provider is required!" .Values.logLevel }}
+            - --log-level={{ .Values.logLevel }}
             - server
             - --listen-address=:8443
             - --tls-cert-file=/etc/webhook/certs/tls.crt

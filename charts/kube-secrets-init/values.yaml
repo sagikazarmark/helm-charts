@@ -15,8 +15,8 @@ image:
   # -- Image tag override for the default value (chart appVersion).
   tag: ""
 
-# define log-level argument for kube-secrets-init container:
-# could be "info", "debug", "warning", "error", "fatal", "panic"
+# -- Log-level for the kube-secrets-init container.
+# Valid values are "info", "debug", "warning", "error", "fatal", "panic".
 logLevel: info
 
 # -- Reference to one or more secrets to be used when [pulling images](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/#create-a-pod-that-uses-your-secret) (from private registries).
