@@ -228,8 +228,8 @@ You can read more information on how to add firewall rules for the GKE control p
 | image.repository | string | `"ghcr.io/doitintl/kube-secrets-init"` | Name of the image repository to pull the container image from. |
 | image.pullPolicy | string | `"IfNotPresent"` | [Image pull policy](https://kubernetes.io/docs/concepts/containers/images/#updating-images) for updating already existing images on a node. |
 | image.tag | string | `""` | Image tag override for the default value (chart appVersion). |
+| logLevel | string | `"info"` | Log-level for the kube-secrets-init container. Valid values are "info", "debug", "warning", "error", "fatal", "panic". |
 | imagePullSecrets | list | `[]` | Reference to one or more secrets to be used when [pulling images](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/#create-a-pod-that-uses-your-secret) (from private registries). |
-| logLevel | string | `"info"` | Log-level argument for kube-secrets-init container. |
 | nameOverride | string | `""` | A name in place of the chart name for `app:` labels. |
 | fullnameOverride | string | `""` | A name to substitute for the full names of resources. |
 | provider | string | `""` | One of the supported secret providers:   - `google` (Google Cloud Secrets Manager)   - `aws` (AWS Secrets Manager and SSM Parameter Store) |
