@@ -40,7 +40,7 @@ helm install --generate-name --wait skm/dex-k8s-authenticator
 | service.annotations | object | `{}` | Annotations to be added to the service. |
 | service.type | string | `"ClusterIP"` | Kubernetes [service type](https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types). |
 | service.loadBalancerIP | string | `nil` | Only applies when the service type is LoadBalancer. Load balancer will get created with the IP specified in this field. |
-| service.loadBalancerSourceRanges | list | `[]` | (list) If specified (and supported by the cloud provider), traffic through the load balancer will be restricted to the specified client IPs. Valid values are IP CIDR blocks. |
+| service.loadBalancerSourceRanges | list | `[]` | If specified (and supported by the cloud provider), traffic through the load balancer will be restricted to the specified client IPs. Valid values are IP CIDR blocks. |
 | service.port | int | `80` | Service port. |
 | service.nodePort | int | `nil` | Service node port (when applicable). |
 | service.externalTrafficPolicy | string | `nil` | Route external traffic to node-local or cluster-wide endoints. Useful for [preserving the client source IP](https://kubernetes.io/docs/tasks/access-application-cluster/create-external-load-balancer/#preserving-the-client-source-ip). |
