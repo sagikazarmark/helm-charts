@@ -2,7 +2,7 @@ apiVersion: v2
 type: application
 name: sftpgo
 version: 0.13.0
-appVersion: 2.3.0
+appVersion: 2.3.1
 kubeVersion: ">=1.16.0-0"
 description: Fully featured and highly configurable SFTP server with optional FTP/S and WebDAV support.
 keywords:
@@ -20,9 +20,9 @@ maintainers:
 annotations:
   artifacthub.io/changes: |
     - kind: changed
-      description: Updated sftpgo to 2.3.0
+      description: Updated sftpgo to 2.3.1
   artifacthub.io/images: |
     - name: sftpgo
-      image: ghcr.io/drakkan/sftpgo:v2.3.0
+      image: ghcr.io/drakkan/sftpgo:v2.3.1
     - name: sftpgo-alpine
-      image: ghcr.io/drakkan/sftpgo:v2.3.0-alpine
+      image: ghcr.io/drakkan/sftpgo:v2.3.1-alpine
