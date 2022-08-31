@@ -35,3 +35,4 @@ jobs:
           charts_repo_url: https://charts.sagikazarmark.dev
         env:
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+          CR_SKIP_EXISTING: true
