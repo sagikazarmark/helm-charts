@@ -18,12 +18,12 @@ jobs:
       - name: Set up Helm
         uses: azure/setup-helm@v3.5
         with:
-          version: v3.6.1
+          version: v3.10.3
 
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: 3.7
+          python-version: "3.10"
 
       - name: Set up chart-testing
         uses: helm/chart-testing-action@v2.3.1
@@ -42,7 +42,7 @@ jobs:
         run: |
           changed=$(ct list-changed)
           if [[ -n "$changed" ]]; then
-            echo "::set-output name=changed::true"
+            echo "changed=true" >> $GITHUB_OUTPUT
           fi
 
   test:
@@ -53,7 +53,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        kube: ["1.16", "1.17", "1.18", "1.19", "1.20", "1.21", "1.22", "1.23"]
+        kube: ["1.19", "1.20", "1.21", "1.22", "1.23", "1.24", "1.25", "1.26"]
 
     steps:
       - name: Checkout
@@ -64,20 +64,18 @@ jobs:
       - name: Set up Helm
         uses: azure/setup-helm@v3.5
         with:
-          version: v3.6.1
+          version: v3.10.3
 
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: 3.7
+          python-version: "3.10"
 
       - name: Set up chart-testing
         uses: helm/chart-testing-action@v2.3.1
 
       - name: Exclude unsupported charts
         id: exclusions
-        env:
-          DOCKER_IMAGES: "ghcr.io/${{ github.repository }}"
         run: |
           CHARTS=()
 
@@ -88,37 +86,37 @@ jobs:
             fi
           done
 
-          echo ::set-output name=charts::$(IFS=,; echo "${CHARTS[*]}")
+          echo charts=$(IFS=,; echo "${CHARTS[*]}") >> $GITHUB_OUTPUT
 
-      # See https://github.com/kubernetes-sigs/kind/releases/tag/v0.11.1
+      # See https://github.com/kubernetes-sigs/kind/releases/tag/v0.17.0
       - name: Determine KinD node image version
         id: node_image
         run: |
           case ${{ matrix.kube }} in
-            1.16)
-              NODE_IMAGE=kindest/node:v1.16.15@sha256:83067ed51bf2a3395b24687094e283a7c7c865ccc12a8b1d7aa673ba0c5e8861 ;;
-            1.17)
-              NODE_IMAGE=kindest/node:v1.17.17@sha256:66f1d0d91a88b8a001811e2f1054af60eef3b669a9a74f9b6db871f2f1eeed00 ;;
-            1.18)
-              NODE_IMAGE=kindest/node:v1.18.19@sha256:7af1492e19b3192a79f606e43c35fb741e520d195f96399284515f077b3b622c ;;
             1.19)
-              NODE_IMAGE=kindest/node:v1.19.11@sha256:07db187ae84b4b7de440a73886f008cf903fcf5764ba8106a9fd5243d6f32729 ;;
+              NODE_IMAGE=kindest/node:v1.19.16@sha256:476cb3269232888437b61deca013832fee41f9f074f9bed79f57e4280f7c48b7 ;;
             1.20)
-              NODE_IMAGE=kindest/node:v1.20.7@sha256:cbeaf907fc78ac97ce7b625e4bf0de16e3ea725daf6b04f930bd14c67c671ff9 ;;
+              NODE_IMAGE=kindest/node:v1.20.15@sha256:a32bf55309294120616886b5338f95dd98a2f7231519c7dedcec32ba29699394 ;;
             1.21)
-              NODE_IMAGE=kindest/node:v1.21.1@sha256:69860bda5563ac81e3c0057d654b5253219618a22ec3a346306239bba8cfa1a6 ;;
+              NODE_IMAGE=kindest/node:v1.21.14@sha256:9d9eb5fb26b4fbc0c6d95fa8c790414f9750dd583f5d7cee45d92e8c26670aa1 ;;
             1.22)
-              NODE_IMAGE=kindest/node:v1.22.0@sha256:b8bda84bb3a190e6e028b1760d277454a72267a5454b57db34437c34a588d047 ;;
+              NODE_IMAGE=kindest/node:v1.22.15@sha256:7d9708c4b0873f0fe2e171e2b1b7f45ae89482617778c1c875f1053d4cef2e41 ;;
             1.23)
-              NODE_IMAGE=kindest/node:v1.23.0@sha256:49824ab1727c04e56a21a5d8372a402fcd32ea51ac96a2706a12af38934f81ac ;;
+              NODE_IMAGE=kindest/node:v1.23.13@sha256:ef453bb7c79f0e3caba88d2067d4196f427794086a7d0df8df4f019d5e336b61 ;;
+            1.24)
+              NODE_IMAGE=kindest/node:v1.24.7@sha256:577c630ce8e509131eab1aea12c022190978dd2f745aac5eb1fe65c0807eb315 ;;
+            1.25)
+              NODE_IMAGE=kindest/node:v1.25.3@sha256:f52781bc0d7a19fb6c405c2af83abfeb311f130707a0e219175677e366cc45d1 ;;
+            1.26)
+              NODE_IMAGE=kindest/node:v1.26.0@sha256:691e24bd2417609db7e589e1a479b902d2e209892a10ce375fab60a8407c7352 ;;
             esac
 
-            echo "::set-output name=image::$NODE_IMAGE"
+            echo "image=$NODE_IMAGE" >> $GITHUB_OUTPUT
 
       - name: Create KinD cluster
         uses: helm/kind-action@v1.5.0
         with:
-          version: v0.11.1
+          version: v0.17.0
           node_image: ${{ steps.node_image.outputs.image }}
 
       - name: Test
