@@ -2,6 +2,7 @@
 
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/sagikazarmark/helm-charts/Release?style=flat-square)
 [![Artifact HUB](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/sagikazarmark)](https://artifacthub.io/packages/search?repo=sagikazarmark)
+![Kubernetes Version](https://img.shields.io/badge/k8s%20version-%3E=1.19-3f68d7.svg?style=flat-square)
 
 Various Helm [charts](https://helm.sh/docs/topics/charts/) for my own and other projects.
 
