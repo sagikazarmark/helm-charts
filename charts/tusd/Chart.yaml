@@ -1,8 +1,8 @@
 apiVersion: v2
 type: application
 name: tusd
-version: 0.0.12
-appVersion: "1.8.0"
+version: 0.1.0
+appVersion: "1.10.0"
 kubeVersion: ">=1.16.0-0"
 description: "Reference server implementation in Go of tus: the open protocol for resumable file uploads."
 keywords:
@@ -19,7 +19,7 @@ maintainers:
     url: https://sagikazarmark.hu
 annotations:
   artifacthub.io/changes: |
-    - Add support for Deployment annotations
+    - Update tusd to 1.10.0
   artifacthub.io/images: |
     - name: tusd
-      image: tusproject/tusd:v1.8.0
+      image: tusproject/tusd:v1.10.0
