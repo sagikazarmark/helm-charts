@@ -5,6 +5,9 @@
 # -- Number of replicas (pods) to launch.
 replicaCount: 1
 
+# -- Define the [strategy](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#strategy) to replace old Pods by new ones during updates.
+deploymentStrategy: {}
+
 image:
   # -- Name of the image repository to pull the container image from.
   repository: ghcr.io/drakkan/sftpgo
@@ -105,6 +108,9 @@ securityContext: {}
   # readOnlyRootFilesystem: true
   # runAsNonRoot: true
   # runAsUser: 1000
+
+# -- Add [init containers](https://kubernetes.io/docs/concepts/workloads/pods/init-containers/) to the pod.
+initContainers: []
 
 service:
   # -- Annotations to be added to the service.
