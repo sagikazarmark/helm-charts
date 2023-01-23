@@ -19,8 +19,8 @@ maintainers:
     url: https://sagikazarmark.hu
 annotations:
   artifacthub.io/changes: |
-    - kind: added
-      description: Config for deployment strategy and init containers
+    - kind: fixed
+      description: Match the app.kubernetes.io/version label to the image tag
   artifacthub.io/images: |
     - name: sftpgo
       image: ghcr.io/drakkan/sftpgo:v2.4.2
