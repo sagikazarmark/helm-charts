@@ -37,7 +37,11 @@ Common labels
 helm.sh/chart: {{ include "sftpgo.chart" . }}
 {{ include "sftpgo.selectorLabels" . }}
 {{- if .Chart.AppVersion }}
-app.kubernetes.io/version: {{ .Values.image.tag | default (printf "v%s" .Chart.AppVersion) | quote }}
+{{- if .Values.image.tag }}
+app.kubernetes.io/version: {{ .Values.image.tag | trimPrefix "v" | quote }}
+{{- else }}
+app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
+{{- end }}
 {{- end }}
 app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{- end }}
