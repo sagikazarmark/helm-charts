@@ -23,6 +23,6 @@ annotations:
       description: Match the app.kubernetes.io/version label to the image tag
   artifacthub.io/images: |
     - name: sftpgo
-      image: ghcr.io/drakkan/sftpgo:v2.4.2
+      image: ghcr.io/drakkan/sftpgo:v2.4.3
     - name: sftpgo-alpine
-      image: ghcr.io/drakkan/sftpgo:v2.4.2-alpine
+      image: ghcr.io/drakkan/sftpgo:v2.4.3-alpine
