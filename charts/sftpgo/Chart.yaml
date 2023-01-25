@@ -21,6 +21,8 @@ annotations:
   artifacthub.io/changes: |
     - kind: fixed
       description: Match the app.kubernetes.io/version label to the image tag
+    - kind: changed
+      description: Updated sftpgo to 2.4.3
   artifacthub.io/images: |
     - name: sftpgo
       image: ghcr.io/drakkan/sftpgo:v2.4.3
