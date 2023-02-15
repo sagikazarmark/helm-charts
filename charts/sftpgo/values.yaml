@@ -102,7 +102,7 @@ securityContext: {}
   # runAsNonRoot: true
   # runAsUser: 1000
 
-# -- Additional containers to add to the pod
+# -- Additional containers to add to the pod.
 sidecarContainers: {}
 
 service:
