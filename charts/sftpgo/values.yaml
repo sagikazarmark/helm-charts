@@ -109,6 +109,9 @@ securityContext: {}
   # runAsNonRoot: true
   # runAsUser: 1000
 
+# -- Additional containers to add to the pod.
+sidecarContainers: {}
+
 # -- Add [init containers](https://kubernetes.io/docs/concepts/workloads/pods/init-containers/) to the pod.
 initContainers: []
 
@@ -176,7 +179,6 @@ services: {}
   #       nodePort:
   #   externalTrafficPolicy:
   #   sessionAffinity:
-
 
 ui:
   ingress:
