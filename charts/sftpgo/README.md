@@ -1,6 +1,6 @@
 # sftpgo
 
-![version: 0.8.1](https://img.shields.io/badge/version-0.8.1-informational?style=flat-square) ![type: application](https://img.shields.io/badge/type-application-informational?style=flat-square) ![app version: 2.1.0](https://img.shields.io/badge/app%20version-2.1.0-informational?style=flat-square) ![kube version: >=1.16.0-0](https://img.shields.io/badge/kube%20version->=1.16.0--0-informational?style=flat-square) [![artifact hub](https://img.shields.io/badge/artifact%20hub-sftpgo-informational?style=flat-square)](https://artifacthub.io/packages/helm/sagikazarmark/sftpgo)
+![version: 0.14.2](https://img.shields.io/badge/version-0.14.2-informational?style=flat-square) ![type: application](https://img.shields.io/badge/type-application-informational?style=flat-square) ![app version: 2.4.3](https://img.shields.io/badge/app%20version-2.4.3-informational?style=flat-square) ![kube version: >=1.16.0-0](https://img.shields.io/badge/kube%20version->=1.16.0--0-informational?style=flat-square) [![artifact hub](https://img.shields.io/badge/artifact%20hub-sftpgo-informational?style=flat-square)](https://artifacthub.io/packages/helm/sagikazarmark/sftpgo)
 
 Fully featured and highly configurable SFTP server with optional FTP/S and WebDAV support.
 
@@ -101,6 +101,7 @@ require at least one port.
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
 | replicaCount | int | `1` | Number of replicas (pods) to launch. |
+| deploymentStrategy | object | `{}` | Define the [strategy](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#strategy) to replace old Pods by new ones during updates. |
 | image.repository | string | `"ghcr.io/drakkan/sftpgo"` | Name of the image repository to pull the container image from. |
 | image.pullPolicy | string | `"IfNotPresent"` | [Image pull policy](https://kubernetes.io/docs/concepts/containers/images/#updating-images) for updating already existing images on a node. |
 | image.tag | string | `""` | Image tag override for the default value (chart appVersion). |
@@ -110,6 +111,7 @@ require at least one port.
 | sftpd.enabled | bool | `true` | Enable SFTP service. |
 | ftpd.enabled | bool | `false` | Enable FTP service. |
 | webdavd.enabled | bool | `false` | Enable WebDAV service. |
+| httpd.enabled | bool | `true` | Enable HTTP service. |
 | config | object | `{}` | Application configuration. See the [official documentation](https://github.com/drakkan/sftpgo/blob/master/docs/full-configuration.md). |
 | volumes | list | `[]` | Additional storage [volumes](https://kubernetes.io/docs/concepts/storage/volumes/). See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#volumes-1) for details. |
 | volumeMounts | list | `[]` | Additional [volume mounts](https://kubernetes.io/docs/tasks/configure-pod-container/configure-volume-storage/). See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#volumes-1) for details. |
@@ -123,10 +125,11 @@ require at least one port.
 | podSecurityContext | object | `{}` | Pod [security context](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-pod). See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#security-context) for details. |
 | securityContext | object | `{}` | Container [security context](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-container). See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#security-context-1) for details. |
 | sidecarContainers | object | `{}` | Additional containers to run in the pod alongside the sftpgo container. |
+| initContainers | list | `[]` | Add [init containers](https://kubernetes.io/docs/concepts/workloads/pods/init-containers/) to the pod. |
 | service.annotations | object | `{}` | Annotations to be added to the service. |
 | service.type | string | `"ClusterIP"` | Kubernetes [service type](https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types). |
 | service.loadBalancerIP | string | `nil` | Only applies when the service type is LoadBalancer. Load balancer will get created with the IP specified in this field. |
-| service.loadBalancerSourceRanges | list | `[]` | (list) If specified (and supported by the cloud provider), traffic through the load balancer will be restricted to the specified client IPs. Valid values are IP CIDR blocks. |
+| service.loadBalancerSourceRanges | list | `[]` | If specified (and supported by the cloud provider), traffic through the load balancer will be restricted to the specified client IPs. Valid values are IP CIDR blocks. |
 | service.ports.sftp.port | int | `22` | SFTP service port. |
 | service.ports.sftp.nodePort | int | `nil` | SFTP node port (when applicable). |
 | service.ports.ftp.port | int | `21` | FTP service port. |
@@ -136,7 +139,18 @@ require at least one port.
 | service.ports.http.port | int | `80` | REST API service port. |
 | service.ports.http.nodePort | int | `nil` | REST API node port (when applicable). |
 | service.externalTrafficPolicy | string | `nil` | Route external traffic to node-local or cluster-wide endoints. Useful for [preserving the client source IP](https://kubernetes.io/docs/tasks/access-application-cluster/create-external-load-balancer/#preserving-the-client-source-ip). |
+| service.sessionAffinity | string | `nil` | Enable client IP based session affinity. [More info](https://kubernetes.io/docs/concepts/services-networking/service/#virtual-ips-and-service-proxies) |
 | services | object | `{}` | Additional services exposing servers (SFTP, FTP, WebDAV, HTTP) individually. The schema matches the one under the `service` key. Additional services need at least one port. |
+| ui.ingress.enabled | bool | `false` | Enable [ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/). |
+| ui.ingress.className | string | `""` | Ingress [class name](https://kubernetes.io/docs/concepts/services-networking/ingress/#ingress-class). |
+| ui.ingress.annotations | object | `{}` | Annotations to be added to the ingress. |
+| ui.ingress.hosts | list | See [values.yaml](values.yaml). | Ingress host configuration. |
+| ui.ingress.tls | list | See [values.yaml](values.yaml). | Ingress TLS configuration. |
+| api.ingress.enabled | bool | `false` | Enable [ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/). |
+| api.ingress.className | string | `""` | Ingress [class name](https://kubernetes.io/docs/concepts/services-networking/ingress/#ingress-class). |
+| api.ingress.annotations | object | `{}` | Annotations to be added to the ingress. |
+| api.ingress.hosts | list | See [values.yaml](values.yaml). | Ingress host configuration. |
+| api.ingress.tls | list | See [values.yaml](values.yaml). | Ingress TLS configuration. |
 | resources | object | No requests or limits. | Container resource [requests and limits](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/). See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#resources) for details. |
 | autoscaling | object | Disabled by default. | Autoscaling configuration (see [values.yaml](values.yaml) for details). |
 | nodeSelector | object | `{}` | [Node selector](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#nodeselector) configuration. |

@@ -51,6 +51,9 @@ serviceAccount:
   # If not set and create is true, a name is generated using the fullname template.
   name: ""
 
+# -- Annotations to be added to deployments.
+deploymentAnnotations: {}
+
 # -- Annotations to be added to pods.
 podAnnotations: {}
 
@@ -68,6 +71,9 @@ securityContext: {}
   # readOnlyRootFilesystem: true
   # runAsNonRoot: true
   # runAsUser: 1000
+
+# -- Additional [init containers](https://kubernetes.io/docs/concepts/workloads/pods/init-containers/) to be added to pods.
+initContainers: []
 
 # -- List of container arguments.
 # **Note:** This is a temporary solution until there is a better way to configure the application.

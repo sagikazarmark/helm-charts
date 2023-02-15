@@ -5,6 +5,9 @@
 # -- Number of replicas (pods) to launch.
 replicaCount: 1
 
+# -- Define the [strategy](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#strategy) to replace old Pods by new ones during updates.
+deploymentStrategy: {}
+
 image:
   # -- Name of the image repository to pull the container image from.
   repository: ghcr.io/drakkan/sftpgo
@@ -35,6 +38,10 @@ ftpd:
 webdavd:
   # -- Enable WebDAV service.
   enabled: false
+
+httpd:
+  # -- Enable HTTP service.
+  enabled: true
 
 # -- Application configuration.
 # See the [official documentation](https://github.com/drakkan/sftpgo/blob/master/docs/full-configuration.md).
@@ -105,6 +112,9 @@ securityContext: {}
 # -- Additional containers to add to the pod.
 sidecarContainers: {}
 
+# -- Add [init containers](https://kubernetes.io/docs/concepts/workloads/pods/init-containers/) to the pod.
+initContainers: []
+
 service:
   # -- Annotations to be added to the service.
   annotations: {}
@@ -152,6 +162,9 @@ service:
   # Useful for [preserving the client source IP](https://kubernetes.io/docs/tasks/access-application-cluster/create-external-load-balancer/#preserving-the-client-source-ip).
   externalTrafficPolicy:
 
+  # --  Enable client IP based session affinity. [More info](https://kubernetes.io/docs/concepts/services-networking/service/#virtual-ips-and-service-proxies)
+  sessionAffinity:
+
 # -- Additional services exposing servers (SFTP, FTP, WebDAV, HTTP) individually.
 # The schema matches the one under the `service` key. Additional services need at least one port.
 services: {}
@@ -165,6 +178,66 @@ services: {}
   #       port: 22
   #       nodePort:
   #   externalTrafficPolicy:
+  #   sessionAffinity:
+
+ui:
+  ingress:
+    # -- Enable [ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/).
+    enabled: false
+
+    # -- Ingress [class name](https://kubernetes.io/docs/concepts/services-networking/ingress/#ingress-class).
+    className: ""
+
+    # -- Annotations to be added to the ingress.
+    annotations: {}
+      # kubernetes.io/ingress.class: nginx
+      # kubernetes.io/tls-acme: "true"
+
+    # -- Ingress host configuration.
+    # @default -- See [values.yaml](values.yaml).
+    hosts:
+      - host: chart-example.local
+        # Change httpd.web_root in the sftpgo configuration if you change the path
+        paths:
+          - path: /
+            pathType: ImplementationSpecific
+
+    # -- Ingress TLS configuration.
+    # @default -- See [values.yaml](values.yaml).
+    tls: []
+    #  - secretName: chart-example-tls
+    #    hosts:
+    #      - chart-example.local
+
+api:
+  ingress:
+    # -- Enable [ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/).
+    enabled: false
+
+    # -- Ingress [class name](https://kubernetes.io/docs/concepts/services-networking/ingress/#ingress-class).
+    className: ""
+
+    # -- Annotations to be added to the ingress.
+    annotations: {}
+      # nginx.ingress.kubernetes.io/rewrite-target: /$1
+      # kubernetes.io/ingress.class: nginx
+      # kubernetes.io/tls-acme: "true"
+
+    # -- Ingress host configuration.
+    # @default -- See [values.yaml](values.yaml).
+    hosts:
+      - host: chart-example.local
+        # SFTPGo does not change the path for the API endpoint if httpd.web_root is set. So, we need to rewrite to the root path.
+        paths:
+          - path: /api/(.*)
+            pathType: ImplementationSpecific
+
+    # -- Ingress TLS configuration.
+    # @default -- See [values.yaml](values.yaml).
+    tls: []
+    #  - secretName: chart-example-tls
+    #    hosts:
+    #      - chart-example.local
 
 # -- Container resource [requests and limits](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/).
 # See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#resources) for details.

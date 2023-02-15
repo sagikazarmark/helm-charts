@@ -1,7 +1,8 @@
 # Helm Charts
 
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/sagikazarmark/helm-charts/Release?style=flat-square)
+![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/sagikazarmark/helm-charts/release.yaml?branch=master&style=flat-square)
 [![Artifact HUB](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/sagikazarmark)](https://artifacthub.io/packages/search?repo=sagikazarmark)
+![Kubernetes Version](https://img.shields.io/badge/k8s%20version-%3E=1.19-3f68d7.svg?style=flat-square)
 
 Various Helm [charts](https://helm.sh/docs/topics/charts/) for my own and other projects.
 
@@ -40,4 +41,4 @@ helm delete my-release
 
 ## License
 
-The MIT License (MIT). Please see [License File](LICENSE) for more information.
+The project is licensed under the [MIT License](LICENSE).

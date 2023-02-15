@@ -1,8 +1,8 @@
 apiVersion: v2
 type: application
 name: rabbitmq-operator
-version: 0.0.1
-appVersion: 1.7.0
+version: 0.0.3
+appVersion: 1.8.3
 kubeVersion: ">=1.18.0-0"
 description: Kubernetes operator to deploy and manage RabbitMQ clusters.
 icon: https://bitnami.com/assets/stacks/rabbitmq/img/rabbitmq-stack-220x234.png
@@ -21,13 +21,13 @@ maintainers:
     url: https://sagikazarmark.hu
 annotations:
   artifacthub.io/changes: |
-    - kind: added
-      description: Initial version
+    - kind: fixed
+      description: Reformat CRD
   artifacthub.io/images: |
     - name: operator
-      image: rabbitmqoperator/cluster-operator:1.7.0
+      image: rabbitmqoperator/cluster-operator:1.8.3
     - name: rabbitmq
-      image: rabbitmq:3.8.16-management
+      image: rabbitmq:3.8.21-management
   artifacthub.io/operator: "true"
   artifacthub.io/operatorCapabilities: "Full Lifecycle"
   artifacthub.io/crds: |

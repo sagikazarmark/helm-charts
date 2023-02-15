@@ -20,6 +20,9 @@ spec:
   {{- with .Values.service.loadBalancerSourceRanges }}
   loadBalancerSourceRanges: {{ toYaml . | nindent 4 }}
   {{- end }}
+  {{- with .Values.service.sessionAffinity }}
+  sessionAffinity: {{ . }}
+  {{- end }}
   {{- end }}
   ports:
     {{- if .Values.sftpd.enabled }}
@@ -58,6 +61,7 @@ spec:
       appProtocol: webdav
       {{- end }}
     {{- end }}
+    {{- if .Values.httpd.enabled }}
     - name: http
       port: {{ .Values.service.ports.http.port }}
       {{- if and (or (eq .Values.service.type "NodePort") (eq .Values.service.type "LoadBalancer")) .Values.service.ports.http.nodePort }}
@@ -68,6 +72,7 @@ spec:
       {{- if semverCompare ">=1.20-0" .Capabilities.KubeVersion.GitVersion }}
       appProtocol: http
       {{- end }}
+    {{- end }}
     - name: telemetry
       port: 10000
       targetPort: telemetry
@@ -101,6 +106,9 @@ spec:
   {{- end }}
   {{- with $service.loadBalancerSourceRanges }}
   loadBalancerSourceRanges: {{ toYaml . | nindent 4 }}
+  {{- end }}
+  {{- with $service.sessionAffinity }}
+  sessionAffinity: {{ . }}
   {{- end }}
   {{- end }}
   ports:
@@ -140,7 +148,7 @@ spec:
       appProtocol: webdav
       {{- end }}
     {{- end }}
-    {{- if $service.ports.http }}
+    {{- if and $.Values.httpd.enabled $service.ports.http }}
     - name: http
       port: {{ required (printf "HTTP service port is required for service %q" $name) $service.ports.http.port }}
       {{- if and (or (eq $service.type "NodePort") (eq $service.type "LoadBalancer")) $service.ports.http.nodePort }}

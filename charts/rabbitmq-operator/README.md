@@ -1,6 +1,6 @@
 # rabbitmq-operator
 
-![version: 0.0.1](https://img.shields.io/badge/version-0.0.1-informational?style=flat-square) ![type: application](https://img.shields.io/badge/type-application-informational?style=flat-square) ![app version: 1.7.0](https://img.shields.io/badge/app%20version-1.7.0-informational?style=flat-square) ![kube version: >=1.18.0-0](https://img.shields.io/badge/kube%20version->=1.18.0--0-informational?style=flat-square) [![artifact hub](https://img.shields.io/badge/artifact%20hub-rabbitmq--operator-informational?style=flat-square)](https://artifacthub.io/packages/helm/sagikazarmark/rabbitmq-operator)
+![version: 0.0.3](https://img.shields.io/badge/version-0.0.3-informational?style=flat-square) ![type: application](https://img.shields.io/badge/type-application-informational?style=flat-square) ![app version: 1.8.3](https://img.shields.io/badge/app%20version-1.8.3-informational?style=flat-square) ![kube version: >=1.18.0-0](https://img.shields.io/badge/kube%20version->=1.18.0--0-informational?style=flat-square) [![artifact hub](https://img.shields.io/badge/artifact%20hub-rabbitmq--operator-informational?style=flat-square)](https://artifacthub.io/packages/helm/sagikazarmark/rabbitmq-operator)
 
 Kubernetes operator to deploy and manage RabbitMQ clusters.
 
