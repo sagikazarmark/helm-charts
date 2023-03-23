@@ -124,7 +124,8 @@ spec:
             {{- toYaml .Values.resources | nindent 12 }}
           volumeMounts:
             - name: config
-              mountPath: /etc/sftpgo
+              mountPath: /etc/sftpgo/sftpgo.json
+              subPath: sftpgo.json
               readOnly: true
           {{- with .Values.volumeMounts }}
             {{- toYaml . | nindent 12 }}
