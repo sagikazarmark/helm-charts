@@ -26,7 +26,7 @@ jobs:
           python-version: "3.10"
 
       - name: Set up chart-testing
-        uses: helm/chart-testing-action@v2.3.1
+        uses: helm/chart-testing-action@v2.4.0
 
       - name: Lint
         run: ct lint
@@ -72,7 +72,7 @@ jobs:
           python-version: "3.10"
 
       - name: Set up chart-testing
-        uses: helm/chart-testing-action@v2.3.1
+        uses: helm/chart-testing-action@v2.4.0
 
       - name: Exclude unsupported charts
         id: exclusions
