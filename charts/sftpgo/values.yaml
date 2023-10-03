@@ -76,6 +76,14 @@ envVars: []
   #       key: SOME_CONFIGMAP_KEY
 
 
+## Overrides the default entrypoint of the sftp container
+command: []
+
+## default args for the sftp container
+args: 
+  - sftpgo
+  - serve
+
 # -- Additional environment variables passed directly to containers using a simplified key-value syntax.
 env: {}
   # SOME_ENV_VAR: SOME_VALUE
@@ -111,6 +119,9 @@ securityContext: {}
 
 # -- Add [init containers](https://kubernetes.io/docs/concepts/workloads/pods/init-containers/) to the pod.
 initContainers: []
+
+# -- Additional sidecar containers, e. g. for a database proxy, such as Google's cloudsql-proxy
+extraContainers: []
 
 service:
   # -- Annotations to be added to the service.
