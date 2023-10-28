@@ -51,6 +51,10 @@ serviceAccount:
   # If not set and create is true, a name is generated using the fullname template.
   name: ""
 
+  # -- Automount API credentials for a service account.
+  # See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#service-account) for details.
+  automount: true
+
 # -- Annotations to be added to deployments.
 deploymentAnnotations: {}
 
