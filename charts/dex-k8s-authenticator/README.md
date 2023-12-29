@@ -1,6 +1,6 @@
 # dex-k8s-authenticator
 
-![version: 0.0.2](https://img.shields.io/badge/version-0.0.2-informational?style=flat-square) ![type: application](https://img.shields.io/badge/type-application-informational?style=flat-square) ![app version: 1.4.0](https://img.shields.io/badge/app%20version-1.4.0-informational?style=flat-square) ![kube version: >=1.14.0-0](https://img.shields.io/badge/kube%20version->=1.14.0--0-informational?style=flat-square) [![artifact hub](https://img.shields.io/badge/artifact%20hub-dex--k8s--authenticator-informational?style=flat-square)](https://artifacthub.io/packages/helm/sagikazarmark/dex-k8s-authenticator)
+![version: 0.0.3](https://img.shields.io/badge/version-0.0.3-informational?style=flat-square) ![type: application](https://img.shields.io/badge/type-application-informational?style=flat-square) ![app version: 1.4.0](https://img.shields.io/badge/app%20version-1.4.0-informational?style=flat-square) ![kube version: >=1.14.0-0](https://img.shields.io/badge/kube%20version->=1.14.0--0-informational?style=flat-square) [![artifact hub](https://img.shields.io/badge/artifact%20hub-dex--k8s--authenticator-informational?style=flat-square)](https://artifacthub.io/packages/helm/sagikazarmark/dex-k8s-authenticator)
 
 A helper web-app which talks to one or more Dex Identity services to generate kubectl commands for creating and modifying a kubeconfig.
 
@@ -36,6 +36,7 @@ helm install --generate-name --wait skm/dex-k8s-authenticator
 | serviceAccount.name | string | `""` | The name of the service account to use. If not set and create is true, a name is generated using the fullname template. |
 | podAnnotations | object | `{}` | Annotations to be added to pods. |
 | podSecurityContext | object | `{}` | Pod [security context](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-pod). See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#security-context) for details. |
+| priorityClassName | string | `""` | Pod [priority](https://kubernetes.io/docs/concepts/scheduling-eviction/pod-priority-preemption/#pod-priority). See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/priority-class-v1/#PriorityClass) for details. |
 | securityContext | object | `{}` | Container [security context](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-container). See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#security-context-1) for details. |
 | service.annotations | object | `{}` | Annotations to be added to the service. |
 | service.type | string | `"ClusterIP"` | Kubernetes [service type](https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types). |
