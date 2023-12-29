@@ -581,6 +581,38 @@ entries:
           image: mintel/dex-k8s-authenticator:1.4.0
     apiVersion: v2
     appVersion: 1.4.0
+    created: "2023-12-29T18:24:09.903245766Z"
+    description: A helper web-app which talks to one or more Dex Identity services
+      to generate kubectl commands for creating and modifying a kubeconfig.
+    digest: 90fa2cec184db15fc9a136924df6c6b726bcd76f3ce40091b53387205b764ff5
+    home: https://github.com/mintel/dex-k8s-authenticator
+    icon: https://dexidp.io/favicon.png
+    keywords:
+    - oidc
+    - dex
+    - kubernetes
+    - k8s
+    kubeVersion: '>=1.14.0-0'
+    maintainers:
+    - email: mark.sagikazar@gmail.com
+      name: sagikazarmark
+      url: https://sagikazarmark.hu
+    name: dex-k8s-authenticator
+    sources:
+    - https://github.com/mintel/dex-k8s-authenticator
+    - https://github.com/sagikazarmark/helm-charts/tree/master/charts/dex-k8s-authenticator
+    type: application
+    urls:
+    - https://github.com/sagikazarmark/helm-charts/releases/download/dex-k8s-authenticator-0.0.3/dex-k8s-authenticator-0.0.3.tgz
+    version: 0.0.3
+  - annotations:
+      artifacthub.io/changes: |
+        - Add license file
+      artifacthub.io/images: |
+        - name: dex-k8s-authenticator
+          image: mintel/dex-k8s-authenticator:1.4.0
+    apiVersion: v2
+    appVersion: 1.4.0
     created: "2021-04-27T23:49:53.751655565Z"
     description: A helper web-app which talks to one or more Dex Identity services
       to generate kubectl commands for creating and modifying a kubeconfig.
@@ -3518,4 +3550,4 @@ entries:
     urls:
     - https://github.com/sagikazarmark/helm-charts/releases/download/tusd-0.0.1/tusd-0.0.1.tgz
     version: 0.0.1
-generated: "2023-07-18T07:27:51.753097999Z"
+generated: "2023-12-29T18:24:09.903748461Z"
