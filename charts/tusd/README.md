@@ -1,6 +1,6 @@
 # tusd
 
-![version: 0.1.1](https://img.shields.io/badge/version-0.1.1-informational?style=flat-square) ![type: application](https://img.shields.io/badge/type-application-informational?style=flat-square) ![app version: 1.10.0](https://img.shields.io/badge/app%20version-1.10.0-informational?style=flat-square) ![kube version: >=1.16.0-0](https://img.shields.io/badge/kube%20version->=1.16.0--0-informational?style=flat-square) [![artifact hub](https://img.shields.io/badge/artifact%20hub-tusd-informational?style=flat-square)](https://artifacthub.io/packages/helm/sagikazarmark/tusd)
+![version: 0.1.2](https://img.shields.io/badge/version-0.1.2-informational?style=flat-square) ![type: application](https://img.shields.io/badge/type-application-informational?style=flat-square) ![app version: 1.10.0](https://img.shields.io/badge/app%20version-1.10.0-informational?style=flat-square) ![kube version: >=1.16.0-0](https://img.shields.io/badge/kube%20version->=1.16.0--0-informational?style=flat-square) [![artifact hub](https://img.shields.io/badge/artifact%20hub-tusd-informational?style=flat-square)](https://artifacthub.io/packages/helm/sagikazarmark/tusd)
 
 Reference server implementation in Go of tus: the open protocol for resumable file uploads.
 
@@ -33,6 +33,9 @@ helm install --generate-name --wait skm/tusd
 | serviceAccount.name | string | `""` | The name of the service account to use. If not set and create is true, a name is generated using the fullname template. |
 | deploymentAnnotations | object | `{}` | Annotations to be added to deployments. |
 | podAnnotations | object | `{}` | Annotations to be added to pods. |
+| podDisruptionBudget.enabled | bool | `false` | Enable a [pod distruption budget](https://kubernetes.io/docs/tasks/run-application/configure-pdb/) to help dealing with [disruptions](https://kubernetes.io/docs/concepts/workloads/pods/disruptions/). It is **highly recommended** for webhooks as disruptions can prevent launching new pods. |
+| podDisruptionBudget.minAvailable | int/percentage | `nil` | Number or percentage of pods that must remain available. |
+| podDisruptionBudget.maxUnavailable | int/percentage | `nil` | Number or percentage of pods that can be unavailable. |
 | podSecurityContext | object | `{}` | Pod [security context](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-pod). See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#security-context) for details. |
 | securityContext | object | `{}` | Container [security context](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-container). See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#security-context-1) for details. |
 | initContainers | list | `[]` | Additional [init containers](https://kubernetes.io/docs/concepts/workloads/pods/init-containers/) to be added to pods. |
