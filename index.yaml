@@ -3162,6 +3162,36 @@ entries:
   tusd:
   - annotations:
       artifacthub.io/changes: |
+        - Ensure all arguments are strings
+      artifacthub.io/images: |
+        - name: tusd
+          image: tusproject/tusd:v1.10.0
+    apiVersion: v2
+    appVersion: 1.10.0
+    created: "2024-01-12T07:24:58.166616759Z"
+    description: 'Reference server implementation in Go of tus: the open protocol
+      for resumable file uploads.'
+    digest: 2ab1dd8874c257731fdfa6a36d7ae601a03da2b25382d7efe86b28eb8e9c69c1
+    home: https://tus.io
+    keywords:
+    - http
+    - upload
+    - protocol
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: mark.sagikazar@gmail.com
+      name: sagikazarmark
+      url: https://sagikazarmark.hu
+    name: tusd
+    sources:
+    - https://github.com/tus/tusd
+    - https://github.com/sagikazarmark/helm-charts/tree/master/charts/tusd
+    type: application
+    urls:
+    - https://github.com/sagikazarmark/helm-charts/releases/download/tusd-0.1.1/tusd-0.1.1.tgz
+    version: 0.1.1
+  - annotations:
+      artifacthub.io/changes: |
         - Update tusd to 1.10.0
       artifacthub.io/images: |
         - name: tusd
@@ -3550,4 +3580,4 @@ entries:
     urls:
     - https://github.com/sagikazarmark/helm-charts/releases/download/tusd-0.0.1/tusd-0.0.1.tgz
     version: 0.0.1
-generated: "2023-12-29T18:24:09.903748461Z"
+generated: "2024-01-12T07:24:58.166940592Z"
