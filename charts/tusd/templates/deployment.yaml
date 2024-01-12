@@ -47,7 +47,7 @@ spec:
             - "-port"
             - "1080"
           {{- range .Values.containerArgs }}
-            - {{ . }}
+            - {{ . | quote }}
           {{- end }}
           {{- with .Values.env }}
           env:
