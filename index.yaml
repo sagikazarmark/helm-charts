@@ -3162,6 +3162,36 @@ entries:
   tusd:
   - annotations:
       artifacthub.io/changes: |
+        - Add optional PDB
+      artifacthub.io/images: |
+        - name: tusd
+          image: tusproject/tusd:v1.10.0
+    apiVersion: v2
+    appVersion: 1.10.0
+    created: "2024-02-05T11:35:36.379545032Z"
+    description: 'Reference server implementation in Go of tus: the open protocol
+      for resumable file uploads.'
+    digest: 19620a52dcebc32e392003e7a203458fbc517698fe6ad414b3aa49af65425183
+    home: https://tus.io
+    keywords:
+    - http
+    - upload
+    - protocol
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: mark.sagikazar@gmail.com
+      name: sagikazarmark
+      url: https://sagikazarmark.hu
+    name: tusd
+    sources:
+    - https://github.com/tus/tusd
+    - https://github.com/sagikazarmark/helm-charts/tree/master/charts/tusd
+    type: application
+    urls:
+    - https://github.com/sagikazarmark/helm-charts/releases/download/tusd-0.1.2/tusd-0.1.2.tgz
+    version: 0.1.2
+  - annotations:
+      artifacthub.io/changes: |
         - Ensure all arguments are strings
       artifacthub.io/images: |
         - name: tusd
@@ -3580,4 +3610,4 @@ entries:
     urls:
     - https://github.com/sagikazarmark/helm-charts/releases/download/tusd-0.0.1/tusd-0.0.1.tgz
     version: 0.0.1
-generated: "2024-01-12T07:24:58.166940592Z"
+generated: "2024-02-05T11:35:36.379769399Z"
