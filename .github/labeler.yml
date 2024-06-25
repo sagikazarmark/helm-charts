@@ -1,20 +1,27 @@
 chart/browserless-chrome:
-  - charts/browserless-chrome/**/*
+  - changed-files:
+    - charts/browserless-chrome/**/*
 
 chart/caddy:
-  - charts/caddy/**/*
+  - changed-files:
+    - charts/caddy/**/*
 
 chart/dex-k8s-authenticator:
-  - charts/dex-k8s-authenticator/**/*
+  - changed-files:
+    - charts/dex-k8s-authenticator/**/*
 
 chart/kube-secrets-init:
-  - charts/kube-secrets-init/**/*
+  - changed-files:
+    - charts/kube-secrets-init/**/*
 
 chart/rabbitmq-operator:
-  - charts/rabbitmq-operator/**/*
+  - changed-files:
+    - charts/rabbitmq-operator/**/*
 
 chart/sftpgo:
-  - charts/sftpgo/**/*
+  - changed-files:
+    - charts/sftpgo/**/*
 
 chart/tusd:
-  - charts/tusd/**/*
+  - changed-files:
+    - charts/tusd/**/*
