@@ -8,10 +8,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: checkout
+      - name: Checkout the source code
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
           
       - name: Label Pull Request
         uses: actions/labeler@v5
