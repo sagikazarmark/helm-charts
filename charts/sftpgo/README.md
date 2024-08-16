@@ -160,3 +160,5 @@ require at least one port.
 | topologySpreadConstraints.maxSkew | int | `1` | Degree to which pods may be unevenly distributed. |
 | topologySpreadConstraints.topologyKey | string | `"topology.kubernetes.io/zone"` | The key of node labels. See https://kubernetes.io/docs/reference/kubernetes-api/labels-annotations-taints/ |
 | topologySpreadConstraints.whenUnsatisfiable | string | `"DoNotSchedule"` | How to deal with a Pod if it doesn't satisfy the spread constraint. |
+| persistence.enabled | bool | `false` | Enable persistent storage for the /var/lib/sftpgo directory, saving state of the sqlite db stored there by default. Requires the user select a spec for the desired PVC. |
+| persistence.pvc | object | `{}` | Create the desired pvc specificiation to use. |
