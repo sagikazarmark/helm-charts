@@ -293,7 +293,7 @@ topologySpreadConstraints:
 
 # -- Enable persistent storage for the /var/lib/sftpgo directory, saving state of a memory db.
 persistence:
-  enabled: true
+  enabled: false
 
   # -- Create the pvc desired specificiation.
   pvc:
