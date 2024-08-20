@@ -1,6 +1,6 @@
 # sftpgo
 
-![version: 0.19.0](https://img.shields.io/badge/version-0.19.0-informational?style=flat-square) ![type: application](https://img.shields.io/badge/type-application-informational?style=flat-square) ![app version: 2.5.4](https://img.shields.io/badge/app%20version-2.5.4-informational?style=flat-square) ![kube version: >=1.16.0-0](https://img.shields.io/badge/kube%20version->=1.16.0--0-informational?style=flat-square) [![artifact hub](https://img.shields.io/badge/artifact%20hub-sftpgo-informational?style=flat-square)](https://artifacthub.io/packages/helm/sagikazarmark/sftpgo)
+![version: 0.20.0](https://img.shields.io/badge/version-0.20.0-informational?style=flat-square) ![type: application](https://img.shields.io/badge/type-application-informational?style=flat-square) ![app version: 2.5.4](https://img.shields.io/badge/app%20version-2.5.4-informational?style=flat-square) ![kube version: >=1.16.0-0](https://img.shields.io/badge/kube%20version->=1.16.0--0-informational?style=flat-square) [![artifact hub](https://img.shields.io/badge/artifact%20hub-sftpgo-informational?style=flat-square)](https://artifacthub.io/packages/helm/sagikazarmark/sftpgo)
 
 Fully featured and highly configurable SFTP server with optional FTP/S and WebDAV support.
 
@@ -122,7 +122,7 @@ require at least one port.
 | serviceAccount.annotations | object | `{}` | Annotations to be added to the service account. |
 | serviceAccount.name | string | `""` | The name of the service account to use. If not set and create is true, a name is generated using the fullname template. |
 | podAnnotations | object | `{}` | Annotations to be added to pods. |
-| podSecurityContext | object | `{}` | Pod [security context](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-pod). See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#security-context) for details. |
+| podSecurityContext | object | `{"fsGroup":1000}` | Pod [security context](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-pod). See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#security-context) for details. |
 | securityContext | object | `{}` | Container [security context](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-container). See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#security-context-1) for details. |
 | initContainers | list | `[]` | Add [init containers](https://kubernetes.io/docs/concepts/workloads/pods/init-containers/) to the pod. |
 | service.annotations | object | `{}` | Annotations to be added to the service. |
@@ -160,5 +160,5 @@ require at least one port.
 | topologySpreadConstraints.maxSkew | int | `1` | Degree to which pods may be unevenly distributed. |
 | topologySpreadConstraints.topologyKey | string | `"topology.kubernetes.io/zone"` | The key of node labels. See https://kubernetes.io/docs/reference/kubernetes-api/labels-annotations-taints/ |
 | topologySpreadConstraints.whenUnsatisfiable | string | `"DoNotSchedule"` | How to deal with a Pod if it doesn't satisfy the spread constraint. |
-| persistence.enabled | bool | `false` | Enable persistent storage for the /var/lib/sftpgo directory, saving state of the sqlite db stored there by default. Requires the user select a spec for the desired PVC. |
-| persistence.pvc | object | `{}` | Create the desired pvc specificiation to use. |
+| persistence.enabled | bool | `false` | Enable persistent storage for the /var/lib/sftpgo directory, saving state of the default sqlite db. |
+| persistence.pvc | object | `{"accessModes":["ReadWriteOnce"],"resources":{"requests":{"storage":"5Gi"}},"storageClassName":"premium-rwo"}` | Create the pvc desired specificiation. |
