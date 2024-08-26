@@ -96,8 +96,8 @@ podAnnotations: {}
 
 # -- Pod [security context](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-pod).
 # See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#security-context) for details.
-podSecurityContext: {}
-  # fsGroup: 2000
+podSecurityContext:
+  fsGroup: 1000
 
 # -- Container [security context](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-container).
 # See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#security-context-1) for details.
@@ -107,7 +107,6 @@ securityContext: {}
   #   - ALL
   # readOnlyRootFilesystem: true
   # runAsNonRoot: true
-  # runAsUser: 1000
 
 # -- Add [init containers](https://kubernetes.io/docs/concepts/workloads/pods/init-containers/) to the pod.
 initContainers: []
@@ -289,3 +288,16 @@ topologySpreadConstraints:
 
   # -- How to deal with a Pod if it doesn't satisfy the spread constraint.
   whenUnsatisfiable: DoNotSchedule
+
+persistence:
+  # -- Enable persistent storage for the /var/lib/sftpgo directory, saving state of the default sqlite db.
+  enabled: false
+
+  # -- Create the pvc desired specificiation.
+  pvc:
+    accessModes:
+      - ReadWriteOnce
+    resources:
+      requests:
+        storage: 5Gi
+    storageClassName: premium-rwo
