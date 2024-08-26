@@ -8,6 +8,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Checkout the source code
+        uses: actions/checkout@v4
+          
       - name: Label Pull Request
         uses: actions/labeler@v5
         with:
