@@ -141,7 +141,7 @@ spec:
       {{- if .Values.persistence.enabled }}
         - name: sftpgo-volume
           persistentVolumeClaim:
-            claimName: {{ include "sftpgo.fullname" . }}-pvc
+            claimName: {{ include "sftpgo.fullname" . }}
       {{- end }}
       {{- with .Values.volumes }}
         {{- toYaml . | nindent 8 }}
