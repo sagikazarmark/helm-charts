@@ -31,6 +31,7 @@ helm install --generate-name --wait skm/tusd
 | serviceAccount.create | bool | `true` | Enable service account creation. |
 | serviceAccount.annotations | object | `{}` | Annotations to be added to the service account. |
 | serviceAccount.name | string | `""` | The name of the service account to use. If not set and create is true, a name is generated using the fullname template. |
+| serviceAccount.automountServiceAccountToken | bool | `false` | Automount API credentials for a service account. See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#service-account) for details. |
 | deploymentAnnotations | object | `{}` | Annotations to be added to deployments. |
 | podAnnotations | object | `{}` | Annotations to be added to pods. |
 | podDisruptionBudget.enabled | bool | `false` | Enable a [pod distruption budget](https://kubernetes.io/docs/tasks/run-application/configure-pdb/) to help dealing with [disruptions](https://kubernetes.io/docs/concepts/workloads/pods/disruptions/). It is **highly recommended** for webhooks as disruptions can prevent launching new pods. |
