@@ -15,7 +15,7 @@ helm install --generate-name --wait skm/sftpgo
 
 ## Configuration
 
-SFTPGo has an extensive set of [configuration](https://github.com/drakkan/sftpgo/blob/master/docs/full-configuration.md) options allowing you to control the large set of features it provides.
+SFTPGo has an extensive set of [configuration](https://docs.sftpgo.com/latest/config-file/) options allowing you to control the large set of features it provides.
 
 The following options are available to configure SFTPGo when installing it with this chart.
 
