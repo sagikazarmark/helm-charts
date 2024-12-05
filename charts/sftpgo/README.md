@@ -1,6 +1,6 @@
 # sftpgo
 
-![version: 0.22.0](https://img.shields.io/badge/version-0.22.0-informational?style=flat-square) ![type: application](https://img.shields.io/badge/type-application-informational?style=flat-square) ![app version: 2.5.4](https://img.shields.io/badge/app%20version-2.5.4-informational?style=flat-square) ![kube version: >=1.16.0-0](https://img.shields.io/badge/kube%20version->=1.16.0--0-informational?style=flat-square) [![artifact hub](https://img.shields.io/badge/artifact%20hub-sftpgo-informational?style=flat-square)](https://artifacthub.io/packages/helm/sagikazarmark/sftpgo)
+![version: 0.23.0](https://img.shields.io/badge/version-0.23.0-informational?style=flat-square) ![type: application](https://img.shields.io/badge/type-application-informational?style=flat-square) ![app version: 2.5.4](https://img.shields.io/badge/app%20version-2.5.4-informational?style=flat-square) ![kube version: >=1.16.0-0](https://img.shields.io/badge/kube%20version->=1.16.0--0-informational?style=flat-square) [![artifact hub](https://img.shields.io/badge/artifact%20hub-sftpgo-informational?style=flat-square)](https://artifacthub.io/packages/helm/sagikazarmark/sftpgo)
 
 Fully featured and highly configurable SFTP server with optional FTP/S and WebDAV support.
 
@@ -121,6 +121,7 @@ require at least one port.
 | serviceAccount.create | bool | `true` | Enable service account creation. |
 | serviceAccount.annotations | object | `{}` | Annotations to be added to the service account. |
 | serviceAccount.name | string | `""` | The name of the service account to use. If not set and create is true, a name is generated using the fullname template. |
+| deploymentAnnotations | object | `{}` | Annotations to be added to deployment. |
 | podAnnotations | object | `{}` | Annotations to be added to pods. |
 | podSecurityContext | object | `{"fsGroup":1000}` | Pod [security context](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-pod). See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#security-context) for details. |
 | securityContext | object | `{}` | Container [security context](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-container). See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#security-context-1) for details. |

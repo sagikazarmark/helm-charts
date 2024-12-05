@@ -91,6 +91,9 @@ serviceAccount:
   # If not set and create is true, a name is generated using the fullname template.
   name: ""
 
+# -- Annotations to be added to deployment.
+deploymentAnnotations: {}
+
 # -- Annotations to be added to pods.
 podAnnotations: {}
 
