@@ -1,6 +1,6 @@
 # sftpgo
 
-![version: 0.23.0](https://img.shields.io/badge/version-0.23.0-informational?style=flat-square) ![type: application](https://img.shields.io/badge/type-application-informational?style=flat-square) ![app version: 2.5.4](https://img.shields.io/badge/app%20version-2.5.4-informational?style=flat-square) ![kube version: >=1.16.0-0](https://img.shields.io/badge/kube%20version->=1.16.0--0-informational?style=flat-square) [![artifact hub](https://img.shields.io/badge/artifact%20hub-sftpgo-informational?style=flat-square)](https://artifacthub.io/packages/helm/sagikazarmark/sftpgo)
+![version: 0.23.1](https://img.shields.io/badge/version-0.23.1-informational?style=flat-square) ![type: application](https://img.shields.io/badge/type-application-informational?style=flat-square) ![app version: 2.5.4](https://img.shields.io/badge/app%20version-2.5.4-informational?style=flat-square) ![kube version: >=1.16.0-0](https://img.shields.io/badge/kube%20version->=1.16.0--0-informational?style=flat-square) [![artifact hub](https://img.shields.io/badge/artifact%20hub-sftpgo-informational?style=flat-square)](https://artifacthub.io/packages/helm/sagikazarmark/sftpgo)
 
 Fully featured and highly configurable SFTP server with optional FTP/S and WebDAV support.
 
@@ -15,7 +15,7 @@ helm install --generate-name --wait skm/sftpgo
 
 ## Configuration
 
-SFTPGo has an extensive set of [configuration](https://github.com/drakkan/sftpgo/blob/master/docs/full-configuration.md) options allowing you to control the large set of features it provides.
+SFTPGo has an extensive set of [configuration](https://docs.sftpgo.com/latest/config-file/) options allowing you to control the large set of features it provides.
 
 The following options are available to configure SFTPGo when installing it with this chart.
 
