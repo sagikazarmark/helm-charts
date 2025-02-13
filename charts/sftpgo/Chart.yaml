@@ -1,7 +1,8 @@
 apiVersion: v2
 type: application
 name: sftpgo
-version: 0.23.2
+deprecated: true
+version: 0.24.0
 appVersion: 2.5.4
 kubeVersion: ">=1.16.0-0"
 description: Fully featured and highly configurable SFTP server with optional FTP/S and WebDAV support.
@@ -13,16 +14,8 @@ home: https://github.com/drakkan/sftpgo
 sources:
   - https://github.com/drakkan/sftpgo
   - https://github.com/sagikazarmark/helm-charts/tree/master/charts/sftpgo
-maintainers:
-  - name: sagikazarmark
-    email: mark.sagikazar@gmail.com
-    url: https://sagikazarmark.hu
 annotations:
   artifacthub.io/changes: |
-    - kind: changed
-      description: Add deployment annotations
-    - kind: fixed
-      description: Fixed instructions in NOTES.TXT to forward correct ports. Made clearer for first usage.
   artifacthub.io/images: |
     - name: sftpgo
       image: ghcr.io/drakkan/sftpgo:v2.5.4
