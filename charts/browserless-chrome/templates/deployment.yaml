@@ -58,6 +58,11 @@ spec:
           readinessProbe:
             httpGet:
               path: /pressure
+              {{- with .Values.env -}}
+                {{- if .TOKEN -}}
+                  {{- printf "?token=%s" .TOKEN }}
+                {{- end -}}
+              {{- end }}
               port: http
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
