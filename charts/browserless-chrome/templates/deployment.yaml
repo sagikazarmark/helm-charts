@@ -18,6 +18,9 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       labels:
+        {{- with .Values.podLabels }}
+          {{- toYaml . | nindent 8 }}
+        {{- end }}
         {{- include "browserless-chrome.selectorLabels" . | nindent 8 }}
     spec:
       {{- with .Values.imagePullSecrets }}
