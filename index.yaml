@@ -10,6 +10,37 @@ entries:
           image: browserless/chrome:1.48.0-chrome-stable
     apiVersion: v2
     appVersion: 1.48.0
+    created: "2025-07-11T10:10:34.556946959Z"
+    description: Chrome as a service container. Bring your own hardware or cloud.
+    digest: 3accc4788ff08f39f5f1099e653c26c12c05603a70230dc265e0d47dfb100003
+    home: https://www.browserless.io/
+    icon: https://www.browserless.io/assets/apple-touch-icon.png
+    keywords:
+    - chrome
+    - headless
+    - puppeteer
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: mark.sagikazar@gmail.com
+      name: sagikazarmark
+      url: https://sagikazarmark.hu
+    name: browserless-chrome
+    sources:
+    - https://github.com/browserless/chrome
+    - https://github.com/sagikazarmark/helm-charts/tree/master/charts/browserless-chrome
+    type: application
+    urls:
+    - https://github.com/sagikazarmark/helm-charts/releases/download/browserless-chrome-0.0.5/browserless-chrome-0.0.5.tgz
+    version: 0.0.5
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
+          description: Bump application to 1.48.0
+      artifacthub.io/images: |
+        - name: browserless-chrome
+          image: browserless/chrome:1.48.0-chrome-stable
+    apiVersion: v2
+    appVersion: 1.48.0
     created: "2021-09-08T16:27:46.819187386Z"
     description: Chrome as a service container. Bring your own hardware or cloud.
     digest: c1d341ef3068d2ce27b9049d4ee0ef84a88de579051e29e34f592ad6b8b83cd7
@@ -3840,4 +3871,4 @@ entries:
     urls:
     - https://github.com/sagikazarmark/helm-charts/releases/download/tusd-0.0.1/tusd-0.0.1.tgz
     version: 0.0.1
-generated: "2025-02-13T10:10:54.123761926Z"
+generated: "2025-07-11T10:10:34.557263115Z"
